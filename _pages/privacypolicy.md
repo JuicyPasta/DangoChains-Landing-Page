@@ -24,7 +24,10 @@ Dango Chains is designed with your privacy in mind. The app:
 All your game progress, statistics, and preferences are stored locally on your device and are never transmitted to any server.
 
 ## Third-Party Services
-Dango Chains does not integrate with any third-party services that collect user data.
+The Dango Chains app does not integrate with any third-party services that collect user data.
+
+## This Website
+This website (not the app) uses Google Analytics to count visits and clicks on the App Store and Google Play buttons. Google Analytics sets cookies and receives standard web data such as pages viewed, approximate location, device and browser type. It is not linked to the app and is not used for advertising. You can block it with any content blocker or the [Google Analytics opt-out add-on](https://tools.google.com/dlpage/gaoptout). See [Google's privacy policy](https://policies.google.com/privacy) for how Google handles this data.
 
 ## Changes to This Policy
 We may update this Privacy Policy from time to time. Any changes will be reflected on this page.
