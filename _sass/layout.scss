@@ -333,6 +333,24 @@ nav > ul li a:active {
 	
 } 
 
+.tryPuzzleContainer {
+	margin-top: 18px;
+}
+
+.tryPuzzleLink {
+	color: $app-description-color;
+	text-decoration: underline;
+	font-weight: 600;
+}
+
+@media only screen and (max-width: 992px) {
+
+	.tryPuzzleContainer {
+		text-align: center;
+	}
+
+}
+
 .downloadButtonsContainer {
 	display: inline-block;
 	margin-top: 42px;
