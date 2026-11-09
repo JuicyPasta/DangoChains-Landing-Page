@@ -119,8 +119,10 @@ New to the rules? See [How to Play]({{ '/how-to-play/' | relative_url }}).
 
   function submit() {
     var sel = state.selected, counts = {};
+    var key = sel.map(function (w) { return w.w; }).sort().join('|');
+    if (state.guesses.indexOf(key) >= 0) { msg.textContent = 'Already guessed'; return; }
+    state.guesses.push(key);
     sel.forEach(function (w) { counts[w.group] = (counts[w.group] || 0) + 1; });
-    state.guesses.push(sel.map(function (w) { return w.group; }));
     var gi = Object.keys(counts).filter(function (k) { return counts[k] === 4; })[0];
     if (gi !== undefined) {
       state.solved.push(+gi); state.selected = [];
