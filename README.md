@@ -1,3 +1,16 @@
+# DangoChains site
+
+Live at https://juicypasta.github.io/DangoChains-Landing-Page/ (GitHub Pages builds `main`; Jekyll, `bundle exec jekyll build`).
+
+- **`/play/`** (`_pages/play.md`, `assets/js/dango-daily.js`): the free web daily. Today's three boards for the visitor's local date, `?d=YYYY-MM-DD&t=easy|medium|hard` for one board (the last 7 days play; older dates point to the app's archive), and custom boards from `#b=…`. Progress lives in localStorage only.
+- **`/make/`** (`_pages/make.md`, `assets/js/dango-make.js`): make-your-own board; the whole board is base64url JSON in the link's fragment (format in `assets/js/dango-board.js`).
+- **`assets/js/dango-board.js`**: the shared board engine, furigana parsing, share text.
+- **`feed/v1/`**: the puzzle feed, a build artifact the web and the app read. Regenerate it at least monthly (it covers through the end of next month) and whenever puzzles change: `python3 ~/code/Projects/DangoChains/scripts/build_feed.py --out feed`.
+- **`assets/data/readings.json`**: the maker's readings, from the app's `furigana.yaml`: `python3 scripts/build_readings.py`.
+- Share links and canonical URLs come from `url` + `baseurl` in `_config.yml`; change both when the custom domain goes live.
+
+The rest of this file is the original template's README.
+
 # Automatic App Landing Page
 **Create and deploy an iOS app landing page on GitHub Pages in only five minutes.**
 

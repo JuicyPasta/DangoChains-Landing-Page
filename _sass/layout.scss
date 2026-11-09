@@ -238,6 +238,11 @@ nav > ul li a:active {
 	color: rgba(#000, 1);
 }
 
+.subPageHeaderBackground nav > ul li a[aria-current="page"] {
+	color: rgba(#000, 1);
+	font-weight: 600;
+}
+
 
 
 // App Title, Price, Description and Links

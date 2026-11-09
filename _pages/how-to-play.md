@@ -3,6 +3,7 @@ layout: page
 title: How to Play
 include_in_header: true
 include_in_footer: true
+nav_order: 3
 ---
 
 # How to Play DangoChains
@@ -36,6 +37,8 @@ On the board in the screenshot on our home page, two groups are already solved: 
 - **Hard:** idioms, kanji compounds and cultural references, N2 and up
 
 A new set arrives at local midnight. After each game you can review all four groups with readings and English names, and share an emoji grid of your guesses with no spoilers.
+
+[Play today's three in your browser]({{ '/play/' | relative_url }}){:target="_self"}: no install, and the last 7 days are free there too. Teaching a class? [Make your own board]({{ '/make/' | relative_url }}){:target="_self"} from 16 words and share it as one link.
 
 ## Get the app
 
