@@ -7,7 +7,7 @@ include_in_footer: true
 
 # Try a DangoChains puzzle
 
-Sixteen Japanese words, four hidden groups of four. Tap four words that belong together, then press **Submit**. You have six tries. These three sample boards are from the archive; the app has a new set every day.
+Sixteen Japanese words, four hidden groups of four. Tap four words that belong together, then press **Submit**. You have six tries. These three sample boards come from the app, which has a new set every day.
 
 <div id="dc-play">
   <div class="dc-tiers" role="tablist"></div>
@@ -31,6 +31,7 @@ Sixteen Japanese words, four hidden groups of four. Tap four words that belong t
 </div>
 
 <label class="dc-furigana"><input type="checkbox" checked> Show furigana</label>
+<p class="dc-furigana-note">Hard starts with furigana off: the readings are part of the puzzle.</p>
 
 New to the rules? See [How to Play]({{ '/how-to-play/' | relative_url }}).
 
@@ -58,6 +59,7 @@ New to the rules? See [How to Play]({{ '/how-to-play/' | relative_url }}).
 .dc-end-text { font-size: 1.2em; font-weight: bold; }
 .dc-store { display: inline-block; margin: 4px; padding: 10px 16px; border-radius: 10px; background: #000; color: #fff !important; text-decoration: none; }
 .dc-furigana { display: block; text-align: center; }
+.dc-furigana-note { text-align: center; font-size: .85em; opacity: .7; margin-top: 2px; }
 .dc-nofuri rt { display: none; }
 </style>
 
@@ -77,7 +79,12 @@ New to the rules? See [How to Play]({{ '/how-to-play/' | relative_url }}).
     return a;
   }
 
+  // Hard boards often hinge on readings, so furigana start off there unless the visitor chose otherwise.
+  var furiInput = document.querySelector('.dc-furigana input'), furiChoice = null;
+  function applyFurigana(on) { furiInput.checked = on; root.classList.toggle('dc-nofuri', !on); }
+
   function start(tier) {
+    applyFurigana(furiChoice !== null ? furiChoice : tier !== 'Hard');
     var p = PUZZLES[tier], words = [];
     p.groups.forEach(function (g, gi) { g.words.forEach(function (w) { words.push({ w: w.w, html: w.html, group: gi }); }); });
     state = { tier: tier, puzzle: p, words: shuffle(words), selected: [], solved: [], mistakes: 0, guesses: [], over: false };
@@ -159,7 +166,7 @@ New to the rules? See [How to Play]({{ '/how-to-play/' | relative_url }}).
   submitBtn.onclick = submit;
   root.querySelector('.dc-clear').onclick = function () { state.selected = []; render(); };
   root.querySelector('.dc-shuffle').onclick = function () { shuffle(state.words); render(); };
-  document.querySelector('.dc-furigana input').onchange = function (e) { root.classList.toggle('dc-nofuri', !e.target.checked); };
+  furiInput.onchange = function (e) { furiChoice = e.target.checked; applyFurigana(furiChoice); };
   start('Easy');
 })();
 </script>
