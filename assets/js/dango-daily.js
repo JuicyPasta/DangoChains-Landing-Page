@@ -61,7 +61,9 @@
   function furiganaFor(tier) {
     var choice = load().furigana;
     if (typeof choice === 'boolean') return choice;
-    return tier !== 'hard'; // Hard boards often hinge on readings
+    // Normal and Hard boards often hinge on readings (物 read もの / ぶつ / もつ), so only
+    // Easy and custom boards start with furigana. Same default as the app (1.0.4).
+    return tier === 'easy' || tier === 'custom';
   }
 
   // Consecutive days, ending today or yesterday, with at least one board won.
@@ -280,7 +282,7 @@
     hideEnd();
     showNotice('');
     renderTabs(date, tier);
-    $('dc-furi-note').hidden = tier !== 'hard';
+    $('dc-furi-note').hidden = tier === 'easy';
     var sub = D.esc(longDate(date)) + (date === today ? '' : ' · ' + internalLink(cfg.playPath, 'Play today’s →'));
     setHeading('DangoChains #' + puzzleNumber(date), sub);
     skeleton();

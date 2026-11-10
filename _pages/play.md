@@ -17,7 +17,7 @@ include_in_footer: true
   <div class="dc-tiers" id="dc-tiers" role="tablist" aria-label="Difficulty"></div>
   <div class="dc-notice" id="dc-notice" hidden></div>
   <div id="dc-board"><noscript><p class="dc-notice">The puzzle needs JavaScript. The DangoChains app has the same puzzles: <a href="{{ site.playstore_link }}">Google Play</a> · <a href="https://apps.apple.com/app/id{{ site.ios_app_id }}">App Store</a></p></noscript></div>
-  <p class="dc-note" id="dc-furi-note" hidden>Hard starts with furigana off: the readings are part of the puzzle.</p>
+  <p class="dc-note" id="dc-furi-note" hidden>Normal and Hard start with furigana off: the readings are part of the puzzle.</p>
 
   <section class="dc-end" id="dc-end" hidden>
     <p class="dc-result" id="dc-result"></p>
