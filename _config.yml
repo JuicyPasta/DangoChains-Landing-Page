@@ -2,9 +2,8 @@
 page_title                                : "DangoChains: Daily Japanese Word Puzzle"
 
 # Public address. Share links (/play/?d=…, custom boards) are built from url + baseurl.
-# When the custom domain goes live: url: https://dangochains.com and baseurl: "" (and set CNAME).
-url                                       : https://juicypasta.github.io
-baseurl                                   : /DangoChains-Landing-Page
+url                                       : https://dangochains.com
+baseurl                                   : ""
 
 # App Info
 ios_app_id                                : 6757343508                                # Required. Enter iOS app ID to automatically populate name, price and icons (e.g. 718043190).
@@ -12,7 +11,7 @@ ios_app_country                           : us                                  
 
 appstore_link                             :                                           # Automatically populates if not set and if iOS app ID is set. Otherwise enter manually.
 playstore_link                            : https://play.google.com/store/apps/details?id=com.jacksondarrow.dangochains   # Enter Google Play Store URL.
-presskit_download_link                    : https://juicypasta.github.io/DangoChains-Landing-Page/assets/press-kit.zip
+presskit_download_link                    : https://dangochains.com/assets/press-kit.zip
                                                                                       # Or upload your press kit file to assets and set path accordingly (e.g. "assets/your_press_kit.zip").
 
 app_icon                                  :                                           # Automatically populates if not set and if iOS app ID is set.  Otherwise enter path to icon file manually.

@@ -1,6 +1,6 @@
 # DangoChains site
 
-Live at https://juicypasta.github.io/DangoChains-Landing-Page/ (GitHub Pages builds `main`; Jekyll, `bundle exec jekyll build`).
+Live at https://dangochains.com/ (custom domain since 2026-11-09; the old juicypasta.github.io/DangoChains-Landing-Page/ URLs redirect; GitHub Pages builds `main`; Jekyll, `bundle exec jekyll build`).
 
 - **`/play/`** (`_pages/play.md`, `assets/js/dango-daily.js`): the free web daily. Today's three boards for the visitor's local date, `?d=YYYY-MM-DD&t=easy|medium|hard` for one board (the last 7 days play; older dates point to the app's archive), and custom boards from `#b=…`. Progress lives in localStorage only.
 - **`/make/`** (`_pages/make.md`, `assets/js/dango-make.js`): make-your-own board; the whole board is base64url JSON in the link's fragment (format in `assets/js/dango-board.js`).
