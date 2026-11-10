@@ -93,6 +93,35 @@
     if (r.value && r.value === found) setAuto(r, true);
     if (!r.value || r.dataset.auto === '1') { r.value = found; setAuto(r, !!found); }
     placeholder(x);
+    fillGloss(x);
+  }
+
+  // ---------- meanings ----------
+  // Suggested English meanings from JMdict's common words (glosses-jmdict.json, CC BY-SA,
+  // scripts/build_jmdict_readings.py). The file is large, so it loads only once a word is typed.
+  // Same rule as readings: a suggestion never replaces a meaning typed by hand.
+
+  var glosses = null, glossesLoading = null;
+
+  function loadGlosses() {
+    if (glossesLoading) return;
+    glossesLoading = (cfg.glossesUrl
+      ? fetch(cfg.glossesUrl).then(function (res) { return res.ok ? res.json() : null; })
+          .then(function (doc) { return (doc && doc.glosses) || {}; }, function () { return {}; })
+      : Promise.resolve({}));
+    glossesLoading.then(function (g) {
+      glosses = g;
+      groupEls().forEach(function (grp) { grp.words.forEach(fillGloss); });
+    });
+  }
+
+  function fillGloss(x) {
+    var w = D.clean(x.w.value, D.LIMITS.word), m = x.gloss;
+    if (!m) return;
+    if (w && !glosses) { loadGlosses(); return; }
+    var found = (w && glosses && glosses[w.normalize('NFKC')]) || '';
+    if (m.value && m.value === found) setAuto(m, true);
+    if (!m.value || m.dataset.auto === '1') { m.value = found; setAuto(m, !!found); }
   }
 
   function placeholder(x) {
@@ -183,6 +212,7 @@
       x.w.addEventListener('change', function () { autofill(x); });
       // Typed by hand from now on; cleared means no reading (until the word changes).
       x.reading.addEventListener('input', function () { setAuto(x.reading, false); placeholder(x); });
+      x.gloss.addEventListener('input', function () { setAuto(x.gloss, false); });
     });
   });
 

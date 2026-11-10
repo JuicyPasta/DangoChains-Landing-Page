@@ -58,7 +58,7 @@ include_in_footer: true
     <p class="dc-small" id="dc-long" hidden>This link is long because of all the readings and meanings. Browsers and most chat apps handle it fine; if one cuts it off, shorten the meanings.</p>
   </div>
 
-  <p class="dc-small" style="margin-top: 24px;">Readings come from the word list behind the daily puzzles, then from <a href="https://www.edrdg.org/wiki/index.php/JMdict-EDICT_Dictionary_Project">JMdict</a>'s common words (© EDRDG, <a href="https://www.edrdg.org/edrdg/licence.html">CC BY-SA 4.0</a>); check them, since some words have more than one reading, and type your own for any word it doesn't know. Want a ready-made puzzle? <a href="{{ '/play/' | relative_url }}" target="_self">Play today's DangoChains</a>.</p>
+  <p class="dc-small" style="margin-top: 24px;">Readings come from the word list behind the daily puzzles, then from <a href="https://www.edrdg.org/wiki/index.php/JMdict-EDICT_Dictionary_Project">JMdict</a>'s common words, which also suggest English meanings (© EDRDG, <a href="https://www.edrdg.org/edrdg/licence.html">CC BY-SA 4.0</a>). Check them, since some words have more than one reading or meaning, and type your own for any word it doesn't know. Want a ready-made puzzle? <a href="{{ '/play/' | relative_url }}" target="_self">Play today's DangoChains</a>.</p>
 </div>
 
 <script type="application/json" id="dc-config">
@@ -66,7 +66,8 @@ include_in_footer: true
   "siteUrl": {{ site.url | append: site.baseurl | jsonify }},
   "playPath": {{ '/play/' | relative_url | jsonify }},
   "readingsUrl": {{ '/assets/data/readings.json' | relative_url | jsonify }},
-  "fallbackReadingsUrl": {{ '/assets/data/readings-jmdict.json' | relative_url | jsonify }}
+  "fallbackReadingsUrl": {{ '/assets/data/readings-jmdict.json' | relative_url | jsonify }},
+  "glossesUrl": {{ '/assets/data/glosses-jmdict.json' | relative_url | jsonify }}
 }
 </script>
 <script src="{{ '/assets/js/dango-board.js' | relative_url }}"></script>
