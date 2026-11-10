@@ -14,7 +14,7 @@ playstore_link                            : https://play.google.com/store/apps/d
 presskit_download_link                    : https://dangochains.com/assets/press-kit.zip
                                                                                       # Or upload your press kit file to assets and set path accordingly (e.g. "assets/your_press_kit.zip").
 
-app_icon                                  :                                           # Automatically populates if not set and if iOS app ID is set.  Otherwise enter path to icon file manually.
+app_icon                                  : assets/icon-512.png                       # Automatically populates if not set and if iOS app ID is set.  Otherwise enter path to icon file manually.
 app_name                                  :                                           # Automatically populates if not set and if iOS app ID is set.  Otherwise enter manually.
 app_price                                 :                                           # Automatically populates if not set and if iOS app ID is set.  Otherwise enter manually.
 app_description                           : "The daily word-grouping puzzle for Japanese learners. Furigana on every kanji. No account, no ads and no tracking in the app."

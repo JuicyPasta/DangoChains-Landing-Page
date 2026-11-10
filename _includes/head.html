@@ -19,7 +19,12 @@
 	<meta property="og:image:height" content="500">
 	<meta name="twitter:card" content="summary_large_image">
 
-	<link rel="shortcut icon" href="{{ site.app_icon | relative_url }}">
+	<!-- Static icons: search results and home screens read these without running JS -->
+	<link rel="icon" href="{{ '/favicon.ico' | relative_url }}" sizes="32x32">
+	<link rel="icon" type="image/png" sizes="48x48" href="{{ '/assets/icon-48.png' | relative_url }}">
+	<link rel="apple-touch-icon" href="{{ '/assets/apple-touch-icon.png' | relative_url }}">
+	<link rel="manifest" href="{{ '/manifest.webmanifest' | relative_url }}">
+	<meta name="theme-color" content="#5A594E">
 
 	<!-- Smart App Banner -->
 	{% if site.enable_smart_app_banner %}
