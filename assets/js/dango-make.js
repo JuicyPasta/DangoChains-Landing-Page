@@ -100,11 +100,18 @@
     x.reading.placeholder = !w ? 'Reading' : !needsReading(w) ? 'Not needed' : dict ? 'Type the reading' : 'Reading';
   }
 
+  // The app's own readings (readings.json) win; JMdict's common words (readings-jmdict.json,
+  // CC BY-SA, scripts/build_jmdict_readings.py) fill the rest. Either file failing is fine.
   function loadDictionary() {
-    fetch(cfg.readingsUrl).then(function (res) { return res.ok ? res.json() : null; }).then(function (doc) {
-      dict = (doc && doc.readings) || {};
+    function get(url) {
+      if (!url) return Promise.resolve({});
+      return fetch(url).then(function (res) { return res.ok ? res.json() : null; })
+        .then(function (doc) { return (doc && doc.readings) || {}; }, function () { return {}; });
+    }
+    Promise.all([get(cfg.readingsUrl), get(cfg.fallbackReadingsUrl)]).then(function (both) {
+      dict = Object.assign({}, both[1], both[0]);
       groupEls().forEach(function (g) { g.words.forEach(autofill); });
-    }, function () { dict = {}; });
+    });
   }
 
   // ---------- validation ----------
