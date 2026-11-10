@@ -132,5 +132,9 @@ collections:
     output: true
     permalink: /:path/
 
+# sitemap.xml for Search Console (GitHub Pages whitelists jekyll-sitemap)
+plugins:
+  - jekyll-sitemap
+
 # Markdown rendering
 markdown: kramdown

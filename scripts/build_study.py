@@ -1,0 +1,254 @@
+#!/usr/bin/env python3
+"""Build the study pages (BACKLOG #25): one page per past day with all three boards'
+groups, readings and English meanings behind a spoiler gate, plus a hub at /study/.
+
+Reads the published feed (feed/v1/{tier}/{YYYY-MM}.json) and writes Jekyll pages:
+  study/index.html               hub, newest month first
+  study/YYYY-MM-DD/index.html    one page per day, epoch .. --through
+
+Only days strictly before today (America/New_York) are published by default, so the
+current daily is never spoiled. Re-run after every feed rebuild and on each sweep:
+  python3 scripts/build_study.py            # through yesterday ET
+  python3 scripts/build_study.py --check    # exit 1 if pages are missing or stale
+"""
+import argparse
+import datetime as dt
+import html
+import json
+import os
+import re
+import sys
+from zoneinfo import ZoneInfo
+
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+FEED = os.path.join(ROOT, 'feed', 'v1')
+OUT = os.path.join(ROOT, 'study')
+TIERS = ['easy', 'medium', 'hard']
+TIER_NAMES = {'easy': 'Easy', 'medium': 'Normal', 'hard': 'Hard'}
+TIER_BLURB = {
+    'easy': 'everyday words, mostly kana',
+    'medium': 'about JLPT N4 to N3',
+    'hard': 'N2 and up: idioms, 熟語 and readings',
+}
+LEVEL_MARK = {'easy': '🔴', 'medium': '🟠', 'hard': '🟢', 'expert': '⚪'}
+LEVEL_NAME = {'easy': 'easiest', 'medium': 'second', 'hard': 'third', 'expert': 'trickiest'}
+
+e = html.escape
+
+
+def load_feed():
+    """{date: {tier: (puzzle, readings)}} for every board in the feed."""
+    days = {}
+    with open(os.path.join(FEED, 'index.json'), encoding='utf-8') as f:
+        index = json.load(f)
+    for tier in TIERS:
+        for month in index['tiers'][tier]:
+            with open(os.path.join(FEED, tier, month + '.json'), encoding='utf-8') as f:
+                data = json.load(f)
+            readings = data.get('readings') or {}
+            for p in data['puzzles']:
+                days.setdefault(p['date'], {})[tier] = (p, readings)
+    return days
+
+
+def long_date(d):
+    return d.strftime('%A, %B ') + str(d.day) + d.strftime(', %Y')
+
+
+def short_date(d):
+    return d.strftime('%B ') + str(d.day)
+
+
+def is_kana(ch):
+    o = ord(ch)
+    return 0x3040 <= o <= 0x30FF or ch in 'ー・〜'
+
+
+def segments(word, notation):
+    """Split the feed's bracket furigana ("お宮参[みやまい]り") into [(text, reading or None)],
+    the same way assets/js/dango-board.js parseBracket does."""
+    if not notation or '[' not in notation:
+        return [(word, None)]
+    out, last = [], 0
+    for m in re.finditer(r'([^\[\]]*)\[([^\[\]]*)\]', notation):
+        chars = list(m.group(1))
+        i = len(chars)
+        while i > 0 and not is_kana(chars[i - 1]):
+            i -= 1
+        lead, core = ''.join(chars[:i]), ''.join(chars[i:])
+        if not core:
+            core, lead = m.group(1), ''
+        if lead:
+            out.append((lead, None))
+        if core:
+            out.append((core, m.group(2) or None))
+        last = m.end()
+    if last < len(notation):
+        out.append((notation[last:], None))
+    if ''.join(t for t, _ in out) != word:  # notation doesn't spell the word: show it plain
+        return [(word, None)]
+    return out
+
+
+def kana(word, notation):
+    return ''.join(r or t for t, r in segments(word, notation))
+
+
+def ruby(word, notation):
+    parts = []
+    for t, r in segments(word, notation):
+        parts.append(f'<ruby>{e(t)}<rt>{e(r)}</rt></ruby>' if r else e(t))
+    return f'<span lang="ja">{"".join(parts)}</span>'
+
+
+def board_section(date, tier, puzzle, readings):
+    num = puzzle.get('number')
+    title = f'{TIER_NAMES[tier]} #{num}' if num else TIER_NAMES[tier]
+    play = f'/play/?d={date}&amp;t={tier}'
+    words = [w for c in puzzle['categories'] for w in c['words']]
+    order = sorted(words, key=lambda w: kana(w, readings.get(w)))
+    out = [f'<section class="st-board" id="{tier}">',
+           f'<h2>{e(title)} <small>({e(TIER_BLURB[tier])})</small></h2>',
+           # Normal and Hard play with furigana off (readings can be the trick), so their word lists show no readings.
+           '<p class="st-words" lang="ja">The 16 words: '
+           + '、'.join(ruby(w, readings.get(w)) if tier == 'easy' else f'<span lang="ja">{e(w)}</span>'
+                      for w in (order if tier == 'easy' else sorted(words))) + '</p>',
+           f'<p><a class="st-play" href="{play}" target="_self">Play this board first</a></p>',
+           '<details class="st-answers">',
+           f'<summary>Show the four groups (spoilers for {e(title)})</summary>']
+    for c in puzzle['categories']:
+        lvl = c.get('difficulty', '')
+        name_jp = c.get('nameJp')
+        head = e(c['name']) + (f' <span lang="ja">（{e(name_jp)}）</span>' if name_jp else '')
+        out.append(f'<h3>{LEVEL_MARK.get(lvl, "")} {head}</h3>')
+        out.append('<table class="st-table"><thead><tr><th>Word</th><th>Reading</th><th>Meaning</th></tr></thead><tbody>')
+        glosses = c.get('glosses') or [''] * len(c['words'])
+        for w, g in zip(c['words'], glosses):
+            r = kana(w, readings.get(w))
+            out.append(f'<tr><td lang="ja">{e(w)}</td><td lang="ja">{e(r if r != w else "")}</td><td>{e(g or "")}</td></tr>')
+        out.append('</tbody></table>')
+    out += ['</details>', '</section>']
+    return '\n'.join(out)
+
+
+STYLE = """<style>
+.st-board{margin:1.6em 0 2.2em}
+.st-board h2 small{font-weight:normal;font-size:.6em;color:#666}
+.st-words{font-size:1.15em;line-height:2.2}
+.st-answers summary{cursor:pointer;font-weight:bold;color:#E8892E;padding:.4em 0}
+.st-table{border-collapse:collapse;margin:.3em 0 1em;width:100%}
+.st-table th,.st-table td{border-bottom:1px solid #e6e6e6;padding:.35em .5em;text-align:left;vertical-align:top}
+.st-table td[lang=ja]{font-size:1.1em;white-space:nowrap}
+.st-nav{display:flex;justify-content:space-between;gap:1em;margin:2em 0 1em;flex-wrap:wrap}
+.st-cta{background:#f6f2ea;border-radius:12px;padding:1em 1.2em;margin:2em 0}
+.st-months h2{margin-top:1.4em}
+.st-days{display:flex;flex-wrap:wrap;gap:.4em .9em;padding:0;list-style:none}
+</style>"""
+
+CTA = ('<div class="st-cta"><p><b>Play tomorrow\'s boards when they open.</b> Three new puzzles every day at '
+       '<a href="/play/" target="_self">dangochains.com/play</a>, or keep a streak and collect dango in the app: '
+       '<a class="playStoreLink" href="https://play.google.com/store/apps/details?id=com.jacksondarrow.dangochains&amp;referrer=utm_source%3Dstudy">Google Play</a> · '
+       '<a class="appStoreLink" href="https://apps.apple.com/app/id6757343508">App Store</a>. '
+       'The app\'s one-time archive unlock plays every past board.</p></div>')
+
+
+def front_matter(title, description, extra=''):
+    t = title.replace('"', '\\"')
+    d = description.replace('"', '\\"')
+    return f'---\nlayout: page\ntitle: "{t}"\ndescription: "{d}"\nsitemap: true\n{extra}---\n'
+
+
+def day_page(date, tiers, prev_date, next_date):
+    d = dt.date.fromisoformat(date)
+    nums = sorted({p.get('number') for p, _ in tiers.values() if p.get('number')})
+    num = f' #{nums[0]}' if len(nums) == 1 else ''
+    # Words, not group names: the words are on the board anyway, the groups are the spoiler.
+    sample = [sorted((w for c in tiers[t][0]['categories'] for w in c['words']), key=lambda w: kana(w, tiers[t][1].get(w)))[0]
+              for t in TIERS if t in tiers]
+    sample += sorted((w for c in tiers[TIERS[-1]][0]['categories'] for w in c['words']) if TIERS[-1] in tiers else [])[:2]
+    title = f'Answers for {short_date(d)}, {d.year}{(" (" + num.strip() + ")") if num else ""}: Japanese word groups with readings'
+    desc = (f'All three DangoChains boards for {long_date(d)} (Easy, Normal, Hard): 48 Japanese words with '
+            f'readings and English meanings, sorted into their groups behind a spoiler gate. Words include '
+            + '、'.join(dict.fromkeys(sample)) + '.')
+    body = [front_matter(title, desc), '{% raw %}', STYLE,
+            f'<h1>DangoChains{e(num)}: {e(long_date(d))}</h1>',
+            '<p>Three Japanese word-grouping puzzles for learners: 16 words each, four hidden groups of four. '
+            'Each board below lists its words with readings. Play it first, then open the groups to see the '
+            'answers with English meanings. <a href="/how-to-play/" target="_self">How to play</a></p>']
+    for t in TIERS:
+        if t in tiers:
+            p, r = tiers[t]
+            body.append(board_section(date, t, p, r))
+    nav = ['<nav class="st-nav">']
+    nav.append(f'<a href="/study/{prev_date}/" target="_self">← {e(short_date(dt.date.fromisoformat(prev_date)))}</a>' if prev_date else '<span></span>')
+    nav.append('<a href="/study/" target="_self">All past puzzles</a>')
+    nav.append(f'<a href="/study/{next_date}/" target="_self">{e(short_date(dt.date.fromisoformat(next_date)))} →</a>' if next_date else '<span></span>')
+    nav.append('</nav>')
+    body += ['\n'.join(nav), CTA,
+             '<p><small>Meanings are short glosses written for each puzzle. Readings follow the app\'s furigana.</small></p>',
+             '{% endraw %}']
+    return '\n'.join(body) + '\n'
+
+
+def hub_page(dates):
+    by_month = {}
+    for date in dates:
+        by_month.setdefault(date[:7], []).append(date)
+    title = 'Past puzzles: answers, readings and meanings'
+    desc = ('Every past DangoChains board, day by day: Japanese word groups for learners with readings and English '
+            'meanings, behind spoiler gates. Easy, Normal and Hard for each day since January 2026.')
+    body = [front_matter(title, desc, 'include_in_header: true\nnav_title: Past puzzles\nnav_order: 4\n'), '{% raw %}', STYLE,
+            '<h1>Past puzzles</h1>',
+            f'<p>{len(dates)} days of DangoChains, three boards a day. Each page lists the 16 words of every board with '
+            'readings, then the four groups with English meanings behind a spoiler gate. Today\'s boards are at '
+            '<a href="/play/" target="_self">Play</a>; the last 7 days are free to play there.</p>',
+            '<div class="st-months">']
+    for month in sorted(by_month, reverse=True):
+        m = dt.date.fromisoformat(month + '-01')
+        body.append(f'<h2>{m.strftime("%B %Y")}</h2><ul class="st-days">')
+        for date in sorted(by_month[month], reverse=True):
+            d = dt.date.fromisoformat(date)
+            body.append(f'<li><a href="/study/{date}/" target="_self">{e(short_date(d))}</a></li>')
+        body.append('</ul>')
+    body += ['</div>', CTA, '{% endraw %}']
+    return '\n'.join(body) + '\n'
+
+
+def render(through):
+    days = load_feed()
+    dates = sorted(d for d in days if d <= through)
+    files = {os.path.join(OUT, 'index.html'): hub_page(dates)}
+    for i, date in enumerate(dates):
+        prev_date = dates[i - 1] if i else None
+        next_date = dates[i + 1] if i + 1 < len(dates) else None
+        files[os.path.join(OUT, date, 'index.html')] = day_page(date, days[date], prev_date, next_date)
+    return files
+
+
+def main():
+    ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap.add_argument('--through', help='last date to publish (default: yesterday, America/New_York)')
+    ap.add_argument('--check', action='store_true', help='exit 1 if any page is missing or stale; write nothing')
+    a = ap.parse_args()
+    through = a.through or (dt.datetime.now(ZoneInfo('America/New_York')).date() - dt.timedelta(days=1)).isoformat()
+    files = render(through)
+    stale = []
+    for path, text in files.items():
+        old = open(path, encoding='utf-8').read() if os.path.exists(path) else None
+        if old != text:
+            stale.append(path)
+            if not a.check:
+                os.makedirs(os.path.dirname(path), exist_ok=True)
+                with open(path, 'w', encoding='utf-8') as f:
+                    f.write(text)
+    # Never publish a day after `through` (e.g. after a clock or argument mistake).
+    extra = [d for d in os.listdir(OUT) if len(d) == 10 and d[4] == '-' and d > through] if os.path.isdir(OUT) else []
+    for d in extra:
+        print(f'warning: study/{d}/ is after --through {through}; remove it by hand', file=sys.stderr)
+    print(f'{len(files) - 1} day pages through {through}; {len(stale)} {"stale" if a.check else "written"}')
+    if a.check and stale:
+        sys.exit(1)
+
+
+if __name__ == '__main__':
+    main()
