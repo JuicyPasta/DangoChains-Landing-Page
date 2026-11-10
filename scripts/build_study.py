@@ -199,7 +199,7 @@ def hub_page(dates):
     title = 'Past puzzles: answers, readings and meanings'
     desc = ('Every past DangoChains board, day by day: Japanese word groups for learners with readings and English '
             'meanings, behind spoiler gates. Easy, Normal and Hard for each day since January 2026.')
-    body = [front_matter(title, desc, 'include_in_header: true\nnav_title: Past puzzles\nnav_order: 4\n'), '{% raw %}', STYLE,
+    body = [front_matter(title, desc), '{% raw %}', STYLE,
             '<h1>Past puzzles</h1>',
             f'<p>{len(dates)} days of DangoChains, three boards a day. Each page lists the 16 words of every board with '
             'readings, then the four groups with English meanings behind a spoiler gate. Today\'s boards are at '

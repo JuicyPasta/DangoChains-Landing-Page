@@ -24,6 +24,8 @@
 			{% for nav_page in header_pages %}
 				<li><a href="{{ nav_page.url | relative_url }}" target="_self"{% if nav_page.url == page.url %} aria-current="page"{% endif %}>{{ nav_page.nav_title | default: nav_page.title }}</a></li>
 			{% endfor %}
+			{% comment %}The study pages are generated files, not part of the pages collection, so they're linked by hand.{% endcomment %}
+			<li><a href="{{ '/study/' | relative_url }}" target="_self"{% if page.url contains '/study/' %} aria-current="page"{% endif %}>Past puzzles</a></li>
 			{% if site.presskit_download_link %}
 				<li><a href="{{ site.presskit_download_link }}">Press Kit</a></li>
 			{% endif %}
