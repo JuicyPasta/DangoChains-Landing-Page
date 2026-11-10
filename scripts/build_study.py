@@ -121,12 +121,11 @@ def board_section(date, tier, puzzle, readings):
         name_jp = c.get('nameJp')
         head = e(c['name']) + (f' <span lang="ja">（{e(name_jp)}）</span>' if name_jp else '')
         out.append(f'<h3>{LEVEL_MARK.get(lvl, "")} {head}</h3>')
-        out.append('<table class="st-table"><thead><tr><th>Word</th><th>Reading</th><th>Meaning</th></tr></thead><tbody>')
-        glosses = c.get('glosses') or [''] * len(c['words'])
-        for w, g in zip(c['words'], glosses):
-            r = kana(w, readings.get(w))
-            out.append(f'<tr><td lang="ja">{e(w)}</td><td lang="ja">{e(r if r != w else "")}</td><td>{e(g or "")}</td></tr>')
-        out.append('</tbody></table>')
+        out.append(group_table(c, readings))
+        slug = topic_of(c['name'])
+        if slug:
+            h1 = next(t[3] for t in TOPICS if t[0] == slug)
+            out.append(f'<p class="st-src">More like this: <a href="/study/topics/{slug}/" target="_self">{e(h1)}</a></p>')
     out += ['</details>', '</section>']
     return '\n'.join(out)
 
@@ -143,6 +142,9 @@ STYLE = """<style>
 .st-cta{background:#f6f2ea;border-radius:12px;padding:1em 1.2em;margin:2em 0}
 .st-months h2{margin-top:1.4em}
 .st-days{display:flex;flex-wrap:wrap;gap:.4em .9em;padding:0;list-style:none}
+.st-src{font-size:.9em;color:#666;margin-top:-.4em}
+.st-group{font-size:1.25em;margin-top:1.6em}
+.st-topics li{margin:.3em 0}
 </style>"""
 
 CTA = ('<div class="st-cta"><p><b>Play tomorrow\'s boards when they open.</b> Three new puzzles every day at '
@@ -202,6 +204,8 @@ def hub_page(dates):
             f'<p>{len(dates)} days of DangoChains, three boards a day. Each page lists the 16 words of every board with '
             'readings, then the four groups with English meanings behind a spoiler gate. Today\'s boards are at '
             '<a href="/play/" target="_self">Play</a>; the last 7 days are free to play there.</p>',
+            '<p><b>By topic:</b> <a href="/study/topics/" target="_self">counters, kanji readings, keigo, wasei-eigo, '
+            'loanwords, abbreviations and more</a></p>',
             '<div class="st-months">']
     for month in sorted(by_month, reverse=True):
         m = dt.date.fromisoformat(month + '-01')
@@ -214,6 +218,129 @@ def hub_page(dates):
     return '\n'.join(body) + '\n'
 
 
+# ---------- topic pages (/study/topics/<slug>/) ----------
+# Each topic collects every past group whose English name matches its pattern. Topic pages show answers
+# openly, so they only use boards at least TOPIC_LAG_DAYS old: the web daily keeps the last 7 days playable.
+TOPIC_LAG_DAYS = 8
+TOPICS = [
+    # slug, pattern on the group name, page title, h1, intro
+    ('counters', r'^Counted with|\b[Cc]ounters?\b',
+     'Japanese counters with examples (本, 枚, 羽, 台 and more)', 'Japanese counters',
+     'Japanese counts things with counter words chosen by shape or kind: 本 for long thin things, 枚 for flat ones, '
+     '羽 for birds (and, traditionally, rabbits). Each group below is four words that take the same counter.'),
+    ('special-readings', r'[Ss]pecial readings?|read as a whole',
+     'Special readings (jukujikun): 今日, 果物, 眼鏡, 二十歳…', 'Special readings (熟字訓)',
+     'Some words are read as a whole, not kanji by kanji: 果物 is くだもの, 二十歳 is はたち. Learn them as units.'),
+    ('kanji-readings', r'\bread [぀-ヿ]|\bread as\b',
+     'Kanji with unusual readings: example words', 'Kanji read an unusual way',
+     'Most kanji have several readings. Each group below shares one kanji or sound read the same, often unexpected, way.'),
+    ('two-readings', r'[Tt]wo readings',
+     'Japanese words with two readings and two meanings (人気, 一日, 最中…)', 'One spelling, two readings, two meanings',
+     'These words are written the same but change meaning with their reading, like 人気 (にんき, popularity; ひとけ, signs of people).'),
+    ('collocations', r'^Things you ',
+     'Japanese verb collocations: what you 打つ, 結ぶ, 交わす and more', 'Japanese verb collocations',
+     'Japanese verbs pair with nouns in ways English doesn\'t: you 打つ an email and an injection, and 結ぶ a contract. '
+     'Each group below is four things that go with the same verb.'),
+    ('wasei-eigo', r'Made-in-Japan English|[Ww]asei',
+     'Wasei-eigo: made-in-Japan English words with meanings', 'Wasei-eigo (和製英語): made-in-Japan English',
+     'These look like English but were coined in Japan, and an English speaker may not understand them.'),
+    ('loanwords', r'^From (?:German|French|Portuguese|Dutch|Italian|Spanish|Korean|Chinese|Russian|Sanskrit|Ainu)',
+     'Japanese loanwords from German, French, Portuguese and Dutch', 'Japanese loanwords that aren\'t from English',
+     'Katakana isn\'t only English. Medicine and mountaineering came from German, bread from Portuguese, beer from Dutch.'),
+    ('english-from-japanese', r'English borrowed|Japanese words English',
+     'English words borrowed from Japanese', 'English words that came from Japanese',
+     'Words English took from Japanese, with their original readings and meanings.'),
+    ('abbreviations', r'^Shortened',
+     'Japanese abbreviations: 就活, 部活, 終電, スマホ and more', 'Japanese abbreviations (略語)',
+     'Japanese clips long words and phrases: 就職活動 becomes 就活, スマートフォン becomes スマホ.'),
+    ('keigo', r'[Hh]umble|[Hh]onorific|[Kk]eigo|kenjougo|sonkeigo|[Rr]espectful',
+     'Keigo verbs: humble (謙譲語) and honorific (尊敬語) forms', 'Keigo: humble and honorific verbs',
+     'Polite Japanese swaps everyday verbs for humble forms (about yourself) or honorific forms (about others).'),
+    ('idioms', r'[Ii]diom|四字|[Ff]our-character|[Pp]roverb|ことわざ',
+     'Japanese idioms and proverbs, grouped', 'Japanese idioms and proverbs',
+     'Groups of idioms and proverbs that share a word or an idea.'),
+    ('false-friends', r"(?:that|which) (?:isn't|aren't|don't|doesn't)|n't about|not about",
+     'Kanji that don\'t mean what they look like (目 that isn\'t an eye…)', 'Kanji that don\'t mean what they look like',
+     'A kanji\'s everyday meaning can mislead: 猫背 isn\'t about cats and 目次 isn\'t about eyes.'),
+    ('hidden-words', r'^Hidden|\bhides?\b',
+     'Hidden words: Japanese words with another word inside', 'Hidden words',
+     'Each word hides a smaller one: セミナー hides セミ (cicada), 危ない hides あぶ (horsefly).'),
+    ('palindromes', r'[Pp]alindrome',
+     'Japanese palindromes (回文) in kana', 'Japanese palindromes (回文)',
+     'Words that read the same backwards in kana.'),
+]
+
+
+def topic_of(name):
+    for slug, pat, *_ in TOPICS:
+        if re.search(pat, name):
+            return slug
+    return None
+
+
+def collect_topics(days, through):
+    """{slug: [(date, tier, category, readings)]}, newest first, one entry per distinct word set."""
+    cutoff = (dt.date.fromisoformat(through) - dt.timedelta(days=TOPIC_LAG_DAYS - 1)).isoformat()
+    found = {slug: {} for slug, *_ in TOPICS}
+    for date in sorted(days, reverse=True):
+        if date >= cutoff:
+            continue
+        for tier in TIERS:
+            if tier not in days[date]:
+                continue
+            puzzle, readings = days[date][tier]
+            for c in puzzle['categories']:
+                slug = topic_of(c['name'])
+                if slug:
+                    found[slug].setdefault(frozenset(c['words']), (date, tier, c, readings))
+    return {slug: list(groups.values()) for slug, groups in found.items()}
+
+
+def group_table(c, readings):
+    rows = ['<table class="st-table"><thead><tr><th>Word</th><th>Reading</th><th>Meaning</th></tr></thead><tbody>']
+    glosses = c.get('glosses') or [''] * len(c['words'])
+    for w, g in zip(c['words'], glosses):
+        r = kana(w, readings.get(w))
+        rows.append(f'<tr><td lang="ja">{e(w)}</td><td lang="ja">{e(r if r != w else "")}</td><td>{e(g or "")}</td></tr>')
+    rows.append('</tbody></table>')
+    return '\n'.join(rows)
+
+
+def topic_page(slug, groups):
+    _, _, title, h1, intro = next(t for t in TOPICS if t[0] == slug)
+    words = [w for _, _, c, _ in groups for w in c['words']]
+    desc = (f'{len(groups)} groups of Japanese words with readings and English meanings from DangoChains puzzles. '
+            + intro.split('. ')[0].rstrip('.') + '. Examples: ' + '、'.join(dict.fromkeys(words[:6])) + '.')
+    body = [front_matter(title, desc), '{% raw %}', STYLE,
+            f'<h1>{e(h1)}</h1>', f'<p>{e(intro)} Every group comes from a past DangoChains puzzle; '
+            f'{len(groups)} so far, newest first.</p>']
+    for date, tier, c, readings in groups:
+        name_jp = c.get('nameJp')
+        head = e(c['name']) + (f' <span lang="ja">（{e(name_jp)}）</span>' if name_jp else '')
+        body.append(f'<h2 class="st-group">{head}</h2>')
+        body.append(group_table(c, readings))
+        d = dt.date.fromisoformat(date)
+        body.append(f'<p class="st-src">From the {TIER_NAMES[tier]} board of '
+                    f'<a href="/study/{date}/#{tier}" target="_self">{e(short_date(d))}, {d.year}</a></p>')
+    body += ['<p><a href="/study/topics/" target="_self">All topics</a> · <a href="/study/" target="_self">All past puzzles</a></p>',
+             CTA, '{% endraw %}']
+    return '\n'.join(body) + '\n'
+
+
+def topics_index(topics):
+    title = 'Japanese vocabulary by topic: counters, keigo, wasei-eigo and more'
+    desc = ('Japanese word groups by topic, with readings and English meanings: counters, kanji readings, verb '
+            'collocations, wasei-eigo, loanwords, abbreviations, keigo, idioms and more.')
+    body = [front_matter(title, desc), '{% raw %}', STYLE, '<h1>Japanese vocabulary by topic</h1>',
+            '<p>Every group from past DangoChains puzzles, sorted by the kind of trick it plays. Each word has its '
+            'reading and an English meaning.</p>', '<ul class="st-topics">']
+    for slug, _, title_t, h1, _ in TOPICS:
+        if topics.get(slug):
+            body.append(f'<li><a href="/study/topics/{slug}/" target="_self">{e(h1)}</a> ({len(topics[slug])} groups)</li>')
+    body += ['</ul>', CTA, '{% endraw %}']
+    return '\n'.join(body) + '\n'
+
+
 def render(through):
     days = load_feed()
     dates = sorted(d for d in days if d <= through)
@@ -222,6 +349,11 @@ def render(through):
         prev_date = dates[i - 1] if i else None
         next_date = dates[i + 1] if i + 1 < len(dates) else None
         files[os.path.join(OUT, date, 'index.html')] = day_page(date, days[date], prev_date, next_date)
+    topics = collect_topics(days, through)
+    files[os.path.join(OUT, 'topics', 'index.html')] = topics_index(topics)
+    for slug, groups in topics.items():
+        if groups:
+            files[os.path.join(OUT, 'topics', slug, 'index.html')] = topic_page(slug, groups)
     return files
 
 
@@ -245,7 +377,7 @@ def main():
     extra = [d for d in os.listdir(OUT) if len(d) == 10 and d[4] == '-' and d > through] if os.path.isdir(OUT) else []
     for d in extra:
         print(f'warning: study/{d}/ is after --through {through}; remove it by hand', file=sys.stderr)
-    print(f'{len(files) - 1} day pages through {through}; {len(stale)} {"stale" if a.check else "written"}')
+    print(f'{sum(1 for f in files if os.path.basename(os.path.dirname(f))[:2] == "20")} day pages through {through}; {len(stale)} {"stale" if a.check else "written"}')
     if a.check and stale:
         sys.exit(1)
 
