@@ -1,70 +1,186 @@
-<!DOCTYPE html>
-<html lang="en-us">
+---
+layout: base
+---
+{% comment %}
+  The home page: play first, then the three games, the study pages, the app as the habit layer,
+  and the feature list from _config.yml.
+{% endcomment %}
+{% assign app_store = 'https://apps.apple.com/app/id' | append: site.ios_app_id %}
+<div class="home">
 
-{% include head.html %}
+<section class="wrap hero">
+	<div class="hero__text">
+		<p class="eyebrow hero__eyebrow"><span id="hero-date">Today's puzzle</span></p>
+		<h1>Sort 16 Japanese words into <em>four hidden groups</em>.</h1>
+		<p class="hero__lede">A free daily word puzzle for Japanese learners. Three new boards every day, furigana when you want them, and every word explained after the game. No account, nothing to install.</p>
+		<div class="hero__cta">
+			<a class="btn btn-accent btn-lg" id="hero-play" href="{{ '/play/' | relative_url }}">Play today's puzzle</a>
+			<a class="btn btn-lg" href="{{ '/how-to-play/' | relative_url }}">How to play</a>
+		</div>
+		<p class="hero__tiers" id="hero-tiers">
+			<span>Today:</span>
+			<a class="chip" href="{{ '/play/' | relative_url }}?t=easy" data-tier="easy">Easy</a>
+			<a class="chip" href="{{ '/play/' | relative_url }}?t=medium" data-tier="medium">Normal</a>
+			<a class="chip" href="{{ '/play/' | relative_url }}?t=hard" data-tier="hard">Hard</a>
+			<span id="hero-streak"></span>
+		</p>
+	</div>
+	<a class="hero__board" href="{{ '/play/' | relative_url }}" tabindex="-1" aria-hidden="true">
+		{% include demo-board.html %}
+	</a>
+</section>
 
-<body>
-    <div class="imageWrapper">
-            <div class="headerBackground">
-                <div class="container">
-                    {% include header.html %}
-                    <div class="iphonePreview">
+<section class="wrap section" aria-labelledby="games-h">
+	<div class="section__head">
+		<p class="eyebrow">New every day</p>
+		<h2 id="games-h">Three ways to play</h2>
+		<p>Small Japanese word games, free in your browser. Your results stay on your device.</p>
+	</div>
+	<div class="games">
+		<a class="card game-card" href="{{ '/play/' | relative_url }}">
+			<div class="game-card__art" style="--art: var(--g1-soft)" aria-hidden="true">
+				<div class="art-bars"><i class="dc-easy"></i><i class="dc-medium"></i><i class="dc-hard"></i><i class="dc-expert"></i></div>
+			</div>
+			<span class="game-card__tag">Daily · 3 boards</span>
+			<h3>DangoChains</h3>
+			<p>Sixteen words, four hidden groups, six tries. Easy, Normal and Hard, new at midnight.</p>
+			<span class="game-card__status" id="status-daily"></span>
+			<span class="game-card__go">Play today's boards</span>
+		</a>
+		<a class="card game-card" href="{{ '/bridge/' | relative_url }}">
+			<div class="game-card__art" style="--art: var(--g3-soft)" aria-hidden="true">
+				<div class="art-cross" lang="ja"><b>天</b><b>元</b><b>分</b><b>温</b><b>?</b></div>
+			</div>
+			<span class="game-card__tag">Daily · kanji</span>
+			<h3><span lang="ja">熟語</span> Bridge</h3>
+			<p>Four kanji surround a hidden one. Find the kanji that makes a word with all four, in three tries.</p>
+			<span class="game-card__status" id="status-bridge"></span>
+			<span class="game-card__go">Play today's Bridge</span>
+		</a>
+		<a class="card game-card" href="{{ '/make/' | relative_url }}">
+			<div class="game-card__art" style="--art: var(--g2-soft)" aria-hidden="true">
+				<div class="art-form"><i class="dc-easy"><b></b><s></s></i><i class="dc-medium"><b></b><s></s></i><i class="dc-hard"><b></b><s></s></i><i class="dc-expert"><b></b><s></s></i></div>
+			</div>
+			<span class="game-card__tag">For classes and friends</span>
+			<h3>Make your own</h3>
+			<p>Type 16 words in four groups. The readings fill in for you, and you get one link anyone can play.</p>
+			<span class="game-card__status"></span>
+			<span class="game-card__go">Make a board</span>
+		</a>
+	</div>
+</section>
 
-                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 0 0" style="position: absolute;">
-                            <clipPath id="screenMask" clipPathUnits="objectBoundingBox" transform="scale(0.00257, 0.00119)">
-                                <path d="M6490.24,1234.36H6216.28c-2.57,0-10.55-.07-12.07-0.07a87.524,87.524,0,0,1-12-1.03,40.051,40.051,0,0,1-11.4-3.79,38.315,38.315,0,0,1-16.82-16.84,39.948,39.948,0,0,1-3.78-11.42,72.257,72.257,0,0,1-1.04-12.02c-0.06-1.83-.06-5.56-0.06-5.56V452.125h0s0.06-11.391.06-12.086a87.9,87.9,0,0,1,1.04-12.025,39.843,39.843,0,0,1,3.78-11.413,38.283,38.283,0,0,1,16.82-16.847,39.762,39.762,0,0,1,11.4-3.785,71.909,71.909,0,0,1,12-1.037c16.99-.567,36.32-0.061,34.51-0.061,5.02,0,6.5,3.439,6.63,6.962a35.611,35.611,0,0,0,1.2,8.156,21.326,21.326,0,0,0,19.18,15.592c2.28,0.192,6.78.355,6.78,0.355H6433.7s4.5-.059,6.79-0.251a21.348,21.348,0,0,0,19.18-15.591,35.582,35.582,0,0,0,1.19-8.154c0.13-3.523,1.61-6.962,6.64-6.962-1.81,0,17.52-.5,34.5.061a71.923,71.923,0,0,1,12.01,1.038,39.832,39.832,0,0,1,11.4,3.784,38.283,38.283,0,0,1,16.82,16.844,40.153,40.153,0,0,1,3.78,11.413,87.844,87.844,0,0,1,1.03,12.023c0,0.695.06,12.084,0.06,12.084h0V1183.64s0,3.72-.06,5.55a72.366,72.366,0,0,1-1.03,12.03,40.2,40.2,0,0,1-3.78,11.41,38.315,38.315,0,0,1-16.82,16.84,40.155,40.155,0,0,1-11.4,3.79,87.669,87.669,0,0,1-12.01,1.03c-1.52,0-9.5.07-12.07,0.07" transform="translate(-6159.12 -394.656)"/>
-                            </clipPath>
-                        </svg>
+<section class="band" aria-labelledby="study-h">
+	<div class="wrap section study">
+		<div class="section__head">
+			<p class="eyebrow">Study</p>
+			<h2 id="study-h">Every past board is a study page</h2>
+			<p>Missed a day, or want the words again? Each past puzzle lists its 48 words with readings and English meanings, and keeps the groups behind a spoiler gate.</p>
+			<p><a class="btn" href="{{ '/study/' | relative_url }}">Browse past puzzles</a></p>
+		</div>
+		<div>
+			<p class="eyebrow">Vocabulary by topic</p>
+			<ul class="study__topics">
+				<li><a class="chip" href="{{ '/study/topics/counters/' | relative_url }}">Counters</a></li>
+				<li><a class="chip" href="{{ '/study/topics/kanji-readings/' | relative_url }}">Kanji readings</a></li>
+				<li><a class="chip" href="{{ '/study/topics/collocations/' | relative_url }}">Verb collocations</a></li>
+				<li><a class="chip" href="{{ '/study/topics/wasei-eigo/' | relative_url }}">Wasei-eigo</a></li>
+				<li><a class="chip" href="{{ '/study/topics/loanwords/' | relative_url }}">Loanwords</a></li>
+				<li><a class="chip" href="{{ '/study/topics/keigo/' | relative_url }}">Keigo</a></li>
+				<li><a class="chip" href="{{ '/study/topics/abbreviations/' | relative_url }}">Abbreviations</a></li>
+				<li><a class="chip" href="{{ '/study/topics/hidden-words/' | relative_url }}">Hidden words</a></li>
+				<li><a class="chip chip--more" href="{{ '/study/topics/' | relative_url }}">All topics</a></li>
+			</ul>
+		</div>
+	</div>
+</section>
 
-                        <div class="videoContainer hidden">
-                            <video class="screenvideo" autoplay="autoplay" controls="controls">
-                            </video>
-                        </div>  
-                        
-                        <img class="iphoneScreen hidden" src="" alt="">
+<section class="wrap section app" id="app" aria-labelledby="app-h">
+	<div>
+		<div class="section__head">
+			<p class="eyebrow">The app</p>
+			<h2 id="app-h">Make it a habit</h2>
+			<p>The same daily puzzles on iPhone and Android, with the things a browser tab can't do.</p>
+		</div>
+		<ul class="app__list">
+			<li><span><b>Streaks and dango.</b> Win to earn a dango; win with a golden try to spare and it turns gold. Seasonal dango for New Year, sakura season, Tanabata and more.</span></li>
+			<li><span><b>A daily nudge.</b> An optional reminder when the new boards are out.</span></li>
+			<li><span><b>900+ past puzzles.</b> The archive opens with a one-time unlock. No subscription.</span></li>
+			<li><span><b>Private.</b> No account, no ads and no tracking in the app.</span></li>
+		</ul>
+		<div class="stores">
+			<a class="appStoreLink" href="{{ app_store }}" target="_blank" rel="noopener"><img src="{{ '/assets/appstore.png' | relative_url }}" width="440" height="150" alt="Download on the App Store" loading="lazy"></a>
+			{% if site.playstore_link %}<a class="playStoreLink" href="{{ site.playstore_link }}" target="_blank" rel="noopener"><img src="{{ '/assets/playstore.png' | relative_url }}" width="510" height="150" alt="Get it on Google Play" loading="lazy"></a>{% endif %}
+		</div>
+		<p class="app__note">Free on both stores.</p>
+	</div>
+	<div class="phone">
+		<img src="{{ '/assets/img/app-screenshot.webp' | relative_url }}" width="600" height="1300" alt="The DangoChains app: a board with two groups solved and eight words left" loading="lazy" decoding="async">
+	</div>
+</section>
 
-                        {% include screencontent.html %}
+<section class="wrap section" aria-labelledby="features-h">
+	<div class="section__head">
+		<p class="eyebrow">In every puzzle</p>
+		<h2 id="features-h">Built for learning, not just guessing</h2>
+	</div>
+	<ul class="features">
+		{% for feature in site.features %}{% if feature.title %}
+		<li class="card feature">
+			<div class="feature__icon">{% include icon.html name=feature.fontawesome_icon_name %}</div>
+			<h3>{{ feature.title }}</h3>
+			<p>{{ feature.description }}</p>
+		</li>
+		{% endif %}{% endfor %}
+	</ul>
+</section>
 
-                    </div>
-                    <div class="appInfo">
-                        <div class="appIconShadow">
-                            <svg width="0" height="0">
-                                <defs>
-                                    <clipPath id="shape120">
-                                        <path id="shape" class="cls-1" d="M6821,495.533v-4.281c0-1.2-.04-2.4-0.04-3.642a57.7,57.7,0,0,0-.68-7.882,26.144,26.144,0,0,0-2.48-7.483,25.115,25.115,0,0,0-11.04-11.044,26.118,26.118,0,0,0-7.49-2.481,47.28,47.28,0,0,0-7.88-.68c-1.2-.04-2.4-0.04-3.64-0.04h-53.5c-1.2,0-2.4.04-3.64,0.04a57.813,57.813,0,0,0-7.88.68,26.323,26.323,0,0,0-7.49,2.481,25.115,25.115,0,0,0-11.04,11.044,26.144,26.144,0,0,0-2.48,7.483,47.313,47.313,0,0,0-.68,7.882c-0.04,1.2-.04,2.4-0.04,3.642v53.5c0,1.2.04,2.4,0.04,3.641a57.7,57.7,0,0,0,.68,7.883,26.137,26.137,0,0,0,2.48,7.482,25.115,25.115,0,0,0,11.04,11.044,26.261,26.261,0,0,0,7.49,2.481,47.28,47.28,0,0,0,7.88.68c1.2,0.04,2.4.04,3.64,0.04h53.5c1.2,0,2.4-.04,3.64-0.04a57.654,57.654,0,0,0,7.88-.68,26.057,26.057,0,0,0,7.49-2.481,25.115,25.115,0,0,0,11.04-11.044,26.137,26.137,0,0,0,2.48-7.482,47.316,47.316,0,0,0,.68-7.883c0.04-1.2.04-2.4,0.04-3.641V495.533h0Z" transform="translate(-6701 -458)" filter="url(#f1)"/>
-                                    </clipPath>
-                                </defs>
-                            </svg>
-                            <img class="appIconLarge" src="{{ site.app_icon | relative_url }}">
-                        </div>
-                        <div class="appNamePriceContainer">
-                            <h1 class="appName">
-                                {{ site.app_name }}
-                            </h1>
-                            <h2 class="appPrice">
-                                {{ site.app_price }}
-                            </h2>
-                        </div>
-                        <div class="appDescriptionContainer">
-                            <p class ="appDescription">
-                                {{ site.app_description }}
-                            </p>
-                        </div>
-                        <div class="downloadButtonsContainer">
-                            {% if site.playstore_link %}
-                                <a class="playStoreLink" href="{{site.playstore_link}}"><img class="playStore" src="assets/playstore.png"></a>
-                            {% endif %}
-                            <a class="appStoreLink" href="{{site.appstore_link}}"><img class="appStore" src="assets/appstore.png"></a>
-                        </div>
-                        <p class="tryPuzzleContainer">
-                            <a class="tryPuzzleLink" href="{{ '/play/' | relative_url }}" target="_self">Or play today's puzzle in your browser →</a>
-                        </p>
-                    </div>
-                    {% include features.html %}
-                    {% include footer.html %}
-                    {% include appstoreimages.html %}
-                </div>
-            </div>
-        </div>
-</body>
-</html>
+<section class="wrap closing">
+	{% include dango-mark.html size=88 %}
+	<h2>Today's boards are waiting</h2>
+	<p>Three puzzles, a few minutes, and sixteen words you'll remember.</p>
+	<a class="btn btn-accent btn-lg" href="{{ '/play/' | relative_url }}">Play today's puzzle</a>
+</section>
+
+</div>
+
+<script>
+	// Today's number and date, and what this browser has already played. Read-only: the games own
+	// the storage ("dangochains.web.v1", "dangochains-bridge-v1"); nothing here is sent anywhere.
+	(function () {
+		function pad(n) { return (n < 10 ? '0' : '') + n; }
+		function ymd(d) { return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate()); }
+		function read(key) {
+			try { var v = JSON.parse(window.localStorage.getItem(key)); return v && typeof v === 'object' ? v : {}; } catch (e) { return {}; }
+		}
+		function $(id) { return document.getElementById(id); }
+		var now = new Date(), today = ymd(now);
+		// Puzzle #1 was 2026-01-01 (EPOCH in assets/js/dango-daily.js).
+		var number = Math.round((Date.UTC(now.getFullYear(), now.getMonth(), now.getDate()) - Date.UTC(2026, 0, 1)) / 864e5) + 1;
+		if (number > 0) $('hero-date').textContent = now.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' }) + ' · No. ' + number;
+
+		var boards = read('dangochains.web.v1').boards, done = 0, started = false, won = {};
+		if (!boards || typeof boards !== 'object') boards = {};
+		Array.prototype.forEach.call(document.querySelectorAll('#hero-tiers [data-tier]'), function (chip) {
+			var e = boards[today + '/' + chip.getAttribute('data-tier')];
+			if (e && e.s) started = true;
+			if (!e || !e.done) return;
+			done++;
+			chip.setAttribute('data-done', '');
+			chip.setAttribute('aria-label', chip.textContent + (e.won ? ', solved' : ', out of tries'));
+			chip.appendChild(document.createTextNode(' ' + (e.won ? (e.m <= 1 ? '✨' : '🍡') : '🍢')));
+		});
+		Object.keys(boards).forEach(function (k) { if (boards[k] && boards[k].won) won[k.slice(0, 10)] = true; });
+		var d = new Date(now.getFullYear(), now.getMonth(), now.getDate()), streak = 0;
+		if (!won[today]) d.setDate(d.getDate() - 1);
+		while (won[ymd(d)]) { streak++; d.setDate(d.getDate() - 1); }
+		if (streak > 0) $('hero-streak').textContent = '🔥 ' + streak + (streak === 1 ? ' day' : ' days');
+		if (done === 3) $('hero-play').textContent = "See today's results";
+		else if (started) $('hero-play').textContent = "Continue today's puzzle";
+		if (done) $('status-daily').textContent = done + ' of 3 done today';
+
+		var res = read('dangochains-bridge-v1').res, solved = 0;
+		if (res && typeof res === 'object') ['easy', 'medium', 'hard'].forEach(function (t) { var r = res[today + '|' + t]; if (r && r.won) solved++; });
+		if (solved) $('status-bridge').textContent = solved + ' of 3 solved today';
+	})();
+</script>

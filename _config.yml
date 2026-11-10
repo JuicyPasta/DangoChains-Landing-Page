@@ -70,7 +70,7 @@ features                                  :
 
 
 
-# Theme Settings
+# Theme Settings (unused since the 2026-11 redesign: colors and type now live in assets/css/site.css, see DESIGN.md)
 topbar_color                              : "#000000"
 topbar_transparency                       : 0.1
 topbar_title_color                        : "#ffffff"
@@ -124,8 +124,11 @@ sass:
 exclude:
   - LICENSE
   - README.md
+  - DESIGN.md
   - CNAME
   - scripts
+  - Gemfile
+  - Gemfile.lock
 
 collections:
   pages:

@@ -1,90 +1,49 @@
-<footer>
-	{% if site.your_name %}
-	<p class="footerText">Made by {% if site.your_link %}<a href="{{ site.your_link }}">{% endif %}{{ site.your_name }}{% if site.your_link %}</a>{% endif %}{% if site.your_city %} in {{ site.your_city }}{% endif %}</p>
-	{% endif %}
-	<div class="footerIcons">
-
-		{% if site.linkedin_username %}
-			<a href="https://linkedin.com/in/{{ site.linkedin_username }}">
-				<span class="fa-stack fa-1x">
-					<i class="socialIconBack fas fa-circle fa-stack-2x"></i>
-					<i class="socialIconTop fab fa-linkedin fa-stack-1x"></i>
-				</span>
+{% assign app_store = 'https://apps.apple.com/app/id' | append: site.ios_app_id %}
+<footer class="site-footer">
+	<nav class="site-footer__in" aria-label="Footer">
+		<div class="site-footer__brand">
+			<a class="brand" href="{{ '/' | relative_url }}">
+				<img src="{{ '/assets/img/icon-96.webp' | relative_url }}" width="36" height="36" alt="" loading="lazy">
+				<span>DangoChains</span>
 			</a>
-		{% endif %}
-
-		{% if site.linkedin_company %}
-			<a href="https://linkedin.com/company/{{ site.linkedin_company }}">
-				<span class="fa-stack fa-1x">
-					<i class="socialIconBack fas fa-circle fa-stack-2x"></i>
-					<i class="socialIconTop fab fa-linkedin fa-stack-1x"></i>
-				</span>
-			</a>
-		{% endif %}
-
-		{% if site.facebook_username %}
-			<a href="https://facebook.com/{{ site.facebook_username }}">
-				<span class="fa-stack fa-1x">
-					<i class="socialIconBack fas fa-circle fa-stack-2x"></i>
-					<i class="socialIconTop fab fa-facebook fa-stack-1x"></i>
-				</span>
-			</a>
-		{% endif %}
-
-		{% if site.twitter_username %}
-			<a href="https://twitter.com/{{ site.twitter_username }}">
-				<span class="fa-stack fa-1x">
-					<i class="socialIconBack fas fa-circle fa-stack-2x"></i>
-					<i class="socialIconTop fab fa-twitter fa-stack-1x"></i>
-				</span>
-			</a>
-		{% endif %}
-
-		{% if site.instagram_username %}
-			<a href="https://instagram.com/{{ site.instagram_username }}">
-				<span class="fa-stack fa-1x">
-					<i class="socialIconBack fas fa-circle fa-stack-2x"></i>
-					<i class="socialIconTop fab fa-instagram fa-stack-1x"></i>
-				</span>
-			</a>
-		{% endif %}
-
-		{% if site.mastodon_link %}
-			<a rel="me" href="{{ site.mastodon_link }}">
-				<span class="fa-stack fa-1x">
-					<i class="socialIconBack fas fa-circle fa-stack-2x"></i>
-					<i class="socialIconTop fab fa-mastodon fa-stack-1x"></i>
-				</span>
-			</a>
-		{% endif %}
-
-		{% if site.github_username %}
-			<a href="https://github.com/{{ site.github_username }}">
-				<span class="fa-stack fa-1x">
-					<i class="socialIconBack fas fa-circle fa-stack-2x"></i>
-					<i class="socialIconTop fab fa-github fa-stack-1x"></i>
-				</span>
-			</a>
-		{% endif %}
-
-		{% if site.email_address %}
-			<a href="mailto:{{ site.email_address }}">
-				<span class="fa-stack fa-1x">
-					<i class="socialIconBack fas fa-circle fa-stack-2x"></i>
-					<i class="socialIconTop fas fa-envelope fa-stack-1x"></i>
-				</span>
-			</a>
-		{% endif %}
-
-	</div>
-	<div class="footerLinks">
-		{% for page in site.pages %}
-			<a href="{{ page.url | relative_url }}" target="_self">{{ page.title }}</a>
-		{% endfor %}
-		<a href="{{ '/study/' | relative_url }}" target="_self">Past puzzles</a>
-		<a href="{{ '/study/topics/' | relative_url }}" target="_self">Japanese vocabulary by topic</a>
-		{% if site.presskit_download_link %}
-			<a href="{{ site.presskit_download_link }}">Press Kit</a>
-		{% endif %}
-	</div>
+			<p>Daily Japanese word puzzles for learners. Free in your browser; the app keeps your streak.</p>
+		</div>
+		<div class="site-footer__col">
+			<h2>Games</h2>
+			<ul>
+				<li><a href="{{ '/play/' | relative_url }}">DangoChains daily</a></li>
+				<li><a href="{{ '/bridge/' | relative_url }}"><span lang="ja">熟語</span> Bridge</a></li>
+				<li><a href="{{ '/make/' | relative_url }}">Make your own board</a></li>
+			</ul>
+		</div>
+		<div class="site-footer__col">
+			<h2>Learn</h2>
+			<ul>
+				<li><a href="{{ '/how-to-play/' | relative_url }}">How to play</a></li>
+				<li><a href="{{ '/study/' | relative_url }}">Past puzzles</a></li>
+				<li><a href="{{ '/study/topics/' | relative_url }}">Vocabulary by topic</a></li>
+			</ul>
+		</div>
+		<div class="site-footer__col">
+			<h2>The app</h2>
+			<ul>
+				<li><a class="appStoreLink" href="{{ app_store }}" target="_blank" rel="noopener">App Store</a></li>
+				{% if site.playstore_link %}<li><a class="playStoreLink" href="{{ site.playstore_link }}" target="_blank" rel="noopener">Google Play</a></li>{% endif %}
+				<li><a href="{{ '/changelog/' | relative_url }}">What's new</a></li>
+				{% if site.presskit_download_link %}<li><a href="{{ site.presskit_download_link }}">Press kit</a></li>{% endif %}
+			</ul>
+		</div>
+		<div class="site-footer__col">
+			<h2>About</h2>
+			<ul>
+				<li><a href="{{ '/privacypolicy/' | relative_url }}">Privacy</a></li>
+				<li><a href="{{ '/tos/' | relative_url }}">Terms</a></li>
+				{% if site.email_address %}<li><a href="mailto:{{ site.email_address }}">Contact</a></li>{% endif %}
+			</ul>
+		</div>
+		<p class="site-footer__fine">
+			{% if site.your_name %}<span>Made by {% if site.your_link %}<a href="{{ site.your_link }}" target="_blank" rel="noopener">{% endif %}{{ site.your_name }}{% if site.your_link %}</a>{% endif %}{% if site.your_city %} in {{ site.your_city }}{% endif %}</span>{% endif %}
+			<span>Free to play. No account needed.</span>
+		</p>
+	</nav>
 </footer>

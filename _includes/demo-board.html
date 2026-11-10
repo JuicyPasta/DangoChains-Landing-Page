@@ -1,0 +1,22 @@
+{% comment %}
+  A still picture of a board mid-game, built from the real tile and group styles (home hero and
+  How to Play). Decorative: the text next to it says the same thing, so it is hidden from screen readers.
+  --n is the word's width in characters; CSS sizes the text from it.
+{% endcomment %}
+<div class="dc-board demo" aria-hidden="true">
+	<div class="dc-solved">
+		<div class="dc-group dc-easy"><b lang="ja">上に着るもの</b><span>Worn on top</span><div class="dc-group-words" lang="ja">シャツ、セーター、コート、ジャケット</div></div>
+		<div class="dc-group dc-medium"><b lang="ja">下に履くもの</b><span>Worn on the bottom</span><div class="dc-group-words" lang="ja">ズボン、スカート、パンツ、ジーンズ</div></div>
+	</div>
+	<div class="dc-grid">
+		<span class="dc-tile" lang="ja" style="--n:5"><span class="dc-w">ヘルメット</span></span>
+		<span class="dc-tile" lang="ja" style="--n:3"><span class="dc-w"><ruby>靴下<rt>くつした</rt></ruby></span></span>
+		<span class="dc-tile{% unless include.plain %} sel{% endunless %}" lang="ja" style="--n:3"><span class="dc-w"><ruby>帽子<rt>ぼうし</rt></ruby></span></span>
+		<span class="dc-tile" lang="ja" style="--n:4"><span class="dc-w">サンダル</span></span>
+		<span class="dc-tile" lang="ja" style="--n:3"><span class="dc-w">ブーツ</span></span>
+		<span class="dc-tile" lang="ja" style="--n:3"><span class="dc-w"><ruby>靴<rt>くつ</rt></ruby></span></span>
+		<span class="dc-tile{% unless include.plain %} sel{% endunless %}" lang="ja" style="--n:4"><span class="dc-w">キャップ</span></span>
+		<span class="dc-tile" lang="ja" style="--n:3"><span class="dc-w">ハット</span></span>
+	</div>
+	<div class="dc-tries"><span class="dc-tries-label">Tries</span><span class="dc-dots"><i class="dc-dot"></i><i class="dc-dot"></i><i class="dc-dot"></i><i class="dc-dot"></i><i class="dc-dot dc-dot-gold"></i><i class="dc-dot dc-dot-used"></i></span></div>
+</div>

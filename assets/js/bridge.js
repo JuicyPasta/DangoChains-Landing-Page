@@ -90,6 +90,7 @@
 
   // ---- game state
   var cur = null; // {date, tier, puzzle, board, picks, won, over}
+  var justTimer = null; // while set, the page carries .br-just and the last pick's feedback animates
 
   function open(d, t, fromUser) {
     var puzzle = byDate[d];
@@ -127,6 +128,9 @@
     if (cur.over) {
       track('bridge_complete', { tier: cur.tier, won: cur.won, tries: cur.picks.length, number: cur.puzzle.number });
     }
+    root.classList.add('br-just');
+    clearTimeout(justTimer);
+    justTimer = setTimeout(function () { root.classList.remove('br-just'); }, 700);
     render();
     if (cur.over) {
       var end = q('.br-end');
@@ -211,14 +215,21 @@
   }
 
   function renderTabs() {
-    var box = q('.br-tiers');
+    var box = q('.br-tiers'), focused = box.contains(document.activeElement);
     box.innerHTML = '';
-    TIERS.forEach(function (t) {
+    TIERS.forEach(function (t, i) {
       var b = el('button');
       b.type = 'button';
       b.setAttribute('role', 'tab');
       b.setAttribute('aria-selected', String(t === tier));
+      b.tabIndex = t === tier ? 0 : -1;
       b.dataset.tier = t;
+      b.onkeydown = function (e) {
+        var step = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+        if (!step) return;
+        e.preventDefault();
+        box.children[(i + step + TIERS.length) % TIERS.length].click();
+      };
       b.appendChild(document.createTextNode(LABEL[t]));
       var o = outcome(date, t);
       if (o === 'won' || o === 'lost') {
@@ -228,6 +239,7 @@
       }
       b.onclick = function () { if (t !== tier || !cur) open(date, t, true); };
       box.appendChild(b);
+      if (focused && t === tier) b.focus();
     });
   }
 
@@ -310,9 +322,10 @@
   }
 
   function renderTries() {
-    var t = q('.br-tries'), wrong = wrongPicks().length, s = '';
-    for (var i = 0; i < MAX_TRIES; i++) s += i < MAX_TRIES - wrong ? '●' : '○';
-    t.textContent = s;
+    var t = q('.br-tries'), wrong = wrongPicks().length;
+    t.innerHTML = '';
+    for (var i = 0; i < MAX_TRIES; i++) t.appendChild(el('i', i < MAX_TRIES - wrong ? '' : 'used'));
+    t.setAttribute('role', 'img');
     t.setAttribute('aria-label', (MAX_TRIES - wrong) + ' of ' + MAX_TRIES + ' tries left');
   }
 
@@ -331,7 +344,8 @@
         btn.appendChild(el('small', null, hits(k).length + '/4'));
       } else if (cur.over && k === b.answer) btn.className += ' is-answer';
       btn.disabled = cur.over || picked;
-      btn.setAttribute('aria-label', k + (picked ? (k === b.answer ? ', correct' : ', wrong: makes ' + hits(k).length + ' of 4') : ''));
+      // The spoken name starts with what is on the button (the kanji, and "1/4" after a wrong pick).
+      btn.setAttribute('aria-label', k + (picked ? (k === b.answer ? ', correct' : ' ' + hits(k).length + '/4, wrong: makes ' + hits(k).length + ' of 4') : ''));
       btn.onclick = function () { pick(k); };
       box.appendChild(btn);
     });
@@ -412,12 +426,12 @@
       if (TIERS[i] !== cur.tier && !isOver(date, TIERS[i], saved(date, TIERS[i])) && byDate[date].tiers[TIERS[i]]) { nt = TIERS[i]; break; }
     }
     if (nt) {
-      var btn = el('button', null, 'Play ' + LABEL[nt] + ' →');
+      var btn = el('button', 'btn btn-primary', 'Play ' + LABEL[nt] + ' →');
       btn.type = 'button';
       btn.onclick = function () { open(date, nt, true); window.scrollTo(0, root.offsetTop); };
       next.appendChild(btn);
     } else if (date !== todayStr && byDate[todayStr] && firstUnfinished(todayStr)) {
-      var tb = el('button', null, 'Play today’s board →');
+      var tb = el('button', 'btn btn-primary', 'Play today’s board →');
       tb.type = 'button';
       tb.onclick = function () { notice = ''; open(todayStr, firstUnfinished(todayStr), true); window.scrollTo(0, root.offsetTop); };
       next.appendChild(tb);
@@ -448,6 +462,8 @@
       return;
     }
     copyText(text).then(function () {
+      var btn = q('.br-share');
+      btn.classList.remove('is-done'); void btn.offsetWidth; btn.classList.add('is-done');
       msg.textContent = 'Copied!';
       params.method = 'clipboard';
       track('bridge_share', params);
@@ -485,10 +501,12 @@
       a.target = '_self';
       a.dataset.date = ds;
       a.appendChild(el('span', null, i === 0 ? 'Today' : WEEKDAY[d.getDay()]));
+      a.appendChild(document.createTextNode(' ')); // so the link reads "Wed 4", as its spoken name does
       a.appendChild(el('b', null, String(d.getDate())));
+      a.appendChild(document.createTextNode(' '));
       var o = outcome(ds, tier);
       a.appendChild(el('span', 'br-dot', o === 'won' ? '🟩' : o === 'lost' ? '🟥' : o === 'playing' ? '…' : '·'));
-      a.setAttribute('aria-label', LABEL[tier] + ' board for ' + ds + (o === 'won' ? ', solved' : o === 'lost' ? ', missed' : ''));
+      a.setAttribute('aria-label', (i === 0 ? 'Today' : WEEKDAY[d.getDay()]) + ' ' + d.getDate() + ': ' + LABEL[tier] + ' board for ' + ds + (o === 'won' ? ', solved' : o === 'lost' ? ', missed' : ''));
       a.onclick = (function (dsCopy) {
         return function (e) { e.preventDefault(); notice = ''; open(dsCopy, tier, true); };
       })(ds);

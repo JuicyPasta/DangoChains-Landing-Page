@@ -113,14 +113,21 @@
 
   // ---------- page pieces ----------
 
+  // The store buttons: the official badges when the page provides them, else text. They open in
+  // a new tab so the result stays on screen. (Clicks are counted by class name in head.html.)
+  function storeLink(cls, href, label, badge) {
+    var inner = badge ? '<img src="' + D.esc(badge) + '" alt="' + D.esc(label) + '" height="46" loading="lazy">' : D.esc(label);
+    return '<a class="' + cls + ' dc-store' + (badge ? ' dc-store-badge' : '') + '" href="' + D.esc(href) + '" target="_blank" rel="noopener">' + inner + '</a>';
+  }
+
   function storeLinks(medium) {
     var referrer = encodeURIComponent('utm_source=landing&utm_medium=' + medium);
-    return '<a class="playStoreLink dc-store" href="' + D.esc(cfg.playStore + '&referrer=' + referrer) + '">Get it on Google Play</a>' +
-      '<a class="appStoreLink dc-store" href="' + D.esc(cfg.appStore) + '">Download on the App Store</a>';
+    return storeLink('playStoreLink', cfg.playStore + '&referrer=' + referrer, 'Get it on Google Play', cfg.playBadge) +
+      storeLink('appStoreLink', cfg.appStore, 'Download on the App Store', cfg.appBadge);
   }
 
   function internalLink(href, text) {
-    return '<a href="' + D.esc(href) + '" target="_self">' + D.esc(text) + '</a>';
+    return '<a href="' + D.esc(href) + '">' + D.esc(text) + '</a>';
   }
 
   function setHeading(title, subHtml) {
@@ -130,7 +137,7 @@
 
   function skeleton() {
     var cells = '';
-    for (var i = 0; i < 16; i++) cells += '<i></i>';
+    for (var i = 0; i < 16; i++) cells += '<i style="--i:' + i + '"></i>';
     $('dc-board').className = '';
     $('dc-board').innerHTML = '<div class="dc-skeleton" aria-label="Loading">' + cells + '</div>';
   }
@@ -154,16 +161,24 @@
   }
 
   function renderTabs(date, tier) {
-    var el = $('dc-tiers');
+    var el = $('dc-tiers'), focused = el.contains(document.activeElement);
     el.hidden = false;
     el.innerHTML = '';
-    TIERS.forEach(function (t) {
+    TIERS.forEach(function (t, i) {
       var b = document.createElement('button'), mark = badge(entryFor(date + '/' + t));
       b.type = 'button'; b.setAttribute('role', 'tab'); b.dataset.tier = t;
       b.setAttribute('aria-selected', t === tier ? 'true' : 'false');
+      b.tabIndex = t === tier ? 0 : -1; // one tab stop; the arrow keys move between difficulties
       b.innerHTML = D.esc(TIER_NAMES[t]) + (mark ? '<span class="dc-badge" aria-label="finished">' + mark + '</span>' : '');
       b.onclick = function () { if (t !== tier) { setPref('tier', t); openDaily(date, t); } };
+      b.onkeydown = function (e) {
+        var step = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+        if (!step) return;
+        e.preventDefault();
+        el.children[(i + step + TIERS.length) % TIERS.length].click();
+      };
       el.appendChild(b);
+      if (focused && t === tier) b.focus();
     });
   }
 
@@ -196,6 +211,9 @@
       D.shareText(buildText(), fallback).then(function (method) {
         status.textContent = method === 'clipboard' ? 'Copied! Paste it anywhere.'
           : method === 'manual' ? 'Copy the text below.' : '';
+        if (method === 'clipboard' || method === 'share') { // a small "done" bounce on the button
+          btn.classList.remove('is-done'); void btn.offsetWidth; btn.classList.add('is-done');
+        }
         if (method !== 'cancel') onShared(method);
       });
     };
@@ -216,13 +234,31 @@
       .join('\n');
   }
 
-  function showDailyEnd(board, res) {
+  // The player's guesses as the rows of balls the share text carries.
+  function showRows(board, res) {
+    var el = $('dc-rows');
+    if (el) el.textContent = D.shareRows(board, res.guesses).join('\n');
+  }
+
+  // Brings the result into view once a game has just ended (not when a finished one is reopened),
+  // and moves focus to it: the Submit button that had focus is gone, and a screen reader hears "Your result".
+  function revealEnd() {
+    var end = $('dc-end'), calm = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (end.hasAttribute('tabindex') && (!document.activeElement || document.activeElement === document.body)) {
+      try { end.focus({ preventScroll: true }); } catch (e) { /* older browsers: no focus move */ }
+    }
+    if (!end.scrollIntoView || end.getBoundingClientRect().top < window.innerHeight * 0.55) return;
+    setTimeout(function () { end.scrollIntoView({ behavior: calm ? 'auto' : 'smooth', block: 'start' }); }, 150);
+  }
+
+  function showDailyEnd(board, res, fresh) {
     var head = resultHeadline(res), n = streak(), other = TIERS.filter(function (t) {
       var e = entryFor(board.date + '/' + t);
       return t !== board.tier && !(e && e.done);
     });
     $('dc-result').textContent = head[0];
     $('dc-result-sub').textContent = head[1];
+    showRows(board, res);
     $('dc-streak').textContent = n > 0 ? 'Streak: ' + n + (n === 1 ? ' day' : ' days') : '';
     $('dc-share').hidden = false;
     wireShare(function () { return dailyShareText(board, res); }, function (method) {
@@ -247,6 +283,7 @@
     $('dc-cta-stores').innerHTML = storeLinks('web_daily');
     $('dc-links').innerHTML = endLinks();
     $('dc-end').hidden = false;
+    if (fresh) revealEnd();
   }
 
   function mountDaily(board) {
@@ -268,8 +305,12 @@
       onEnd: function (res) {
         record(res, { done: 1, won: res.won ? 1 : 0, m: res.mistakes });
         D.track('daily_complete', { tier: board.tier, won: res.won, mistakes: res.mistakes, number: board.number });
-        renderTabs(board.date, board.tier);
-        showDailyEnd(board, res);
+        var mine = game; // the result waits for the board's reveal, unless another board was opened meanwhile
+        mine.whenIdle(function () {
+          if (game !== mine) return;
+          renderTabs(board.date, board.tier);
+          showDailyEnd(board, res, true);
+        });
       },
       onFurigana: function (on) { setPref('furigana', on); }
     });
@@ -350,30 +391,36 @@
         onStart: function () { D.track('custom_start'); },
         onEnd: function (res) {
           D.track('custom_complete', { won: res.won, mistakes: res.mistakes });
-          var head = resultHeadline(res);
-          $('dc-result').textContent = head[0];
-          $('dc-result-sub').textContent = head[1];
-          $('dc-streak').textContent = '';
-          wireShare(function () { return customShareText(board, res, payload); }, function (method) {
-            D.track('custom_share', { method: method });
-          });
-          $('dc-next').innerHTML = '';
-          var again = document.createElement('button');
-          again.type = 'button'; again.className = 'dc-btn'; again.textContent = 'Play again';
-          again.onclick = function () { start(); window.scrollTo(0, 0); };
-          $('dc-more').innerHTML = '';
-          $('dc-more').appendChild(again);
-          $('dc-review').innerHTML = D.reviewHtml(board);
-          $('dc-cta-text').textContent = 'Want a new puzzle every day? DangoChains has three, with furigana, streaks and dango to collect.';
-          $('dc-cta-stores').innerHTML = storeLinks('custom_board');
-          $('dc-links').innerHTML = internalLink(cfg.makePath, 'Make your own board →') +
-            internalLink(cfg.makePath + '#b=' + payload, 'Edit a copy of this board') +
-            internalLink(cfg.playPath, 'Play today’s DangoChains →') +
-            (cfg.bridgePath ? internalLink(cfg.bridgePath, '熟語 Bridge →') : '');
-          $('dc-end').hidden = false;
+          var mine = game;
+          mine.whenIdle(function () { if (game === mine) showCustomEnd(res); });
         },
         onFurigana: function (on) { setPref('furigana', on); }
       });
+    };
+    var showCustomEnd = function (res) {
+      var head = resultHeadline(res);
+      $('dc-result').textContent = head[0];
+      $('dc-result-sub').textContent = head[1];
+      showRows(board, res);
+      $('dc-streak').textContent = '';
+      wireShare(function () { return customShareText(board, res, payload); }, function (method) {
+        D.track('custom_share', { method: method });
+      });
+      $('dc-next').innerHTML = '';
+      var again = document.createElement('button');
+      again.type = 'button'; again.className = 'dc-btn'; again.textContent = 'Play again';
+      again.onclick = function () { start(); window.scrollTo(0, 0); };
+      $('dc-more').innerHTML = '';
+      $('dc-more').appendChild(again);
+      $('dc-review').innerHTML = D.reviewHtml(board);
+      $('dc-cta-text').textContent = 'Want a new puzzle every day? DangoChains has three, with furigana, streaks and dango to collect.';
+      $('dc-cta-stores').innerHTML = storeLinks('custom_board');
+      $('dc-links').innerHTML = internalLink(cfg.makePath, 'Make your own board →') +
+        internalLink(cfg.makePath + '#b=' + payload, 'Edit a copy of this board') +
+        internalLink(cfg.playPath, 'Play today’s DangoChains →') +
+        (cfg.bridgePath ? internalLink(cfg.bridgePath, '熟語 Bridge →') : '');
+      $('dc-end').hidden = false;
+      revealEnd();
     };
     start();
   }

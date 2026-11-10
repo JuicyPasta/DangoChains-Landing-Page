@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% include head.html %}
+
+<body>
+{% include header.html %}
+<main id="main">
+{{ content }}
+</main>
+{% include footer.html %}
+<script>
+	// The phone menu is a <details>: close it on a tap outside or Escape.
+	(function () {
+		function menu() { return document.querySelector('.site-menu[open]'); }
+		document.addEventListener('click', function (e) { var m = menu(); if (m && !m.contains(e.target)) m.removeAttribute('open'); });
+		document.addEventListener('keydown', function (e) {
+			var m = menu();
+			if (e.key === 'Escape' && m) { m.removeAttribute('open'); m.querySelector('summary').focus(); }
+		});
+	})();
+</script>
+</body>
+</html>

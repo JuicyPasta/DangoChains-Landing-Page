@@ -6,8 +6,11 @@ include_in_header: true
 
 # What's New
 
-### `Latest`
+<section class="release" markdown="1">
+<span class="tag">Latest</span>
+
 ## Version 1.0.1
+
 Google Play: November 7, 2026. App Store: coming soon.
 
 - Share your result as an emoji dango grid, with no spoilers
@@ -21,18 +24,20 @@ Google Play: November 7, 2026. App Store: coming soon.
 - Japanese text, hints and stats are fully localized
 - Bug fixes and polish
 
-<br>
+</section>
 
-________
-<br>
+<section class="release" markdown="1">
+<span class="tag">Initial release</span>
 
-### `Initial Release`
 ## Version 1.0.0
+
 January 2026
 
 - A new Japanese word-grouping puzzle every day: sort 16 words into four groups of four
 - Furigana above every kanji, with an option to turn it off
 - Streaks, stats and a collection of dango to earn
 - An archive of past puzzles, unlocked with a one-time purchase
+
+</section>
 
 Questions or puzzle ideas: [dangochains@googlegroups.com](mailto:dangochains@googlegroups.com)

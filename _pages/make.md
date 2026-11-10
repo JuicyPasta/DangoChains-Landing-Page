@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: game
 title: Make your own board
 nav_title: Make
 nav_order: 2
@@ -7,11 +7,10 @@ description: "Make your own DangoChains board: 16 Japanese words in 4 groups, re
 include_in_header: true
 include_in_footer: true
 ---
-<link rel="stylesheet" href="{{ '/assets/css/dango.css' | relative_url }}">
-
+{% assign v = site.time | date: '%Y%m%d%H%M' %}
 <div class="dc-app" id="dc-make">
   <h1 class="dc-title">Make your own board</h1>
-  <p class="dc-sub">Made for classes and study groups: type 16 words in four groups, the readings fill in for you, and you get one link anyone can play.</p>
+  <p class="dc-intro">Made for classes and study groups: type 16 words in four groups, the readings fill in for you, and you get one link anyone can play.</p>
 
   <form class="dc-form" id="dc-form" novalidate autocomplete="off">
     <div class="dc-field">
@@ -41,16 +40,16 @@ include_in_footer: true
     <div class="dc-make-actions">
       <button type="submit" class="dc-btn dc-btn-primary">Create link</button>
       <button type="button" class="dc-btn" id="dc-example">Fill in an example</button>
-      <button type="button" class="dc-btn" id="dc-reset">Clear</button>
+      <button type="button" class="dc-btn btn-quiet" id="dc-reset">Clear</button>
     </div>
   </form>
 
   <div class="dc-result-box" id="dc-result-box" hidden>
-    <label class="dc-form" for="dc-link"><b>Your board's link</b></label>
-    <div class="dc-form"><input type="text" id="dc-link" readonly></div>
+    <label for="dc-link"><b>Your board's link</b></label>
+    <input type="text" id="dc-link" readonly>
     <div class="dc-make-actions">
       <button type="button" class="dc-btn dc-btn-primary" id="dc-copy">Copy link</button>
-      <a class="dc-btn" id="dc-open" href="#" target="_blank">Play it</a>
+      <a class="dc-btn" id="dc-open" href="#" target="_blank" rel="noopener">Play it</a>
       <button type="button" class="dc-btn" id="dc-share-link" hidden>Share…</button>
     </div>
     <p class="dc-share-status" id="dc-copy-status" aria-live="polite"></p>
@@ -58,7 +57,7 @@ include_in_footer: true
     <p class="dc-small" id="dc-long" hidden>This link is long because of all the readings and meanings. Browsers and most chat apps handle it fine; if one cuts it off, shorten the meanings.</p>
   </div>
 
-  <p class="dc-small" style="margin-top: 24px;">Readings come from the word list behind the daily puzzles, then from <a href="https://www.edrdg.org/wiki/index.php/JMdict-EDICT_Dictionary_Project">JMdict</a>'s common words, which also suggest English meanings (© EDRDG, <a href="https://www.edrdg.org/edrdg/licence.html">CC BY-SA 4.0</a>). Check them, since some words have more than one reading or meaning, and type your own for any word it doesn't know. Want a ready-made puzzle? <a href="{{ '/play/' | relative_url }}" target="_self">Play today's DangoChains</a>.</p>
+  <p class="dc-small dc-make-foot">Readings come from the word list behind the daily puzzles, then from <a href="https://www.edrdg.org/wiki/index.php/JMdict-EDICT_Dictionary_Project" target="_blank" rel="noopener">JMdict</a>'s common words, which also suggest English meanings (© EDRDG, <a href="https://www.edrdg.org/edrdg/licence.html" target="_blank" rel="noopener">CC BY-SA 4.0</a>). Check them, since some words have more than one reading or meaning, and type your own for any word it doesn't know. Want a ready-made puzzle? <a href="{{ '/play/' | relative_url }}">Play today's DangoChains</a>.</p>
 </div>
 
 <script type="application/json" id="dc-config">
@@ -70,5 +69,5 @@ include_in_footer: true
   "glossesUrl": {{ '/assets/data/glosses-jmdict.json' | relative_url | jsonify }}
 }
 </script>
-<script src="{{ '/assets/js/dango-board.js' | relative_url }}"></script>
-<script src="{{ '/assets/js/dango-make.js' | relative_url }}"></script>
+<script src="{{ '/assets/js/dango-board.js' | relative_url }}?v={{ v }}"></script>
+<script src="{{ '/assets/js/dango-make.js' | relative_url }}?v={{ v }}"></script>
