@@ -31,3 +31,7 @@ jobs:
           git push
           # Pushes made with GITHUB_TOKEN may not start a legacy Pages build on their own.
           gh api -X POST "repos/${GITHUB_REPOSITORY}/pages/builds" || true
+          # Announce the new day page and the hub to Bing & co. once Pages has had time to deploy.
+          sleep 120
+          day=$(git show --name-only --format= HEAD | grep -o 'study/20[0-9-]*/' | sort | tail -1)
+          python3 scripts/indexnow.py "https://dangochains.com/${day}" "https://dangochains.com/study/" || true
