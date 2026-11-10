@@ -1,0 +1,33 @@
+# Adds yesterday's boards to /study/ once a day (scripts/build_study.py), so the study pages
+# don't depend on the projects sweep. 11:17 UTC = 06:17 EST / 07:17 EDT: every US time zone
+# has moved past the day being published, so nobody's current daily gets spoiled.
+name: Study pages
+on:
+  schedule:
+    - cron: '17 11 * * *'
+  workflow_dispatch:
+permissions:
+  contents: write
+  pages: write
+concurrency: study-pages
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python3 scripts/build_study.py
+      - name: Commit, push and request a Pages build
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if [ -z "$(git status --porcelain study)" ]; then echo "no change"; exit 0; fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add study
+          git commit -m "Study pages: daily update"
+          git push
+          # Pushes made with GITHUB_TOKEN may not start a legacy Pages build on their own.
+          gh api -X POST "repos/${GITHUB_REPOSITORY}/pages/builds" || true
