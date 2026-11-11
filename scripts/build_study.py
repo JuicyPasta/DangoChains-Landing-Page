@@ -268,6 +268,40 @@ TOPICS = [
     ('palindromes', r'[Pp]alindrome',
      'Japanese palindromes (回文) in kana', 'Japanese palindromes (回文)',
      'Words that read the same backwards in kana.'),
+    # Everyday-vocabulary topics (2026-11-11). After the wordplay topics, so a group keeps its older page.
+    ('onomatopoeia', r'[Oo]nomatop|[Mm]imetic|[Ss]ound words|\b(?:[Aa]nimal|[Kk]itchen|[Vv]ehicle|[Rr]ain|[Ww]ind|[Ww]eather|[Ee]veryday) sounds\b|擬音|擬態|オノマトペ',
+     'Japanese onomatopoeia: animal and everyday sounds (モー, ケロケロ, ジュージュー…)', 'Japanese onomatopoeia (擬音語)',
+     'Japanese has a set word for most sounds: a cow says モー, a frog ケロケロ, and a frying pan goes ジュージュー. '
+     'Each group below is four sound words that belong together.'),
+    ('body-parts', r'\b[Bb]ody\b|\b[Ff]ace\b',
+     'Japanese body parts vocabulary: 首, 背中, ひざ, 鼻 and more', 'Body parts in Japanese',
+     'Words for the body and the face, grouped the way the puzzles use them. Some groups play with the words, '
+     'like words that start with a body part.'),
+    ('weather', r'[Ww]eather|[Rr]ainy season|\b[Ss]ky\b|[Ss]torm|\b[Ss]now\b|\b[Rr]ain\b|[Tt]yphoon',
+     'Japanese weather words: 雨, 雪, 台風, 梅雨, 虹 and more', 'Weather and sky words in Japanese',
+     'Rain, storms, the rainy season (梅雨) and what you see in the sky, grouped.'),
+    ('animals', r'\b[Aa]nimals?\b|\b[Bb]irds?\b|[Cc]reatures|[Zz]odiac|\b[Ii]nsects?\b|\b[Ff]ish\b|[Pp]ets?\b',
+     'Animals in Japanese: 犬, 牛, うさぎ, ペンギン, クジラ and more', 'Animals in Japanese',
+     'Pets, zoo and farm animals, birds, insects and sea creatures. Animal names are written in kanji, hiragana '
+     'or katakana, and all three are common.'),
+    ('food', r'\b[Ff]oods?\b|[Vv]egetables?|\b[Ff]ruits?\b|[Ss]weets|\b[Dd]rinks\b|[Ss]ushi|[Tt]oppings|\b[Dd]ishes\b|[Ss]nacks|[Bb]ento|[Ss]easonings?',
+     'Japanese food vocabulary: vegetables, fruit, sweets and drinks', 'Food and drink in Japanese',
+     'Vegetables, fruit, Japanese sweets, drinks, sushi toppings and seasonings, grouped.'),
+    ('school', r'[Ss]chool|[Cc]lassroom|[Ss]ubjects\b',
+     'Japanese school vocabulary: 黒板, 宿題, 国語, 運動会 and more', 'School words in Japanese',
+     'School subjects, classroom things and school events: the vocabulary of every Japanese school story.'),
+    ('clothes', r'\b[Cc]lothes\b|[Cc]lothing|[Ff]ootwear|[Ww]orn (?:with|on|at)|\b(?:[Ww]inter|[Ss]ummer) wear\b',
+     'Japanese clothes vocabulary, and which verb to wear them with (着る, はく, かぶる)', 'Clothes in Japanese',
+     'Japanese uses different verbs for wearing: 着る for the upper body, はく for shoes and trousers, かぶる for hats. '
+     'The groups below cover clothes, footwear and what goes with each verb.'),
+    ('family', r'\b[Ff]amily\b(?! names?)',
+     'Japanese family words: 父, 母, 祖父, 孫, いとこ and more', 'Family words in Japanese',
+     'Japanese has two sets of family words: plain ones for your own family (父, 母) and polite ones for someone '
+     'else\'s (お父さん, お母さん). The groups below cover both.'),
+    ('opposites', r'[Oo]pposite',
+     'Japanese words made of opposite kanji: 売買, 左右, 勝負, 出入り…', 'Words built from opposites',
+     'Japanese often joins two opposites into one word: 売買 (buying and selling), 左右 (left and right), '
+     '勝負 (a match: win or lose). Each group below is built on opposites.'),
 ]
 
 
