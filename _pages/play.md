@@ -1,9 +1,9 @@
 ---
 layout: game
-title: Play today's puzzle
+title: Daily Japanese word puzzle
 nav_title: Play
 nav_order: 1
-description: "Today's DangoChains: 16 Japanese words, 4 hidden groups. Three free daily puzzles for Japanese learners, with furigana. No account, no install."
+description: "A free daily word puzzle for Japanese learners: sort 16 Japanese words into 4 hidden groups. Easy, Normal and Hard boards every day, with readings and English meanings after each game. No account, no install."
 include_in_header: true
 include_in_footer: true
 ---
