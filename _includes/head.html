@@ -13,10 +13,12 @@
 	<meta property="og:title" content="{% if page.title %}{{ page.title }} | DangoChains{% else %}{{ site.page_title }}{% endif %}">
 	<meta property="og:description" content="{{ page.description | default: site.app_description }}">
 	<meta property="og:url" content="{{ page.url | absolute_url }}">
-	<meta property="og:image" content="{{ '/assets/og-image.png' | absolute_url }}">
-	<meta property="og:image:width" content="1024">
-	<meta property="og:image:height" content="500">
+	<meta property="og:image" content="{{ '/assets/og-card.png' | absolute_url }}">
+	<meta property="og:image:width" content="1200">
+	<meta property="og:image:height" content="630">
+	<meta property="og:image:alt" content="DangoChains, a daily Japanese word puzzle: a board of Japanese word tiles with one group solved">
 	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:image" content="{{ '/assets/og-card.png' | absolute_url }}">
 
 	<!-- Static icons: search results and home screens read these without running JS -->
 	<link rel="icon" href="{{ '/favicon.ico' | relative_url }}" sizes="32x32">
