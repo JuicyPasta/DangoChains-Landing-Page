@@ -17,7 +17,7 @@ presskit_download_link                    : https://dangochains.com/assets/press
 app_icon                                  : assets/icon-512.png                       # Automatically populates if not set and if iOS app ID is set.  Otherwise enter path to icon file manually.
 app_name                                  :                                           # Automatically populates if not set and if iOS app ID is set.  Otherwise enter manually.
 app_price                                 :                                           # Automatically populates if not set and if iOS app ID is set.  Otherwise enter manually.
-app_description                           : "The daily word-grouping puzzle for Japanese learners. Furigana on every kanji. No account, no ads and no tracking in the app."
+app_description                           : "The daily word-grouping puzzle for Japanese learners: 16 words, 4 hidden groups, three levels a day, with readings and English meanings after every game. Free in your browser. No account, no ads and no tracking in the app."
 
 google_analytics_id                       : G-S9ZVX65FJ7                              # GA4 web stream "DangoChains landing page" (added 2026-11-07).
 
@@ -48,8 +48,8 @@ features                                  :
     description                           : "A fresh 4×4 board every day in Easy, Normal and Hard: sort 16 Japanese words into four hidden groups of four. Six wrong guesses and the board is lost."
     fontawesome_icon_name                 : calendar-day
 
-  - title                                 : Furigana on Every Kanji
-    description                           : "Readings sit above every kanji, so beginners can play from day one. Turn them off when you're ready. English or Japanese interface."
+  - title                                 : Furigana When You Want It
+    description                           : "Easy shows readings above every kanji, so beginners can play from day one. Normal and Hard start without them, since some groups turn on how words are read; one switch shows them. English or Japanese interface."
     fontawesome_icon_name                 : language
 
   - title                                 : Learn Every Word
