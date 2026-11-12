@@ -375,7 +375,59 @@ def counters_reference():
     return '\n'.join(rows)
 
 
-TOPIC_EXTRAS = {'counters': counters_reference}
+KEIGO_ROWS = [
+    ('する', 'なさる', 'いたす'),
+    ('行く', 'いらっしゃる', '参る（まいる）、伺う（うかがう: to visit）'),
+    ('来る', 'いらっしゃる、お見えになる、お越しになる', '参る（まいる）'),
+    ('いる', 'いらっしゃる', 'おる'),
+    ('言う', 'おっしゃる', '申す（もうす）、申し上げる'),
+    ('見る', 'ご覧になる（ごらんになる）', '拝見する（はいけんする）'),
+    ('食べる・飲む', '召し上がる（めしあがる）', 'いただく'),
+    ('知っている', 'ご存じだ（ごぞんじだ）', '存じている（ぞんじている）'),
+    ('会う', 'お会いになる', 'お目にかかる（おめにかかる）'),
+    ('聞く', 'お聞きになる', '伺う（うかがう）、拝聴する（はいちょうする）'),
+    ('あげる', '—', '差し上げる（さしあげる）'),
+    ('もらう', '—', 'いただく'),
+    ('くれる', 'くださる', '—'),
+    ('寝る', 'お休みになる（おやすみになる）', '—'),
+]
+
+
+def keigo_reference():
+    rows = ['<h2>Common keigo verbs</h2>',
+            '<p>Honorific verbs (尊敬語) raise the person doing the action, usually a customer, a boss or a guest. '
+            'Humble verbs (謙譲語) lower yourself or your side. Verbs without a special form use the patterns '
+            'お〜になる (honorific) and お〜する (humble): お待ちになる, お待ちする.</p>',
+            '<table class="st-table"><thead><tr><th>Plain</th><th>Honorific (尊敬語)</th><th>Humble (謙譲語)</th></tr></thead><tbody>']
+    for plain, hon, hum in KEIGO_ROWS:
+        rows.append(f'<tr><td lang="ja">{e(plain)}</td><td lang="ja">{e(hon)}</td><td lang="ja">{e(hum)}</td></tr>')
+    rows += ['</tbody></table>', '<h2>Keigo in DangoChains puzzles</h2>']
+    return '\n'.join(rows)
+
+
+ONOMATOPOEIA_ROWS = [
+    ('ワンワン', 'a dog barking'), ('ニャー', 'a cat meowing'), ('モー', 'a cow mooing'),
+    ('コケコッコー', 'a rooster crowing'), ('ケロケロ', 'a frog croaking'), ('ブーブー', 'a pig oinking; grumbling'),
+    ('ザーザー', 'heavy rain pouring'), ('シトシト', 'light, steady rain'), ('ゴロゴロ', 'thunder rumbling; lazing around'),
+    ('キラキラ', 'sparkling, glittering'), ('ドキドキ', 'a pounding heart: nerves or excitement'),
+    ('ワクワク', 'excited anticipation'), ('ニコニコ', 'smiling'), ('イライラ', 'irritated'),
+    ('フワフワ', 'soft and fluffy'), ('ペラペラ', 'speaking a language fluently'),
+]
+
+
+def onomatopoeia_reference():
+    rows = ['<h2>Common Japanese onomatopoeia</h2>',
+            '<p>Japanese has two kinds: 擬音語 imitate real sounds (a dog\'s ワンワン, rain\'s ザーザー), and 擬態語 '
+            'describe states and feelings that make no sound (キラキラ for sparkle, ドキドキ for a racing heart). '
+            'Many are doubled, and most work as adverbs: 雨がザーザー降る.</p>',
+            '<table class="st-table"><thead><tr><th>Word</th><th>Meaning</th></tr></thead><tbody>']
+    for w, m in ONOMATOPOEIA_ROWS:
+        rows.append(f'<tr><td lang="ja">{e(w)}</td><td>{e(m)}</td></tr>')
+    rows += ['</tbody></table>', '<h2>Onomatopoeia in DangoChains puzzles</h2>']
+    return '\n'.join(rows)
+
+
+TOPIC_EXTRAS = {'counters': counters_reference, 'keigo': keigo_reference, 'onomatopoeia': onomatopoeia_reference}
 
 
 def topic_page(slug, groups):
