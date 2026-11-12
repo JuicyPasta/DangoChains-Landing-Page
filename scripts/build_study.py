@@ -344,6 +344,40 @@ def group_table(c, readings):
     return '\n'.join(rows)
 
 
+# Hand-written reference sections shown above a topic's puzzle groups (searchers want the basics first).
+COUNTER_ROWS = [
+    ('人', 'にん', 'people', '三人（さんにん）; but 一人（ひとり）, 二人（ふたり）'),
+    ('本', 'ほん', 'long, thin things: pens, bottles, umbrellas, trains', '一本（いっぽん）, 三本（さんぼん）'),
+    ('枚', 'まい', 'flat, thin things: paper, shirts, plates, tickets', '二枚（にまい）'),
+    ('冊', 'さつ', 'books, notebooks, magazines', '一冊（いっさつ）'),
+    ('台', 'だい', 'machines and vehicles: cars, bikes, TVs', '二台（にだい）'),
+    ('個', 'こ', 'small, compact things: apples, eggs, erasers', '一個（いっこ）'),
+    ('匹', 'ひき', 'small animals: cats, dogs, fish, insects', '一匹（いっぴき）, 三匹（さんびき）'),
+    ('頭', 'とう', 'large animals: cows, horses, elephants', '一頭（いっとう）'),
+    ('羽', 'わ', 'birds (and, traditionally, rabbits)', '一羽（いちわ）, 三羽（さんば）'),
+    ('杯', 'はい', 'cupfuls and bowlfuls; also squid and crabs', '一杯（いっぱい）, 三杯（さんばい）'),
+    ('足', 'そく', 'pairs of shoes and socks', '一足（いっそく）, 三足（さんぞく）'),
+    ('軒', 'けん', 'houses and shops', '一軒（いっけん）, 三軒（さんげん）'),
+    ('階', 'かい', 'floors of a building', '三階（さんがい）'),
+    ('回', 'かい', 'times, occurrences', '二回（にかい）'),
+    ('つ', 'つ', 'general things, one to nine', '一つ（ひとつ）, 二つ（ふたつ）, 三つ（みっつ）'),
+]
+
+
+def counters_reference():
+    rows = ['<h2>Common Japanese counters</h2>',
+            '<p>The counter goes after the number, and the two often change sound together: 一本 is いっぽん, '
+            '三本 is さんぼん. When you don\'t know the counter, the native つ series works for most things up to nine.</p>',
+            '<table class="st-table"><thead><tr><th>Counter</th><th>Reading</th><th>Used for</th><th>Examples</th></tr></thead><tbody>']
+    for c, r, use, ex in COUNTER_ROWS:
+        rows.append(f'<tr><td lang="ja">{e(c)}</td><td lang="ja">{e(r)}</td><td>{e(use)}</td><td lang="ja">{e(ex)}</td></tr>')
+    rows += ['</tbody></table>', '<h2>Counters in DangoChains puzzles</h2>']
+    return '\n'.join(rows)
+
+
+TOPIC_EXTRAS = {'counters': counters_reference}
+
+
 def topic_page(slug, groups):
     _, _, title, h1, intro = next(t for t in TOPICS if t[0] == slug)
     words = [w for _, _, c, _ in groups for w in c['words']]
@@ -352,6 +386,8 @@ def topic_page(slug, groups):
     body = [front_matter(title, desc), '{% raw %}', STYLE,
             f'<h1>{e(h1)}</h1>', f'<p>{e(intro)} Every group comes from a past DangoChains puzzle; '
             f'{len(groups)} so far, newest first.</p>']
+    if slug in TOPIC_EXTRAS:
+        body.append(TOPIC_EXTRAS[slug]())
     for date, tier, c, readings in groups:
         name_jp = c.get('nameJp')
         head = e(c['name']) + (f' <span lang="ja">（{e(name_jp)}）</span>' if name_jp else '')
