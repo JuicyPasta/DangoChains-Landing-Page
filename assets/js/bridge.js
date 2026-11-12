@@ -537,7 +537,7 @@
     q('.br-streak').textContent = line;
   }
 
-  try { document.title = '熟語 Bridge: a daily kanji puzzle for Japanese learners | DangoChains'; } catch (e) { /* ignore */ }
+  try { document.title = '熟語 Bridge: a daily kanji game for Japanese learners | DangoChains'; } catch (e) { /* ignore */ }
   Promise.all(Object.keys(months).map(fetchMonth)).then(function () {
     if (!tier) tier = firstOpenTier(date);
     if (!byDate[date]) { render(); showMissing(date); return; }

@@ -1,6 +1,7 @@
 ---
 layout: game
 title: 熟語 Bridge
+seo_title: "熟語 Bridge: a daily kanji game for Japanese learners"
 nav_order: 4
 description: "熟語 Bridge: a daily kanji puzzle for Japanese learners. Find the one kanji that completes four common words. Easy, Normal and Hard (JLPT N5–N2), with readings and meanings after every game."
 include_in_header: true
