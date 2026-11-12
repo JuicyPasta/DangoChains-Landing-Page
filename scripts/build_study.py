@@ -5,6 +5,7 @@ groups, readings and English meanings behind a spoiler gate, plus a hub at /stud
 Reads the published feed (feed/v1/{tier}/{YYYY-MM}.json) and writes Jekyll pages:
   study/index.html               hub, newest month first
   study/YYYY-MM-DD/index.html    one page per day, epoch .. --through
+  study/topics/, study/jlpt/     topic pages and JLPT N5-N1 word lists (boards 8+ days old)
 
 Only days strictly before today (America/New_York) are published by default, so the
 current daily is never spoiled. Re-run after every feed rebuild and on each sweep:
@@ -206,6 +207,9 @@ def hub_page(dates):
             '<a href="/play/" target="_self">Play</a>; the last 7 days are free to play there.</p>',
             '<p><b>By topic:</b> <a href="/study/topics/" target="_self">counters, kanji readings, keigo, wasei-eigo, '
             'loanwords, abbreviations and more</a></p>',
+            '<p><b>By JLPT level:</b> <a href="/study/jlpt/n5/" target="_self">N5</a> · '
+            '<a href="/study/jlpt/n4/" target="_self">N4</a> · <a href="/study/jlpt/n3/" target="_self">N3</a> · '
+            '<a href="/study/jlpt/n2/" target="_self">N2</a> · <a href="/study/jlpt/n1/" target="_self">N1</a></p>',
             '<div class="st-months">']
     for month in sorted(by_month, reverse=True):
         m = dt.date.fromisoformat(month + '-01')
@@ -371,7 +375,124 @@ def topics_index(topics):
     for slug, _, title_t, h1, _ in TOPICS:
         if topics.get(slug):
             body.append(f'<li><a href="/study/topics/{slug}/" target="_self">{e(h1)}</a> ({len(topics[slug])} groups)</li>')
-    body += ['</ul>', CTA, '{% endraw %}']
+    body += ['</ul>', '<p><b>By JLPT level:</b> <a href="/study/jlpt/" target="_self">N5 to N1 word lists</a></p>',
+             CTA, '{% endraw %}']
+    return '\n'.join(body) + '\n'
+
+
+# ---------- JLPT pages (/study/jlpt/ and /study/jlpt/n5/ .. n1/) ----------
+# Words from past boards (same lag as the topic pages) matched to Jonathan Waller's JLPT level
+# estimates (scripts/data/jlpt-waller.tsv, CC BY). A word counts only when its spelling is in the list
+# and the list's reading agrees with the puzzle's, so a homograph never gets another word's level.
+JLPT_FILE = os.path.join(ROOT, 'scripts', 'data', 'jlpt-waller.tsv')
+JLPT_LEVELS = [5, 4, 3, 2, 1]
+JLPT_SOURCE = ('<p><small>The JLPT publishes no official vocabulary list. Levels are estimates from Jonathan Waller\'s '
+               '<a href="http://www.tanos.co.uk/jlpt/">JLPT Resources</a> (CC BY), matched to past DangoChains words by '
+               'spelling and reading. Meanings are short glosses written for each puzzle.</small></p>')
+
+
+def _norm_reading(r):
+    return re.sub(r'[()（）〜~・\s.]', '', r or '')
+
+
+def _hira(text):
+    return ''.join(chr(ord(ch) - 0x60) if 'ァ' <= ch <= 'ヶ' else ch for ch in text)
+
+
+def load_jlpt():
+    """{word: [(reading, level)]} from the TSV."""
+    table = {}
+    if not os.path.exists(JLPT_FILE):
+        return table
+    with open(JLPT_FILE, encoding='utf-8') as f:
+        for line in f:
+            if line.startswith('#') or not line.strip():
+                continue
+            word, reading, level = line.rstrip('\n').split('\t')
+            table.setdefault(word, []).append((_norm_reading(reading), int(level)))
+    return table
+
+
+def jlpt_level(word, reading, table):
+    entries = table.get(word)
+    if not entries:
+        return None
+    want = _hira(_norm_reading(reading))
+    levels = {lvl for r, lvl in entries if _hira(r) == want}
+    return max(levels) if levels else None  # max = easiest (N5 = 5)
+
+
+def collect_jlpt(days, through, table):
+    """{level: {word: dict(reading, meaning, date, tier, count)}}, newest sighting kept."""
+    cutoff = (dt.date.fromisoformat(through) - dt.timedelta(days=TOPIC_LAG_DAYS - 1)).isoformat()
+    found = {lvl: {} for lvl in JLPT_LEVELS}
+    for date in sorted(days, reverse=True):
+        if date >= cutoff:
+            continue
+        for tier in TIERS:
+            if tier not in days[date]:
+                continue
+            puzzle, readings = days[date][tier]
+            for c in puzzle['categories']:
+                glosses = c.get('glosses') or [''] * len(c['words'])
+                for w, g in zip(c['words'], glosses):
+                    r = kana(w, readings.get(w))
+                    lvl = jlpt_level(w, r, table)
+                    if lvl is None:
+                        continue
+                    hit = found[lvl].get(w)
+                    if hit:
+                        hit['count'] += 1
+                    else:
+                        found[lvl][w] = {'reading': r, 'meaning': g or '', 'date': date, 'tier': tier, 'count': 1}
+    return found
+
+
+def jlpt_nav(current=None):
+    links = []
+    for lvl in JLPT_LEVELS:
+        label = f'N{lvl}'
+        links.append(f'<b>{label}</b>' if lvl == current else f'<a href="/study/jlpt/n{lvl}/" target="_self">{label}</a>')
+    return '<p class="st-jlpt-nav">JLPT levels: ' + ' · '.join(links) + ' · <a href="/study/jlpt/" target="_self">All</a></p>'
+
+
+def jlpt_page(lvl, words):
+    items = sorted(words.items(), key=lambda kv: (_hira(kv[1]['reading']), kv[0]))
+    n = len(items)
+    title = f'JLPT N{lvl} vocabulary: {n} words with readings and meanings'
+    examples = '、'.join(w for w, _ in items[:6])
+    desc = (f'{n} JLPT N{lvl} words from DangoChains daily Japanese puzzles, each with its reading, an English meaning '
+            f'and the puzzle it appeared in. Examples: {examples}.')
+    body = [front_matter(title, desc), '{% raw %}', STYLE,
+            f'<h1>JLPT N{lvl} words in DangoChains puzzles</h1>',
+            f'<p>{n} words estimated at JLPT N{lvl} that have appeared on past DangoChains boards, with their readings and '
+            'English meanings. Each links to the day it was played, where you can try the whole board and see how the '
+            'groups worked. <a href="/play/" target="_self">Today\'s puzzles</a> mix words from every level.</p>',
+            jlpt_nav(lvl),
+            '<table class="st-table"><thead><tr><th>Word</th><th>Reading</th><th>Meaning</th><th>Played</th></tr></thead><tbody>']
+    for w, h in items:
+        d = dt.date.fromisoformat(h['date'])
+        seen = (f'<a href="/study/{h["date"]}/#{h["tier"]}" target="_self">{e(short_date(d))}, {d.year}</a>'
+                + (f' <small>+{h["count"] - 1} more</small>' if h['count'] > 1 else ''))
+        reading = h['reading'] if h['reading'] != w else ''
+        body.append(f'<tr><td lang="ja">{e(w)}</td><td lang="ja">{e(reading)}</td><td>{e(h["meaning"])}</td><td>{seen}</td></tr>')
+    body += ['</tbody></table>', jlpt_nav(lvl), JLPT_SOURCE, CTA, '{% endraw %}']
+    return '\n'.join(body) + '\n'
+
+
+def jlpt_index(found):
+    total = sum(len(v) for v in found.values())
+    title = 'JLPT vocabulary by level, N5 to N1, from DangoChains puzzles'
+    desc = (f'{total} Japanese words from DangoChains daily puzzles sorted by estimated JLPT level, N5 to N1, '
+            'with readings and English meanings.')
+    body = [front_matter(title, desc), '{% raw %}', STYLE, '<h1>JLPT vocabulary by level</h1>',
+            f'<p>{total} words from past DangoChains boards, sorted by estimated JLPT level. Each list has readings, '
+            'English meanings and a link to the puzzle the word appeared in.</p>', '<ul class="st-topics">']
+    for lvl in JLPT_LEVELS:
+        if found.get(lvl):
+            body.append(f'<li><a href="/study/jlpt/n{lvl}/" target="_self">JLPT N{lvl} words</a> ({len(found[lvl])})</li>')
+    body += ['</ul>', '<p><a href="/study/topics/" target="_self">Vocabulary by topic</a> · '
+             '<a href="/study/" target="_self">All past puzzles</a></p>', JLPT_SOURCE, CTA, '{% endraw %}']
     return '\n'.join(body) + '\n'
 
 
@@ -388,6 +509,12 @@ def render(through):
     for slug, groups in topics.items():
         if groups:
             files[os.path.join(OUT, 'topics', slug, 'index.html')] = topic_page(slug, groups)
+    jlpt = collect_jlpt(days, through, load_jlpt())
+    if any(jlpt.values()):
+        files[os.path.join(OUT, 'jlpt', 'index.html')] = jlpt_index(jlpt)
+        for lvl, words in jlpt.items():
+            if words:
+                files[os.path.join(OUT, 'jlpt', f'n{lvl}', 'index.html')] = jlpt_page(lvl, words)
     return files
 
 
