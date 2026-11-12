@@ -120,10 +120,19 @@
     return '<a class="' + cls + ' dc-store' + (badge ? ' dc-store-badge' : '') + '" href="' + D.esc(href) + '" target="_blank" rel="noopener">' + inner + '</a>';
   }
 
+  // Phones see only their own store; desktops and anything unrecognised see both.
+  function mobilePlatform() {
+    var ua = navigator.userAgent || '';
+    if (/Android/i.test(ua)) return 'android';
+    if (/iPhone|iPad|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1)) return 'ios';
+    return '';
+  }
+
   function storeLinks(medium) {
-    var referrer = encodeURIComponent('utm_source=landing&utm_medium=' + medium);
-    return storeLink('playStoreLink', cfg.playStore + '&referrer=' + referrer, 'Get it on Google Play', cfg.playBadge) +
-      storeLink('appStoreLink', cfg.appStore, 'Download on the App Store', cfg.appBadge);
+    var referrer = encodeURIComponent('utm_source=landing&utm_medium=' + medium), os = mobilePlatform();
+    var play = storeLink('playStoreLink', cfg.playStore + '&referrer=' + referrer, 'Get it on Google Play', cfg.playBadge);
+    var apple = storeLink('appStoreLink', cfg.appStore, 'Download on the App Store', cfg.appBadge);
+    return os === 'android' ? play : os === 'ios' ? apple : play + apple;
   }
 
   function internalLink(href, text) {
@@ -279,7 +288,7 @@
       });
     }
     $('dc-review').innerHTML = D.reviewHtml(board);
-    $('dc-cta-text').textContent = 'Keep your streak and collect dango in the free app. Every past puzzle is in its archive.';
+    $('dc-cta-text').textContent = 'The free app keeps your streak, collects dango and can remind you each day. The 900+ past puzzles are a one-time unlock, no subscription.';
     $('dc-cta-stores').innerHTML = storeLinks('web_daily');
     $('dc-links').innerHTML = endLinks();
     $('dc-end').hidden = false;
