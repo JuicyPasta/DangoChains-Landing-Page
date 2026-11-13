@@ -666,10 +666,103 @@ def opposites_reference():
     return '\n'.join(rows)
 
 
+LOANWORD_ROWS = [
+    ('パン', 'Portuguese', 'pão', 'bread'), ('タバコ', 'Portuguese', 'tabaco', 'cigarette, tobacco'),
+    ('ボタン', 'Portuguese', 'botão', 'button'), ('カステラ', 'Portuguese', 'pão de Castela', 'castella sponge cake'),
+    ('アルバイト', 'German', 'Arbeit', 'part-time job'), ('カルテ', 'German', 'Karte', 'medical chart'),
+    ('エネルギー', 'German', 'Energie', 'energy'), ('リュックサック', 'German', 'Rucksack', 'backpack'),
+    ('ゲレンデ', 'German', 'Gelände', 'ski slope'), ('ビール', 'Dutch', 'bier', 'beer'),
+    ('コーヒー', 'Dutch', 'koffie', 'coffee'), ('ガラス', 'Dutch', 'glas', 'glass (the material)'),
+    ('ランドセル', 'Dutch', 'ransel', 'school backpack'), ('アンケート', 'French', 'enquête', 'survey, questionnaire'),
+    ('クレヨン', 'French', 'crayon', 'crayon'), ('シュークリーム', 'French', 'chou à la crème', 'cream puff'),
+    ('イクラ', 'Russian', 'ikra', 'salmon roe'), ('ノルマ', 'Russian', 'norma', 'quota'),
+]
+
+
+def loanwords_reference():
+    rows = ['<h2>Katakana words from other languages</h2>',
+            '<p>Portuguese traders and missionaries arrived in the 1540s, the Dutch were the only Europeans allowed '
+            'to trade during the Edo period, and Meiji Japan learned medicine and science from Germany. Each left '
+            'words behind.</p>',
+            '<table class="st-table"><thead><tr><th>Word</th><th>From</th><th>Original</th><th>Meaning</th></tr></thead><tbody>']
+    for w, lang, orig, m in LOANWORD_ROWS:
+        rows.append(f'<tr><td lang="ja">{e(w)}</td><td>{e(lang)}</td><td>{e(orig)}</td><td>{e(m)}</td></tr>')
+    rows += ['</tbody></table>', '<h2>Loanwords in DangoChains puzzles</h2>']
+    return '\n'.join(rows)
+
+
+FROM_JAPANESE_ROWS = [
+    ('tsunami', '津波', 'つなみ', 'harbor wave'), ('karaoke', '空オケ', 'からオケ', 'empty orchestra'),
+    ('emoji', '絵文字', 'えもじ', 'picture character (not from "emotion")'), ('tycoon', '大君', 'たいくん', 'great lord'),
+    ('honcho', '班長', 'はんちょう', 'squad leader'), ('futon', '布団', 'ふとん', 'bedding'),
+    ('umami', '旨味', 'うまみ', 'savory taste'), ('sudoku', '数独', 'すうどく', 'single digits'),
+    ('kaizen', '改善', 'かいぜん', 'improvement'), ('bonsai', '盆栽', 'ぼんさい', 'tray planting'),
+    ('origami', '折り紙', 'おりがみ', 'folded paper'), ('kawaii', '可愛い', 'かわいい', 'cute'),
+    ('senpai', '先輩', 'せんぱい', 'senior (at school or work)'), ('tofu', '豆腐', 'とうふ', 'bean curd'),
+]
+
+
+def english_from_japanese_reference():
+    rows = ['<h2>English words that came from Japanese</h2>',
+            '<p>Some arrived with food and crafts, some with business and games, and two (tycoon and honcho) with '
+            'American diplomats and soldiers.</p>',
+            '<table class="st-table"><thead><tr><th>English</th><th>Japanese</th><th>Reading</th><th>Literally</th></tr></thead><tbody>']
+    for en, w, r, lit in FROM_JAPANESE_ROWS:
+        rows.append(f'<tr><td>{e(en)}</td><td lang="ja">{e(w)}</td><td lang="ja">{e(r)}</td><td>{e(lit)}</td></tr>')
+    rows += ['</tbody></table>', '<h2>In DangoChains puzzles</h2>']
+    return '\n'.join(rows)
+
+
+ABBREV_ROWS = [
+    ('スマホ', 'スマートフォン', 'smartphone'), ('パソコン', 'パーソナルコンピューター', 'PC'),
+    ('コンビニ', 'コンビニエンスストア', 'convenience store'), ('エアコン', 'エアコンディショナー', 'air conditioner'),
+    ('リモコン', 'リモートコントロール', 'remote control'), ('デパート', 'デパートメントストア', 'department store'),
+    ('アニメ', 'アニメーション', 'animation'), ('バイト', 'アルバイト', 'part-time job'),
+    ('コスパ', 'コストパフォーマンス', 'value for money'), ('就活', '就職活動', 'job hunting'),
+    ('部活', '部活動', 'school club activities'), ('終電', '終電車', 'the last train'),
+    ('学割', '学生割引', 'student discount'), ('国連', '国際連合', 'the United Nations'),
+    ('東大', '東京大学', 'the University of Tokyo'), ('あけおめ', 'あけましておめでとう', 'Happy New Year (casual)'),
+]
+
+
+def abbreviations_reference():
+    rows = ['<h2>Common Japanese abbreviations</h2>',
+            '<p>Katakana words usually keep the start of each part (スマートフォン → スマホ, パーソナルコンピューター → '
+            'パソコン); kanji compounds often keep one kanji from each word (就職活動 → 就活).</p>',
+            '<table class="st-table"><thead><tr><th>Short</th><th>Full form</th><th>Meaning</th></tr></thead><tbody>']
+    for s_, full, m in ABBREV_ROWS:
+        rows.append(f'<tr><td lang="ja">{e(s_)}</td><td lang="ja">{e(full)}</td><td>{e(m)}</td></tr>')
+    rows += ['</tbody></table>', '<h2>Abbreviations in DangoChains puzzles</h2>']
+    return '\n'.join(rows)
+
+
+ANIMAL_ROWS = [
+    ('犬', 'いぬ', 'dog'), ('猫', 'ねこ', 'cat'), ('鳥', 'とり', 'bird'), ('魚', 'さかな', 'fish'),
+    ('馬', 'うま', 'horse'), ('牛', 'うし', 'cow'), ('豚', 'ぶた', 'pig'), ('羊', 'ひつじ', 'sheep'),
+    ('鶏', 'にわとり', 'chicken'), ('兎', 'うさぎ', 'rabbit'), ('鼠', 'ねずみ', 'mouse, rat'), ('猿', 'さる', 'monkey'),
+    ('熊', 'くま', 'bear'), ('狐', 'きつね', 'fox'), ('狸', 'たぬき', 'tanuki (raccoon dog)'), ('虎', 'とら', 'tiger'),
+    ('象', 'ぞう', 'elephant'), ('亀', 'かめ', 'turtle'), ('蛇', 'へび', 'snake'), ('蛙', 'かえる', 'frog'),
+]
+
+
+def animals_reference():
+    rows = ['<h2>Common animals in Japanese</h2>',
+            '<p>Most animal names have a kanji, but everyday writing often uses hiragana (うさぎ, ねずみ) or katakana, '
+            'and biology writes every species in katakana (イヌ, ネコ). Count small animals with 匹 and large ones '
+            'with 頭.</p>',
+            '<table class="st-table"><thead><tr><th>Kanji</th><th>Reading</th><th>Meaning</th></tr></thead><tbody>']
+    for w, r, m in ANIMAL_ROWS:
+        rows.append(f'<tr><td lang="ja">{e(w)}</td><td lang="ja">{e(r)}</td><td>{e(m)}</td></tr>')
+    rows += ['</tbody></table>', '<h2>Animals in DangoChains puzzles</h2>']
+    return '\n'.join(rows)
+
+
 TOPIC_EXTRAS = {'counters': counters_reference, 'keigo': keigo_reference, 'onomatopoeia': onomatopoeia_reference,
                 'family': family_reference, 'body-parts': body_parts_reference, 'clothes': clothes_reference,
                 'wasei-eigo': wasei_reference, 'idioms': idioms_reference, 'weather': weather_reference,
-                'school': school_reference, 'opposites': opposites_reference}
+                'school': school_reference, 'opposites': opposites_reference, 'loanwords': loanwords_reference,
+                'english-from-japanese': english_from_japanese_reference, 'abbreviations': abbreviations_reference,
+                'animals': animals_reference}
 
 
 def topic_page(slug, groups):
