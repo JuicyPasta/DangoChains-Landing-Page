@@ -594,9 +594,82 @@ def idioms_reference():
     return '\n'.join(rows)
 
 
+WEATHER_ROWS = [
+    ('天気', 'てんき', 'weather'), ('天気予報', 'てんきよほう', 'weather forecast'), ('晴れ', 'はれ', 'sunny, clear'),
+    ('曇り', 'くもり', 'cloudy'), ('雨', 'あめ', 'rain'), ('雪', 'ゆき', 'snow'), ('風', 'かぜ', 'wind'),
+    ('雷', 'かみなり', 'thunder, lightning'), ('嵐', 'あらし', 'storm'), ('台風', 'たいふう', 'typhoon'),
+    ('梅雨', 'つゆ', 'the early-summer rainy season'), ('夕立', 'ゆうだち', 'a sudden summer evening shower'),
+    ('霧', 'きり', 'fog'), ('虹', 'にじ', 'rainbow'), ('気温', 'きおん', 'air temperature'), ('湿度', 'しつど', 'humidity'),
+    ('暑い', 'あつい', 'hot (weather)'), ('蒸し暑い', 'むしあつい', 'hot and humid'), ('暖かい', 'あたたかい', 'warm'),
+    ('涼しい', 'すずしい', 'cool, pleasant'), ('寒い', 'さむい', 'cold (weather)'),
+]
+
+
+def weather_reference():
+    rows = ['<h2>Japanese weather words</h2>',
+            '<p>Rain and snow fall (雨が降る, 雪が降る), wind blows (風が吹く), and the sky clears or clouds over '
+            '(晴れる, 曇る). Cold weather is 寒い; something cold to the touch is 冷たい.</p>',
+            '<table class="st-table"><thead><tr><th>Word</th><th>Reading</th><th>Meaning</th></tr></thead><tbody>']
+    for w, r, m in WEATHER_ROWS:
+        rows.append(f'<tr><td lang="ja">{e(w)}</td><td lang="ja">{e(r)}</td><td>{e(m)}</td></tr>')
+    rows += ['</tbody></table>', '<h2>Weather words in DangoChains puzzles</h2>']
+    return '\n'.join(rows)
+
+
+SCHOOL_ROWS = [
+    ('国語', 'こくご', 'Japanese (language arts)'), ('数学', 'すうがく', 'math (算数 さんすう in elementary school)'),
+    ('理科', 'りか', 'science'), ('社会', 'しゃかい', 'social studies'), ('英語', 'えいご', 'English'),
+    ('体育', 'たいいく', 'PE'), ('音楽', 'おんがく', 'music'), ('美術', 'びじゅつ', 'art (図工 ずこう in elementary school)'),
+    ('家庭科', 'かていか', 'home economics'), ('歴史', 'れきし', 'history'), ('地理', 'ちり', 'geography'),
+    ('物理', 'ぶつり', 'physics'), ('化学', 'かがく', 'chemistry'), ('生物', 'せいぶつ', 'biology'),
+    ('教室', 'きょうしつ', 'classroom'), ('黒板', 'こくばん', 'blackboard'), ('宿題', 'しゅくだい', 'homework'),
+    ('試験', 'しけん', 'exam'), ('給食', 'きゅうしょく', 'school lunch'), ('部活', 'ぶかつ', 'after-school club'),
+    ('運動会', 'うんどうかい', 'sports day'),
+]
+
+
+def school_reference():
+    rows = ['<h2>School subjects and classroom words</h2>',
+            '<p>Subjects are named differently by school level: elementary schools teach 算数 and 図工, which become '
+            '数学 and 美術 from junior high. 化学 (chemistry) and 科学 (science in general) are both read かがく, so '
+            'people sometimes say ばけがく for chemistry.</p>',
+            '<table class="st-table"><thead><tr><th>Word</th><th>Reading</th><th>Meaning</th></tr></thead><tbody>']
+    for w, r, m in SCHOOL_ROWS:
+        rows.append(f'<tr><td lang="ja">{e(w)}</td><td lang="ja">{e(r)}</td><td>{e(m)}</td></tr>')
+    rows += ['</tbody></table>', '<h2>School words in DangoChains puzzles</h2>']
+    return '\n'.join(rows)
+
+
+OPPOSITE_ROWS = [
+    ('売買', 'ばいばい', '売る + 買う', 'buying and selling'), ('左右', 'さゆう', '左 + 右', 'left and right'),
+    ('上下', 'じょうげ', '上 + 下', 'up and down, top and bottom'),
+    ('前後', 'ぜんご', '前 + 後', 'front and back; before and after; about (三時前後)'),
+    ('大小', 'だいしょう', '大 + 小', 'size, large and small'), ('高低', 'こうてい', '高 + 低', 'height, high and low'),
+    ('強弱', 'きょうじゃく', '強 + 弱', 'strength, intensity'), ('長短', 'ちょうたん', '長 + 短', 'length; strengths and weaknesses'),
+    ('明暗', 'めいあん', '明 + 暗', 'light and shade, contrast'), ('寒暖', 'かんだん', '寒 + 暖', 'temperature, cold and warmth'),
+    ('損得', 'そんとく', '損 + 得', 'loss and gain'), ('勝負', 'しょうぶ', '勝 + 負', 'a match, a contest'),
+    ('出入り', 'でいり', '出る + 入る', 'coming and going'), ('生死', 'せいし', '生 + 死', 'life and death'),
+    ('男女', 'だんじょ', '男 + 女', 'men and women'), ('開閉', 'かいへい', '開 + 閉', 'opening and closing'),
+    ('往復', 'おうふく', '往 + 復', 'a round trip'), ('増減', 'ぞうげん', '増 + 減', 'increase and decrease'),
+    ('遠近', 'えんきん', '遠 + 近', 'distance, near and far'), ('善悪', 'ぜんあく', '善 + 悪', 'good and evil'),
+]
+
+
+def opposites_reference():
+    rows = ['<h2>Common words built from two opposites</h2>',
+            '<p>Put two opposite kanji together and you often get the whole scale between them: 大小 is size, '
+            '寒暖 is temperature, 勝負 is the match itself. Most of these use the on\'yomi (Chinese) readings.</p>',
+            '<table class="st-table"><thead><tr><th>Word</th><th>Reading</th><th>Parts</th><th>Meaning</th></tr></thead><tbody>']
+    for w, r, parts, m in OPPOSITE_ROWS:
+        rows.append(f'<tr><td lang="ja">{e(w)}</td><td lang="ja">{e(r)}</td><td lang="ja">{e(parts)}</td><td>{e(m)}</td></tr>')
+    rows += ['</tbody></table>', '<h2>Opposites in DangoChains puzzles</h2>']
+    return '\n'.join(rows)
+
+
 TOPIC_EXTRAS = {'counters': counters_reference, 'keigo': keigo_reference, 'onomatopoeia': onomatopoeia_reference,
                 'family': family_reference, 'body-parts': body_parts_reference, 'clothes': clothes_reference,
-                'wasei-eigo': wasei_reference, 'idioms': idioms_reference}
+                'wasei-eigo': wasei_reference, 'idioms': idioms_reference, 'weather': weather_reference,
+                'school': school_reference, 'opposites': opposites_reference}
 
 
 def topic_page(slug, groups):
