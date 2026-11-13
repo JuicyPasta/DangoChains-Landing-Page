@@ -261,7 +261,7 @@ TOPICS = [
      'Keigo verbs: humble (謙譲語) and honorific (尊敬語) forms', 'Keigo: humble and honorific verbs',
      'Polite Japanese swaps everyday verbs for humble forms (about yourself) or honorific forms (about others).'),
     ('idioms', r'[Ii]diom|四字|[Ff]our-character|[Pp]roverb|ことわざ',
-     'Japanese idioms and proverbs, grouped', 'Japanese idioms and proverbs',
+     'Japanese idioms (四字熟語) and proverbs (ことわざ) with meanings', 'Japanese idioms and proverbs',
      'Groups of idioms and proverbs that share a word or an idea.'),
     ('false-friends', r"(?:that|which) (?:isn't|aren't|don't|doesn't)|n't about|not about",
      'Kanji that don\'t mean what they look like (目 that isn\'t an eye…)', 'Kanji that don\'t mean what they look like',
@@ -513,8 +513,90 @@ def clothes_reference():
     return '\n'.join(rows)
 
 
+WASEI_ROWS = [
+    ('サラリーマン', 'salaryman', 'an office worker on a salary'),
+    ('ノートパソコン', 'note + personal computer', 'a laptop'),
+    ('コンセント', 'concentric (plug)', 'a power outlet'),
+    ('ガソリンスタンド', 'gasoline stand', 'a gas station'),
+    ('マンション', 'mansion', 'a condo or apartment building'),
+    ('ペーパードライバー', 'paper driver', 'someone with a license who almost never drives'),
+    ('ホッチキス', 'Hotchkiss (a brand)', 'a stapler'),
+    ('シャープペンシル', 'sharp pencil', 'a mechanical pencil'),
+    ('ベビーカー', 'baby car', 'a stroller'),
+    ('フライドポテト', 'fried potato', 'French fries'),
+    ('ワンピース', 'one piece', 'a dress'),
+    ('ハンドル', 'handle', 'a steering wheel, handlebars'),
+    ('フロントガラス', 'front glass', 'a windshield'),
+    ('クレーム', 'claim', 'a complaint'),
+    ('オーダーメイド', 'order made', 'custom-made'),
+    ('マイペース', 'my pace', 'doing things at your own pace'),
+    ('スキンシップ', 'skinship', 'affectionate touch'),
+    ('バイキング', 'Viking', 'an all-you-can-eat buffet'),
+    ('テンション', 'tension', 'energy, mood (テンションが高い: hyped)'),
+    ('ゴールデンウィーク', 'golden week', 'the run of holidays from late April to early May'),
+]
+
+
+def wasei_reference():
+    rows = ['<h2>Common wasei-eigo and what they mean</h2>',
+            '<p>Wasei-eigo (和製英語) are words built in Japan from English parts. They are everyday Japanese, '
+            'but an English speaker would guess wrong: a マンション is a condo, not a mansion.</p>',
+            '<table class="st-table"><thead><tr><th>Word</th><th>Built from</th><th>Means</th></tr></thead><tbody>']
+    for w, src, m in WASEI_ROWS:
+        rows.append(f'<tr><td lang="ja">{e(w)}</td><td>{e(src)}</td><td>{e(m)}</td></tr>')
+    rows += ['</tbody></table>', '<h2>Wasei-eigo in DangoChains puzzles</h2>']
+    return '\n'.join(rows)
+
+
+YOJI_ROWS = [
+    ('一石二鳥', 'いっせきにちょう', 'two birds with one stone'),
+    ('一期一会', 'いちごいちえ', 'a once-in-a-lifetime meeting; treasure each encounter'),
+    ('十人十色', 'じゅうにんといろ', 'to each their own (ten people, ten colors)'),
+    ('一生懸命', 'いっしょうけんめい', 'with all your might'),
+    ('自業自得', 'じごうじとく', 'you reap what you sow'),
+    ('以心伝心', 'いしんでんしん', 'understanding without words'),
+    ('半信半疑', 'はんしんはんぎ', 'half believing, half doubting'),
+    ('異口同音', 'いくどうおん', 'with one voice, unanimously'),
+    ('四苦八苦', 'しくはっく', 'struggling hard'),
+    ('一進一退', 'いっしんいったい', 'one step forward, one step back'),
+    ('弱肉強食', 'じゃくにくきょうしょく', 'the strong eat the weak'),
+    ('起承転結', 'きしょうてんけつ', 'the four-part story: setup, development, twist, conclusion'),
+    ('試行錯誤', 'しこうさくご', 'trial and error'),
+    ('臨機応変', 'りんきおうへん', 'adapting to the situation'),
+    ('単刀直入', 'たんとうちょくにゅう', 'getting straight to the point'),
+    ('温故知新', 'おんこちしん', 'learning the new by studying the old'),
+    ('自画自賛', 'じがじさん', 'praising your own work'),
+    ('日進月歩', 'にっしんげっぽ', 'steady, rapid progress'),
+]
+
+PROVERB_ROWS = [
+    ('花より団子', 'はなよりだんご', 'dumplings over flowers: substance over looks'),
+    ('猿も木から落ちる', 'さるもきからおちる', 'even monkeys fall from trees: anyone can slip up'),
+    ('猫に小判', 'ねこにこばん', 'gold coins to a cat: wasted on someone who can\'t value it'),
+    ('七転び八起き', 'ななころびやおき', 'fall seven times, get up eight'),
+    ('石の上にも三年', 'いしのうえにもさんねん', 'three years on a cold stone: patience pays off'),
+    ('急がば回れ', 'いそがばまわれ', 'if you\'re in a hurry, take the long way: haste makes waste'),
+]
+
+
+def idioms_reference():
+    rows = ['<h2>Common four-character idioms (四字熟語)</h2>',
+            '<p>四字熟語 pack a whole idea into four kanji, and many come from Chinese classics or Buddhism. '
+            'These are the ones you will meet most in conversation, school and the news.</p>',
+            '<table class="st-table"><thead><tr><th>Idiom</th><th>Reading</th><th>Meaning</th></tr></thead><tbody>']
+    for w, r, m in YOJI_ROWS:
+        rows.append(f'<tr><td lang="ja">{e(w)}</td><td lang="ja">{e(r)}</td><td>{e(m)}</td></tr>')
+    rows += ['</tbody></table>', '<h2>Well-known proverbs (ことわざ)</h2>',
+             '<table class="st-table"><thead><tr><th>Proverb</th><th>Reading</th><th>Meaning</th></tr></thead><tbody>']
+    for w, r, m in PROVERB_ROWS:
+        rows.append(f'<tr><td lang="ja">{e(w)}</td><td lang="ja">{e(r)}</td><td>{e(m)}</td></tr>')
+    rows += ['</tbody></table>', '<h2>Idioms in DangoChains puzzles</h2>']
+    return '\n'.join(rows)
+
+
 TOPIC_EXTRAS = {'counters': counters_reference, 'keigo': keigo_reference, 'onomatopoeia': onomatopoeia_reference,
-                'family': family_reference, 'body-parts': body_parts_reference, 'clothes': clothes_reference}
+                'family': family_reference, 'body-parts': body_parts_reference, 'clothes': clothes_reference,
+                'wasei-eigo': wasei_reference, 'idioms': idioms_reference}
 
 
 def topic_page(slug, groups):
