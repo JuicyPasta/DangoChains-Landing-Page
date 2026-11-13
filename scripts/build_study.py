@@ -803,8 +803,56 @@ def palindromes_reference():
     return '\n'.join(rows)
 
 
+COLLOCATION_ROWS = [
+    ('傘をさす', 'かさをさす', 'to put up an umbrella'), ('写真を撮る', 'しゃしんをとる', 'to take a photo'),
+    ('風邪をひく', 'かぜをひく', 'to catch a cold'), ('電話をかける', 'でんわをかける', 'to make a phone call'),
+    ('ピアノを弾く', 'ピアノをひく', 'to play the piano (any string or key instrument)'),
+    ('シャワーを浴びる', 'シャワーをあびる', 'to take a shower'), ('お風呂に入る', 'おふろにはいる', 'to take a bath'),
+    ('薬を飲む', 'くすりをのむ', 'to take medicine'), ('夢を見る', 'ゆめをみる', 'to have a dream'),
+    ('注射を打つ', 'ちゅうしゃをうつ', 'to give an injection'), ('契約を結ぶ', 'けいやくをむすぶ', 'to sign a contract'),
+    ('お金をおろす', 'おかねをおろす', 'to withdraw money'), ('鍵をかける', 'かぎをかける', 'to lock (a door)'),
+    ('電気をつける', 'でんきをつける', 'to turn on the light'), ('エンジンをかける', 'エンジンをかける', 'to start the engine'),
+    ('年を取る', 'としをとる', 'to grow old'), ('時間がかかる', 'じかんがかかる', 'to take time'),
+    ('気をつける', 'きをつける', 'to be careful'),
+]
+
+
+def collocations_reference():
+    rows = ['<h2>Everyday verb + noun pairs</h2>',
+            '<p>These pairs are where word-for-word translation goes wrong: you don\'t "open" an umbrella in Japanese, '
+            'you さす it, and medicine is drunk (飲む) even as a pill. Learn the noun and its verb together.</p>',
+            '<table class="st-table"><thead><tr><th>Phrase</th><th>Reading</th><th>Meaning</th></tr></thead><tbody>']
+    for w, r, m in COLLOCATION_ROWS:
+        rows.append(f'<tr><td lang="ja">{e(w)}</td><td lang="ja">{e(r)}</td><td>{e(m)}</td></tr>')
+    rows += ['</tbody></table>', '<h2>Collocations in DangoChains puzzles</h2>']
+    return '\n'.join(rows)
+
+
+FOOD_ROWS = [
+    ('ご飯', 'ごはん', 'cooked rice; a meal (uncooked rice is 米 こめ)'), ('朝ご飯', 'あさごはん', 'breakfast'),
+    ('昼ご飯', 'ひるごはん', 'lunch'), ('晩ご飯', 'ばんごはん', 'dinner'), ('パン', 'パン', 'bread'),
+    ('肉', 'にく', 'meat'), ('魚', 'さかな', 'fish'), ('卵', 'たまご', 'egg'), ('野菜', 'やさい', 'vegetables'),
+    ('果物', 'くだもの', 'fruit'), ('豆腐', 'とうふ', 'tofu'), ('麺', 'めん', 'noodles'),
+    ('味噌汁', 'みそしる', 'miso soup'), ('弁当', 'べんとう', 'boxed lunch'), ('お菓子', 'おかし', 'sweets, snacks'),
+    ('醤油', 'しょうゆ', 'soy sauce'), ('塩', 'しお', 'salt'), ('砂糖', 'さとう', 'sugar'),
+    ('水', 'みず', 'water'), ('お茶', 'おちゃ', 'tea'), ('牛乳', 'ぎゅうにゅう', 'milk'),
+]
+
+
+def food_reference():
+    rows = ['<h2>Basic food and drink words</h2>',
+            '<p>Before a meal, say いただきます; after it, ごちそうさまでした. ご飯 means both cooked rice and a meal, '
+            'so 晩ご飯 is simply dinner.</p>',
+            '<table class="st-table"><thead><tr><th>Word</th><th>Reading</th><th>Meaning</th></tr></thead><tbody>']
+    for w, r, m in FOOD_ROWS:
+        rows.append(f'<tr><td lang="ja">{e(w)}</td><td lang="ja">{e(r)}</td><td>{e(m)}</td></tr>')
+    rows += ['</tbody></table>', '<h2>Food and drink in DangoChains puzzles</h2>']
+    return '\n'.join(rows)
+
+
 TOPIC_EXTRAS = {'counters': counters_reference, 'keigo': keigo_reference, 'onomatopoeia': onomatopoeia_reference,
                 'special-readings': special_readings_reference, 'palindromes': palindromes_reference,
+                'collocations': collocations_reference, 'food': food_reference,
                 'family': family_reference, 'body-parts': body_parts_reference, 'clothes': clothes_reference,
                 'wasei-eigo': wasei_reference, 'idioms': idioms_reference, 'weather': weather_reference,
                 'school': school_reference, 'opposites': opposites_reference, 'loanwords': loanwords_reference,
