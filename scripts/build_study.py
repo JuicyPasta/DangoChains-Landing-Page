@@ -427,7 +427,94 @@ def onomatopoeia_reference():
     return '\n'.join(rows)
 
 
-TOPIC_EXTRAS = {'counters': counters_reference, 'keigo': keigo_reference, 'onomatopoeia': onomatopoeia_reference}
+FAMILY_ROWS = [
+    ('father', '父（ちち）', 'お父さん（おとうさん）'),
+    ('mother', '母（はは）', 'お母さん（おかあさん）'),
+    ('parents', '両親（りょうしん）', 'ご両親（ごりょうしん）'),
+    ('older brother', '兄（あに）', 'お兄さん（おにいさん）'),
+    ('older sister', '姉（あね）', 'お姉さん（おねえさん）'),
+    ('younger brother', '弟（おとうと）', '弟さん（おとうとさん）'),
+    ('younger sister', '妹（いもうと）', '妹さん（いもうとさん）'),
+    ('brothers and sisters', '兄弟（きょうだい）', 'ご兄弟（ごきょうだい）'),
+    ('grandfather', '祖父（そふ）', 'おじいさん'),
+    ('grandmother', '祖母（そぼ）', 'おばあさん'),
+    ('uncle', 'おじ（伯父・叔父）', 'おじさん'),
+    ('aunt', 'おば（伯母・叔母）', 'おばさん'),
+    ('husband', '夫（おっと）', 'ご主人（ごしゅじん）'),
+    ('wife', '妻（つま）', '奥さん（おくさん）'),
+    ('son', '息子（むすこ）', '息子さん（むすこさん）'),
+    ('daughter', '娘（むすめ）', '娘さん（むすめさん）、お嬢さん（おじょうさん）'),
+    ('child, children', '子供（こども）', 'お子さん（おこさん）'),
+    ('grandchild', '孫（まご）', 'お孫さん（おまごさん）'),
+    ('family', '家族（かぞく）', 'ご家族（ごかぞく）'),
+]
+
+
+def family_reference():
+    rows = ['<h2>Japanese family words: your family and someone else\'s</h2>',
+            '<p>Talking about your own family to others, use the plain words (母は元気です). For someone else\'s '
+            'family, use the polite ones (お母さんはお元気ですか). At home, people call older relatives by the '
+            'polite form too (お父さん, お姉ちゃん), and younger siblings by name. 伯父 and 伯母 are a parent\'s older '
+            'brother and sister; 叔父 and 叔母 the younger ones; all are read おじ and おば.</p>',
+            '<table class="st-table"><thead><tr><th>English</th><th>Your own family</th>'
+            '<th>Someone else\'s family</th></tr></thead><tbody>']
+    for en, own, other in FAMILY_ROWS:
+        rows.append(f'<tr><td>{e(en)}</td><td lang="ja">{e(own)}</td><td lang="ja">{e(other)}</td></tr>')
+    rows += ['</tbody></table>', '<h2>Family words in DangoChains puzzles</h2>']
+    return '\n'.join(rows)
+
+
+BODY_ROWS = [
+    ('頭', 'あたま', 'head'), ('髪', 'かみ', 'hair (on the head)'), ('顔', 'かお', 'face'),
+    ('額・おでこ', 'ひたい・おでこ', 'forehead'), ('眉', 'まゆ', 'eyebrow'), ('目', 'め', 'eye'),
+    ('耳', 'みみ', 'ear'), ('鼻', 'はな', 'nose'), ('頬', 'ほお・ほほ', 'cheek'), ('口', 'くち', 'mouth'),
+    ('唇', 'くちびる', 'lip'), ('歯', 'は', 'tooth'), ('舌', 'した', 'tongue'), ('あご', 'あご', 'chin, jaw'),
+    ('首', 'くび', 'neck'), ('喉', 'のど', 'throat'), ('肩', 'かた', 'shoulder'), ('胸', 'むね', 'chest'),
+    ('背中', 'せなか', 'back'), ('お腹', 'おなか', 'stomach, belly'), ('腰', 'こし', 'lower back, hips'),
+    ('お尻', 'おしり', 'bottom'), ('腕', 'うで', 'arm'), ('肘', 'ひじ', 'elbow'), ('手', 'て', 'hand'),
+    ('指', 'ゆび', 'finger, toe'), ('爪', 'つめ', 'nail'), ('足', 'あし', 'leg, foot (脚 for the leg only)'),
+    ('膝', 'ひざ', 'knee'), ('かかと', 'かかと', 'heel'),
+]
+
+
+def body_parts_reference():
+    rows = ['<h2>Japanese body parts, head to toe</h2>',
+            '<p>To say something hurts, put the body part before が痛い: 頭が痛い (I have a headache), 歯が痛い '
+            '(I have a toothache). 足 covers both the leg and the foot; 脚 is used in writing for the leg alone, '
+            'and 指 is a finger or a toe (足の指).</p>',
+            '<table class="st-table"><thead><tr><th>Word</th><th>Reading</th><th>Meaning</th></tr></thead><tbody>']
+    for w, r, m in BODY_ROWS:
+        rows.append(f'<tr><td lang="ja">{e(w)}</td><td lang="ja">{e(r)}</td><td>{e(m)}</td></tr>')
+    rows += ['</tbody></table>', '<h2>Body words in DangoChains puzzles</h2>']
+    return '\n'.join(rows)
+
+
+WEAR_ROWS = [
+    ('着る', 'きる', 'the upper body or the whole body', 'シャツ、セーター、コート、着物を着る'),
+    ('はく（履く・穿く）', 'はく', 'the lower body and the feet', 'ズボン、スカート、靴、靴下をはく'),
+    ('かぶる（被る）', 'かぶる', 'the head', '帽子、ヘルメットをかぶる'),
+    ('かける', 'かける', 'glasses', '眼鏡（めがね）をかける'),
+    ('つける', 'つける', 'accessories you attach', 'ネックレス、イヤリング、マスクをつける'),
+    ('する', 'する', 'accessories, casually', 'ネクタイ、マフラー、腕時計、指輪をする'),
+    ('はめる', 'はめる', 'things that fit onto fingers and hands', '手袋（てぶくろ）、指輪をはめる'),
+    ('締める', 'しめる', 'things you tie or fasten', 'ネクタイ、ベルト、帯（おび）を締める'),
+]
+
+
+def clothes_reference():
+    rows = ['<h2>Which verb to wear it with</h2>',
+            '<p>English wears everything; Japanese picks the verb by where the item goes. Taking things off is '
+            'simpler: clothes and shoes are 脱ぐ（ぬぐ）, and hats, glasses and accessories are 取る or '
+            '外す（はずす）.</p>',
+            '<table class="st-table"><thead><tr><th>Verb</th><th>Reading</th><th>For</th><th>Examples</th></tr></thead><tbody>']
+    for v, r, use, ex in WEAR_ROWS:
+        rows.append(f'<tr><td lang="ja">{e(v)}</td><td lang="ja">{e(r)}</td><td>{e(use)}</td><td lang="ja">{e(ex)}</td></tr>')
+    rows += ['</tbody></table>', '<h2>Clothes in DangoChains puzzles</h2>']
+    return '\n'.join(rows)
+
+
+TOPIC_EXTRAS = {'counters': counters_reference, 'keigo': keigo_reference, 'onomatopoeia': onomatopoeia_reference,
+                'family': family_reference, 'body-parts': body_parts_reference, 'clothes': clothes_reference}
 
 
 def topic_page(slug, groups):
