@@ -757,7 +757,54 @@ def animals_reference():
     return '\n'.join(rows)
 
 
+JUKUJIKUN_ROWS = [
+    ('今日', 'きょう', 'today'), ('明日', 'あした', 'tomorrow'), ('昨日', 'きのう', 'yesterday'),
+    ('今朝', 'けさ', 'this morning'), ('今年', 'ことし', 'this year'), ('一日', 'ついたち', 'the first of the month'),
+    ('一人', 'ひとり', 'one person, alone'), ('二人', 'ふたり', 'two people'), ('二十歳', 'はたち', '20 years old'),
+    ('大人', 'おとな', 'adult'), ('果物', 'くだもの', 'fruit'), ('眼鏡', 'めがね', 'glasses'),
+    ('時計', 'とけい', 'clock, watch'), ('部屋', 'へや', 'room'), ('景色', 'けしき', 'scenery'),
+    ('上手', 'じょうず', 'good at'), ('下手', 'へた', 'bad at'), ('土産', 'みやげ', 'souvenir (お土産)'),
+    ('田舎', 'いなか', 'the countryside'), ('七夕', 'たなばた', 'the Star Festival (July 7)'),
+    ('梅雨', 'つゆ', 'the rainy season'), ('紅葉', 'もみじ', 'autumn leaves, maple (also こうよう)'),
+    ('雪崩', 'なだれ', 'avalanche'), ('博士', 'はかせ', 'doctor, expert (also はくし)'),
+]
+
+
+def special_readings_reference():
+    rows = ['<h2>Common words with special readings (熟字訓)</h2>',
+            '<p>In these words the reading belongs to the whole word, not to each kanji: no reading of 今 plus a '
+            'reading of 日 gives きょう. The official kanji list has an appendix (付表) of about a hundred such '
+            'words; these are the ones learners meet first.</p>',
+            '<table class="st-table"><thead><tr><th>Word</th><th>Reading</th><th>Meaning</th></tr></thead><tbody>']
+    for w, r, m in JUKUJIKUN_ROWS:
+        rows.append(f'<tr><td lang="ja">{e(w)}</td><td lang="ja">{e(r)}</td><td>{e(m)}</td></tr>')
+    rows += ['</tbody></table>', '<h2>Special readings in DangoChains puzzles</h2>']
+    return '\n'.join(rows)
+
+
+PALINDROME_ROWS = [
+    ('しんぶんし', '新聞紙', 'newspaper'), ('トマト', 'トマト', 'tomato'), ('きつつき', 'キツツキ', 'woodpecker'),
+    ('やおや', '八百屋', 'greengrocer'), ('みなみ', '南', 'south'), ('たけやぶやけた', '竹藪焼けた', 'the bamboo grove burned'),
+    ('わたしまけましたわ', '私負けましたわ', 'I lost, you know'), ('いかたべたかい', 'イカ食べたかい', 'did you eat the squid?'),
+    ('だんすがすんだ', 'ダンスが済んだ', 'the dance is over'), ('なつまでまつな', '夏まで待つな', 'don\'t wait until summer'),
+    ('しかのかし', '鹿の菓子', 'snacks for the deer'),
+    ('かるいきびんなこねこなんびきいるか', '軽い機敏な子猫何匹いるか', 'how many light, nimble kittens are there?'),
+]
+
+
+def palindromes_reference():
+    rows = ['<h2>Famous Japanese palindromes (回文)</h2>',
+            '<p>Japanese palindromes are read in kana, one character at a time, so the kanji spelling doesn\'t have '
+            'to be symmetrical: 新聞紙 is しんぶんし either way.</p>',
+            '<table class="st-table"><thead><tr><th>In kana</th><th>Written</th><th>Meaning</th></tr></thead><tbody>']
+    for k, w, m in PALINDROME_ROWS:
+        rows.append(f'<tr><td lang="ja">{e(k)}</td><td lang="ja">{e(w)}</td><td>{e(m)}</td></tr>')
+    rows += ['</tbody></table>', '<h2>Palindromes in DangoChains puzzles</h2>']
+    return '\n'.join(rows)
+
+
 TOPIC_EXTRAS = {'counters': counters_reference, 'keigo': keigo_reference, 'onomatopoeia': onomatopoeia_reference,
+                'special-readings': special_readings_reference, 'palindromes': palindromes_reference,
                 'family': family_reference, 'body-parts': body_parts_reference, 'clothes': clothes_reference,
                 'wasei-eigo': wasei_reference, 'idioms': idioms_reference, 'weather': weather_reference,
                 'school': school_reference, 'opposites': opposites_reference, 'loanwords': loanwords_reference,
