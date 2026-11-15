@@ -340,6 +340,14 @@ TOPICS = [
      'Money and shopping vocabulary in Japanese: prices, paying and saving', 'Money and shopping in Japanese',
      'Prices, paying, saving and borrowing: the money words of everyday Japanese, including the pair learners mix up, '
      '借りる (to borrow) and 貸す (to lend).'),
+    ('festivals', r'^(?:Festival (?:drumming|stalls|night)|Doll Festival.*|On the Doll Festival table|Festivals(?: and fairs)?)$',
+     'Japanese festival vocabulary: stalls, dances, fireworks and festival days', 'Festivals in Japanese',
+     'Summer 祭り with food stalls (屋台), Bon dancing and fireworks, and the festival days of the year, from ひな祭り '
+     'in March to 七夕 in July.'),
+    ('health', r"^(?:At the hospital|Hospital (?:visit|words from (?:English|German)|tools)|A hospital stay|Being sick|When you're sick|Feeling sick|At the doctor's)$",
+     'Hospital and health vocabulary in Japanese: at the doctor, symptoms and medicine', 'At the doctor in Japanese',
+     'What to say when you are sick: symptoms, the doctor and the hospital, and the many hospital words Japanese '
+     'borrowed from German (カルテ, ギプス) and English.'),
 ]
 
 
@@ -1094,6 +1102,40 @@ def money_reference():
                          'to a friend). Prices are read with 円: 百円 (ひゃくえん), 千円 (せんえん).',
                          ['Word', 'Reading', 'Meaning'], MONEY_ROWS, 'Money words in DangoChains puzzles')
 
+
+FESTIVAL_ROWS = [
+    ('祭り', 'まつり', 'festival'), ('屋台', 'やたい', 'food stall'), ('盆踊り', 'ぼんおどり', 'Bon dance'),
+    ('花火大会', 'はなびたいかい', 'fireworks display'), ('神輿', 'みこし', 'portable shrine carried through the streets'),
+    ('太鼓', 'たいこ', 'drum'), ('浴衣', 'ゆかた', 'light cotton kimono'), ('金魚すくい', 'きんぎょすくい', 'goldfish scooping'),
+    ('綿あめ', 'わたあめ', 'cotton candy'), ('お正月', 'おしょうがつ', 'New Year'), ('ひな祭り', 'ひなまつり', 'Doll Festival (March 3)'),
+    ('こどもの日', 'こどものひ', "Children's Day (May 5)"), ('七夕', 'たなばた', 'Star Festival (July 7)'),
+    ('お盆', 'おぼん', 'Obon, the summer festival of the dead'),
+]
+
+
+def festivals_reference():
+    return _simple_table('Festival words in Japanese',
+                         'A summer 祭り means food stalls, a 盆踊り circle, drums and often a 花火大会. The festival days below are '
+                         'fixed points of the Japanese year.',
+                         ['Word', 'Reading', 'Meaning'], FESTIVAL_ROWS, 'Festival words in DangoChains puzzles')
+
+
+HEALTH_ROWS = [
+    ('病院', 'びょういん', 'hospital, clinic'), ('医者', 'いしゃ', 'doctor'), ('看護師', 'かんごし', 'nurse'),
+    ('薬', 'くすり', 'medicine (薬を飲む, take medicine)'), ('熱', 'ねつ', 'fever'), ('風邪', 'かぜ', 'a cold (風邪をひく, catch a cold)'),
+    ('咳', 'せき', 'cough'), ('頭痛', 'ずつう', 'headache'), ('痛い', 'いたい', 'painful, it hurts'),
+    ('具合が悪い', 'ぐあいがわるい', 'to feel unwell'), ('怪我', 'けが', 'injury'), ('注射', 'ちゅうしゃ', 'injection'),
+    ('入院', 'にゅういん', 'being admitted to hospital'), ('退院', 'たいいん', 'leaving hospital'),
+    ('保険証', 'ほけんしょう', 'health insurance card'),
+]
+
+
+def health_reference():
+    return _simple_table('Health words in Japanese',
+                         'Medicine is "drunk" in Japanese, even pills: 薬を飲む. You catch a cold with ひく (風邪をひく), and say '
+                         'where it hurts with が痛い (頭が痛い).',
+                         ['Word', 'Reading', 'Meaning'], HEALTH_ROWS, 'Health words in DangoChains puzzles')
+
 COLLOCATION_ROWS = [
     ('傘をさす', 'かさをさす', 'to put up an umbrella'), ('写真を撮る', 'しゃしんをとる', 'to take a photo'),
     ('風邪をひく', 'かぜをひく', 'to catch a cold'), ('電話をかける', 'でんわをかける', 'to make a phone call'),
@@ -1152,7 +1194,8 @@ TOPIC_EXTRAS = {'counters': counters_reference, 'keigo': keigo_reference, 'onoma
                 'two-readings': two_readings_reference, 'false-friends': false_friends_reference,
                 'seasons': seasons_reference, 'house': house_reference, 'town': town_reference,
                 'sports-music': sports_music_reference, 'jobs': jobs_reference,
-                'travel': travel_reference, 'time': time_reference, 'money': money_reference}
+                'travel': travel_reference, 'time': time_reference, 'money': money_reference,
+                'festivals': festivals_reference, 'health': health_reference}
 
 
 def topic_page(slug, groups):
