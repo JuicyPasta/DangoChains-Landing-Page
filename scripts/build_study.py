@@ -169,7 +169,9 @@ def day_page(date, tiers, prev_date, next_date):
     sample = [sorted((w for c in tiers[t][0]['categories'] for w in c['words']), key=lambda w: kana(w, tiers[t][1].get(w)))[0]
               for t in TIERS if t in tiers]
     sample += sorted((w for c in tiers[TIERS[-1]][0]['categories'] for w in c['words']) if TIERS[-1] in tiers else [])[:2]
-    title = f'Answers for {short_date(d)}, {d.year}{(" (" + num.strip() + ")") if num else ""}: Japanese word groups with readings'
+    # Searchers land here looking up a word, so the title leads with three of the board's words.
+    title = (', '.join(list(dict.fromkeys(sample))[:3]) + f': Japanese words with readings, {short_date(d)}, {d.year}'
+             + (f' ({num.strip()})' if num else ''))
     desc = (f'All three DangoChains boards for {long_date(d)} (Easy, Normal, Hard): 48 Japanese words with '
             f'readings and English meanings, sorted into their groups behind a spoiler gate. Words include '
             + '、'.join(dict.fromkeys(sample)) + '.')
