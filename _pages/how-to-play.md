@@ -1,6 +1,7 @@
 ---
 layout: page
 title: How to Play
+seo_title: "How to play DangoChains: rules, colors and a worked example"
 description: "How to play DangoChains: sort 16 Japanese words into four hidden groups of four. The rules, the four colors, furigana, and a worked example."
 include_in_header: true
 include_in_footer: true

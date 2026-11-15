@@ -1,6 +1,7 @@
 ---
 layout: game
 title: Make your own board
+seo_title: "Make a Japanese word-grouping puzzle for your class or friends"
 nav_title: Make
 nav_order: 2
 description: "Make your own DangoChains board: 16 Japanese words in 4 groups, readings filled in for you, shared as one link. Made for classes and study groups."
