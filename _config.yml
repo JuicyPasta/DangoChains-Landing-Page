@@ -1,5 +1,5 @@
 #page title
-page_title                                : "DangoChains: Daily Japanese Word Puzzle"
+page_title                                : "DangoChains: a daily Japanese word game for learners"
 
 # Public address. Share links (/play/?d=…, custom boards) are built from url + baseurl.
 url                                       : https://dangochains.com
