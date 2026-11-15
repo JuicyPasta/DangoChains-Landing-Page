@@ -348,6 +348,14 @@ TOPICS = [
      'Hospital and health vocabulary in Japanese: at the doctor, symptoms and medicine', 'At the doctor in Japanese',
      'What to say when you are sick: symptoms, the doctor and the hospital, and the many hospital words Japanese '
      'borrowed from German (カルテ, ギプス) and English.'),
+    ('numbers', r'^(?:Numbers(?: inside| read in a special way)?|Big numbers|Number of people|Starts with a number.*)$',
+     'Japanese numbers: readings from 1 to 100 million, and words built on them', 'Numbers in Japanese',
+     'Japanese numbers are regular once you know the units (十, 百, 千, 万) and the sound changes (三百 is さんびゃく). '
+     'The groups below are words that start with or hide a number reading.'),
+    ('colors', r'^(?:Colors(?: in English)?|Add 色 for a color|Also the name of a color|色, a color|Starts with a color)$',
+     'Colors in Japanese: 赤, 青, 黄色, 緑 and more, with readings', 'Colors in Japanese',
+     'Basic colors, the colors that are also adjectives (赤い, 青い) and words built on 色. The groups below are color '
+     'words from past puzzles.'),
 ]
 
 
@@ -1136,6 +1144,39 @@ def health_reference():
                          'where it hurts with が痛い (頭が痛い).',
                          ['Word', 'Reading', 'Meaning'], HEALTH_ROWS, 'Health words in DangoChains puzzles')
 
+
+NUMBER_ROWS = [
+    ('一', 'いち', '1'), ('二', 'に', '2'), ('三', 'さん', '3'), ('四', 'よん / し', '4'), ('五', 'ご', '5'),
+    ('六', 'ろく', '6'), ('七', 'なな / しち', '7'), ('八', 'はち', '8'), ('九', 'きゅう / く', '9'), ('十', 'じゅう', '10'),
+    ('百', 'ひゃく', '100'), ('三百', 'さんびゃく', '300'), ('六百', 'ろっぴゃく', '600'), ('八百', 'はっぴゃく', '800'),
+    ('千', 'せん', '1,000'), ('三千', 'さんぜん', '3,000'), ('八千', 'はっせん', '8,000'), ('一万', 'いちまん', '10,000'),
+    ('億', 'おく', '100,000,000'),
+]
+
+
+def numbers_reference():
+    return _simple_table('Japanese numbers and their readings',
+                         'Numbers above ten are built from the units: 二十 (にじゅう, 20), 三百五十 (さんびゃくごじゅう, 350). '
+                         'Large numbers group by ten thousand (万), not by thousand, so a million is 百万. 4, 7 and 9 have two '
+                         'readings; よん, なな and きゅう are the usual ones when counting.',
+                         ['Kanji', 'Reading', 'Number'], NUMBER_ROWS, 'Number words in DangoChains puzzles')
+
+
+COLOR_ROWS = [
+    ('赤', 'あか', 'red (赤い)'), ('青', 'あお', 'blue; also green traffic lights and vegetables (青い)'),
+    ('黄色', 'きいろ', 'yellow (黄色い)'), ('緑', 'みどり', 'green'), ('白', 'しろ', 'white (白い)'), ('黒', 'くろ', 'black (黒い)'),
+    ('茶色', 'ちゃいろ', 'brown (茶色い)'), ('紫', 'むらさき', 'purple'), ('灰色', 'はいいろ', 'gray (also グレー)'),
+    ('水色', 'みずいろ', 'light blue'), ('金色', 'きんいろ', 'gold'), ('銀色', 'ぎんいろ', 'silver'),
+    ('ピンク', 'ピンク', 'pink'), ('オレンジ', 'オレンジ', 'orange'),
+]
+
+
+def colors_reference():
+    return _simple_table('Basic colors in Japanese',
+                         'Only six colors have an い-adjective form: 赤い, 青い, 白い, 黒い, 黄色い and 茶色い. The others take の '
+                         'before a noun (緑の車, a green car). Many color names are "thing + 色": 水色 is water color, 灰色 ash color.',
+                         ['Word', 'Reading', 'Meaning'], COLOR_ROWS, 'Color words in DangoChains puzzles')
+
 COLLOCATION_ROWS = [
     ('傘をさす', 'かさをさす', 'to put up an umbrella'), ('写真を撮る', 'しゃしんをとる', 'to take a photo'),
     ('風邪をひく', 'かぜをひく', 'to catch a cold'), ('電話をかける', 'でんわをかける', 'to make a phone call'),
@@ -1195,7 +1236,8 @@ TOPIC_EXTRAS = {'counters': counters_reference, 'keigo': keigo_reference, 'onoma
                 'seasons': seasons_reference, 'house': house_reference, 'town': town_reference,
                 'sports-music': sports_music_reference, 'jobs': jobs_reference,
                 'travel': travel_reference, 'time': time_reference, 'money': money_reference,
-                'festivals': festivals_reference, 'health': health_reference}
+                'festivals': festivals_reference, 'health': health_reference,
+                'numbers': numbers_reference, 'colors': colors_reference}
 
 
 def topic_page(slug, groups):
