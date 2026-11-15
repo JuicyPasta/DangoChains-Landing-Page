@@ -328,6 +328,18 @@ TOPICS = [
     ('jobs', r'^(?:Jobs|Job (?:hunting|interview|changes)|Losing a job|Work|Working(?: hours)?|Going to work|At the office|Office (?:machines|wear|equipment|life|work|paperwork)|On an office desk|Work hierarchy|Sales work|Workplace ranks)$',
      'Jobs and office vocabulary in Japanese: 会社員, 上司, 残業, 就活 and more', 'Jobs and work in Japanese',
      'Job titles, office life, job hunting (就活) and company ranks: the vocabulary of working in Japan.'),
+    ('travel', r'^(?:Vehicles(?: on the road)?|Old wheeled vehicles|Trip things|Packing for a trip|A car trip|Ski trip|Hot spring trip|Golden Week trip|On a trip|Ways to travel|Travel(?: party)?|Night travel|Old ways to travel|Train travel|Trains|On the train|Train (?:words|tickets|seats)|Kinds of trains|Car parts|Inside a car|On the bus|At the airport)$',
+     'Japanese travel and transport vocabulary: trains, buses, cars and trips', 'Travel and transport in Japanese',
+     'Japan travels by train: 新幹線, 急行 and 各駅停車, tickets (切符) and reserved seats (指定席). The groups below add '
+     'cars, buses, airports and what to pack for a trip.'),
+    ('time', r'^(?:Telling time|Times of day|Time words|Units of time|Times of year|Stretches of time|Time goes by|All the time)$',
+     'Time words in Japanese: telling time, times of day and units of time', 'Time in Japanese',
+     'Telling the time, parts of the day and units of time, with the reading changes that trip learners up '
+     '(一分 is いっぷん, not いちふん).'),
+    ('money', r'^(?:Money(?: verbs| talk| matters| words without 金)?|Raising money|Collecting money|Borrowing money|Saving money|Ways to save money|金, money|Household money|Company money|Prices|Rising prices|Price words|Pay|Paying(?: up)?|Ways to pay|Shopping(?: deals)?)$',
+     'Money and shopping vocabulary in Japanese: prices, paying and saving', 'Money and shopping in Japanese',
+     'Prices, paying, saving and borrowing: the money words of everyday Japanese, including the pair learners mix up, '
+     '借りる (to borrow) and 貸す (to lend).'),
 ]
 
 
@@ -1032,6 +1044,56 @@ def jobs_reference():
                          '師 (a skilled practitioner: 看護師). At work you answer to your 上司 and work beside your 同僚.',
                          ['Word', 'Reading', 'Meaning'], JOB_ROWS, 'Work words in DangoChains puzzles')
 
+
+TRAVEL_ROWS = [
+    ('電車', 'でんしゃ', 'train'), ('新幹線', 'しんかんせん', 'bullet train'), ('各駅停車', 'かくえきていしゃ', 'local train (stops everywhere)'),
+    ('急行', 'きゅうこう', 'express train'), ('地下鉄', 'ちかてつ', 'subway'), ('切符', 'きっぷ', 'ticket'),
+    ('指定席', 'していせき', 'reserved seat'), ('自由席', 'じゆうせき', 'unreserved seat'), ('乗り換え', 'のりかえ', 'transfer, change of trains'),
+    ('バス', 'バス', 'bus'), ('車', 'くるま', 'car'), ('自転車', 'じてんしゃ', 'bicycle'), ('タクシー', 'タクシー', 'taxi'),
+    ('飛行機', 'ひこうき', 'airplane'), ('空港', 'くうこう', 'airport'), ('旅行', 'りょこう', 'trip, travel'),
+    ('出張', 'しゅっちょう', 'business trip'), ('乗る', 'のる', 'to get on, ride (電車に乗る)'), ('降りる', 'おりる', 'to get off (電車を降りる)'),
+]
+
+
+def travel_reference():
+    return _simple_table('Getting around in Japanese',
+                         'You get on with に (電車に乗る) and get off with を (電車を降りる). Trains run from the 各駅停車 that '
+                         'stops at every station to the 新幹線.',
+                         ['Word', 'Reading', 'Meaning'], TRAVEL_ROWS, 'Travel words in DangoChains puzzles')
+
+
+TIME_ROWS = [
+    ('〜時', 'じ', "o'clock (三時, 3:00)"), ('〜分', 'ふん / ぷん', 'minutes (五分 ごふん, 十分 じゅっぷん)'), ('〜秒', 'びょう', 'seconds'),
+    ('半', 'はん', 'half past (三時半)'), ('午前', 'ごぜん', 'a.m.'), ('午後', 'ごご', 'p.m.'),
+    ('朝', 'あさ', 'morning'), ('昼', 'ひる', 'noon, daytime'), ('夕方', 'ゆうがた', 'early evening'), ('夜', 'よる', 'night'),
+    ('今日', 'きょう', 'today'), ('明日', 'あした', 'tomorrow'), ('昨日', 'きのう', 'yesterday'), ('毎日', 'まいにち', 'every day'),
+    ('週', 'しゅう', 'week'), ('時間', 'じかん', 'time; hours (二時間, two hours)'), ('今', 'いま', 'now'),
+]
+
+
+def time_reference():
+    return _simple_table('Telling time in Japanese',
+                         '分 is read ふん after 2, 5, 7 and 9 (にふん, ごふん) and ぷん after 1, 3, 4, 6, 8 and 10 '
+                         '(いっぷん, さんぷん, よんぷん, ろっぷん, はっぷん, じゅっぷん). 時 is the hour on the clock; 時間 is a '
+                         'length of time.',
+                         ['Word', 'Reading', 'Meaning'], TIME_ROWS, 'Time words in DangoChains puzzles')
+
+
+MONEY_ROWS = [
+    ('お金', 'おかね', 'money'), ('円', 'えん', 'yen'), ('値段', 'ねだん', 'price'), ('高い', 'たかい', 'expensive (also: high)'),
+    ('安い', 'やすい', 'cheap'), ('買う', 'かう', 'to buy'), ('売る', 'うる', 'to sell'), ('払う', 'はらう', 'to pay'),
+    ('現金', 'げんきん', 'cash'), ('お釣り', 'おつり', 'change (money back)'), ('割引', 'わりびき', 'discount'),
+    ('財布', 'さいふ', 'wallet'), ('貯金', 'ちょきん', 'savings'), ('借りる', 'かりる', 'to borrow'), ('貸す', 'かす', 'to lend'),
+    ('給料', 'きゅうりょう', 'pay, salary'),
+]
+
+
+def money_reference():
+    return _simple_table('Money and shopping words',
+                         '借りる and 貸す are a pair: 友達にお金を借りる (borrow money from a friend), 友達にお金を貸す (lend money '
+                         'to a friend). Prices are read with 円: 百円 (ひゃくえん), 千円 (せんえん).',
+                         ['Word', 'Reading', 'Meaning'], MONEY_ROWS, 'Money words in DangoChains puzzles')
+
 COLLOCATION_ROWS = [
     ('傘をさす', 'かさをさす', 'to put up an umbrella'), ('写真を撮る', 'しゃしんをとる', 'to take a photo'),
     ('風邪をひく', 'かぜをひく', 'to catch a cold'), ('電話をかける', 'でんわをかける', 'to make a phone call'),
@@ -1089,7 +1151,8 @@ TOPIC_EXTRAS = {'counters': counters_reference, 'keigo': keigo_reference, 'onoma
                 'animals': animals_reference, 'kanji-readings': kanji_readings_reference,
                 'two-readings': two_readings_reference, 'false-friends': false_friends_reference,
                 'seasons': seasons_reference, 'house': house_reference, 'town': town_reference,
-                'sports-music': sports_music_reference, 'jobs': jobs_reference}
+                'sports-music': sports_music_reference, 'jobs': jobs_reference,
+                'travel': travel_reference, 'time': time_reference, 'money': money_reference}
 
 
 def topic_page(slug, groups):
