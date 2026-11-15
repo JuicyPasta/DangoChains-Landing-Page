@@ -238,7 +238,7 @@ TOPICS = [
      'Special readings (jukujikun): 今日, 果物, 眼鏡, 二十歳…', 'Special readings (熟字訓)',
      'Some words are read as a whole, not kanji by kanji: 果物 is くだもの, 二十歳 is はたち. Learn them as units.'),
     ('kanji-readings', r'\bread [぀-ヿ]|\bread as\b',
-     "On'yomi vs kun'yomi: Japanese kanji readings with examples", "Kanji readings: on'yomi, kun'yomi and surprises",
+     "Onyomi vs kunyomi: Japanese kanji readings with examples", "Kanji readings: on'yomi, kun'yomi and surprises",
      'Most kanji have several readings. Each group below shares one kanji or sound read the same, often unexpected, way.'),
     ('two-readings', r'[Tt]wo readings',
      'Japanese words with two readings and two meanings (人気, 一日, 最中…)', 'One spelling, two readings, two meanings',
@@ -829,7 +829,7 @@ KANJI_READING_ROWS = [
 
 
 def kanji_readings_reference():
-    rows = ['<h2>On\'yomi and kun\'yomi of common kanji</h2>',
+    rows = ['<h2>On\'yomi and kun\'yomi (onyomi vs kunyomi) of common kanji</h2>',
             '<p>Most kanji have two kinds of reading: the on\'yomi (音読み), borrowed from Chinese, and the kun\'yomi '
             '(訓読み), a native Japanese word. As a rule of thumb, a kanji inside a compound of several kanji takes its '
             'on\'yomi (学生 がくせい), and a kanji on its own or followed by kana takes its kun\'yomi (生きる いきる). '
