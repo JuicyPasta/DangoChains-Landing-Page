@@ -308,6 +308,26 @@ TOPICS = [
      'Japanese words made of opposite kanji: 売買, 左右, 勝負, 出入り…', 'Words built from opposites',
      'Japanese often joins two opposites into one word: 売買 (buying and selling), 左右 (left and right), '
      '勝負 (a match: win or lose). Each group below is built on opposites.'),
+    # Beginner vocabulary themes (added 2026-11-15): appended last, so the topics above keep their groups.
+    ('seasons', r'^(?:Summer|Winter|Spring|Autumn)\b(?! homework)|^(?:Hot summer day|Cherry blossom season|Season words)|\b(?:[Ss]ummer|[Ww]inter|[Aa]utumn) (?:fun|treats|things|heat|festival|flavors|plants|scenery|warmers|comforts|events|break|vacation)\b|^Keeping warm in winter',
+     'Japanese seasonal vocabulary: words for spring, summer, autumn and winter', 'The four seasons in Japanese',
+     'Japanese marks the seasons with its own vocabulary: 花見 and 桜 in spring, 花火 and 風鈴 in summer, 紅葉 in autumn, '
+     'こたつ in winter. Haiku even require a season word (季語). The groups below are seasonal words from past puzzles.'),
+    ('house', r'^(?:Rooms(?: of a house)?|Parts of (?:a room|a house|an old Japanese house)|In the (?:bedroom|living room|bathroom|kitchen)|Living room|Bedroom|(?:In a )?Japanese-style room|Kitchen (?:tools|things|staples|fixtures|appliances)|At the kitchen sink|Home (?:appliances|electronics)|Housework)$',
+     'Japanese vocabulary for the house: rooms, kitchen, furniture and housework', 'Around the house in Japanese',
+     'Rooms, furniture, kitchen tools and chores: the everyday words of a Japanese home, including the 和室 '
+     '(Japanese-style room) with its 畳, 障子 and 押し入れ.'),
+    ('town', r'^(?:Places (?:in town|to (?:have fun|stay|eat|shop|play|live|sleep))|Around town|In town|Getting around town|At the station|(?:At the )?[Pp]ost office|Shops(?: ending in 屋| \(〜屋\))?|At a shop|Shopping street|Cake shop|At the noodle shop|Toy shop)$',
+     'Places in Japanese: shops, stations and places around town', 'Places around town in Japanese',
+     'Where to eat, shop, stay and play: place words for getting around a Japanese town, including the shops named '
+     'with 〜屋 (本屋, 花屋, 八百屋).'),
+    ('sports-music', r'^(?:Sports(?: day| words| verbs)?|Ball sports|Team sports people|(?:In )?[Bb]aseball\b.*|(?:Percussion |Japanese |Western |Traditional )?[Ii]nstruments(?: you .*| in old kanji)?|Music(?: class| theory| genres| gear| terms)?|Making music)$',
+     'Sports and musical instruments in Japanese: vocabulary with readings', 'Sports and music in Japanese',
+     'Ball games, team sports, baseball words and musical instruments, Western and traditional (琴, 三味線, 太鼓), '
+     'with the verbs that go with them.'),
+    ('jobs', r'^(?:Jobs|Job (?:hunting|interview|changes)|Losing a job|Work|Working(?: hours)?|Going to work|At the office|Office (?:machines|wear|equipment|life|work|paperwork)|On an office desk|Work hierarchy|Sales work|Workplace ranks)$',
+     'Jobs and office vocabulary in Japanese: 会社員, 上司, 残業, 就活 and more', 'Jobs and work in Japanese',
+     'Job titles, office life, job hunting (就活) and company ranks: the vocabulary of working in Japan.'),
 ]
 
 
