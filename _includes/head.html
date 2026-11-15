@@ -8,6 +8,10 @@
 
 	<!-- Share cards (Reddit, Discord, X, iMessage link previews) -->
 	<link rel="canonical" href="{{ page.url | absolute_url }}">
+	{% if page.url == '/' %}
+	<!-- Site name for search results: lets "dango chains" / 団子チェーン searches match the site -->
+	<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"DangoChains","alternateName":["Dango Chains","団子チェーン"],"url":"{{ '/' | absolute_url }}"}</script>
+	{% endif %}
 	<meta property="og:type" content="website">
 	<meta property="og:site_name" content="DangoChains">
 	<meta property="og:title" content="{% if page.seo_title %}{{ page.seo_title }} | DangoChains{% elsif page.title %}{{ page.title }} | DangoChains{% else %}{{ site.page_title }}{% endif %}">
