@@ -932,6 +932,106 @@ def false_friends_reference():
     rows += ['</tbody></table>', '<h2>Misleading kanji in DangoChains puzzles</h2>']
     return '\n'.join(rows)
 
+
+def _simple_table(heading, intro, head, rows, tail):
+    """A reference table: heading, intro paragraph, header cells, rows (Japanese cells first), closing heading."""
+    out = [f'<h2>{e(heading)}</h2>', f'<p>{intro}</p>',
+           '<table class="st-table"><thead><tr>' + ''.join(f'<th>{e(h)}</th>' for h in head) + '</tr></thead><tbody>']
+    for r in rows:
+        cells = [f'<td lang="ja">{e(c)}</td>' if i < 2 else f'<td>{e(c)}</td>' for i, c in enumerate(r)]
+        out.append('<tr>' + ''.join(cells) + '</tr>')
+    out += ['</tbody></table>', f'<h2>{e(tail)}</h2>']
+    return '\n'.join(out)
+
+
+SEASON_ROWS = [
+    ('春', 'はる', 'spring', 'spring'), ('花見', 'はなみ', 'spring', 'cherry-blossom viewing'),
+    ('桜', 'さくら', 'spring', 'cherry blossom'), ('入学式', 'にゅうがくしき', 'spring', 'school entrance ceremony (April)'),
+    ('花粉症', 'かふんしょう', 'spring', 'hay fever'),
+    ('夏', 'なつ', 'summer', 'summer'), ('花火', 'はなび', 'summer', 'fireworks'), ('風鈴', 'ふうりん', 'summer', 'wind chime'),
+    ('浴衣', 'ゆかた', 'summer', 'light cotton kimono'), ('夏祭り', 'なつまつり', 'summer', 'summer festival'),
+    ('秋', 'あき', 'autumn', 'autumn'), ('紅葉', 'こうよう', 'autumn', 'autumn leaves (also もみじ, maple)'),
+    ('月見', 'つきみ', 'autumn', 'moon viewing'), ('新米', 'しんまい', 'autumn', 'new-crop rice; also a newcomer'),
+    ('冬', 'ふゆ', 'winter', 'winter'), ('雪', 'ゆき', 'winter', 'snow'), ('こたつ', 'こたつ', 'winter', 'heated low table'),
+    ('大晦日', 'おおみそか', 'winter', "New Year's Eve"), ('鍋', 'なべ', 'winter', 'hot pot (and the pot itself)'),
+]
+
+
+def seasons_reference():
+    return _simple_table('Seasonal words in Japanese',
+                         'The four seasons are 春 (spring), 夏 (summer), 秋 (autumn) and 冬 (winter). Each comes with words '
+                         'Japanese people tie to it, and haiku must include one such season word (季語).',
+                         ['Word', 'Reading', 'Season', 'Meaning'], SEASON_ROWS, 'Seasonal words in DangoChains puzzles')
+
+
+HOUSE_ROWS = [
+    ('部屋', 'へや', 'room'), ('台所', 'だいどころ', 'kitchen (also キッチン)'), ('居間', 'いま', 'living room (also リビング)'),
+    ('寝室', 'しんしつ', 'bedroom'), ('風呂場', 'ふろば', 'bathroom (the room with the bath)'), ('トイレ', 'トイレ', 'toilet'),
+    ('玄関', 'げんかん', 'entrance hall, where shoes come off'), ('廊下', 'ろうか', 'hallway'), ('階段', 'かいだん', 'stairs'),
+    ('窓', 'まど', 'window'), ('和室', 'わしつ', 'Japanese-style room'), ('畳', 'たたみ', 'tatami mat'),
+    ('障子', 'しょうじ', 'paper sliding screen'), ('押し入れ', 'おしいれ', 'closet for futons'), ('布団', 'ふとん', 'futon'),
+    ('冷蔵庫', 'れいぞうこ', 'refrigerator'), ('洗濯機', 'せんたくき', 'washing machine'), ('掃除機', 'そうじき', 'vacuum cleaner'),
+]
+
+
+def house_reference():
+    return _simple_table('Rooms and things in a Japanese home',
+                         'Japanese homes mix Western rooms (リビング, キッチン) with the traditional 和室: tatami floors, '
+                         'paper screens and a closet for the futons that are folded away each morning.',
+                         ['Word', 'Reading', 'Meaning'], HOUSE_ROWS, 'House words in DangoChains puzzles')
+
+
+TOWN_ROWS = [
+    ('駅', 'えき', 'station'), ('銀行', 'ぎんこう', 'bank'), ('郵便局', 'ゆうびんきょく', 'post office'),
+    ('病院', 'びょういん', 'hospital'), ('図書館', 'としょかん', 'library'), ('公園', 'こうえん', 'park'),
+    ('交番', 'こうばん', 'police box'), ('コンビニ', 'コンビニ', 'convenience store'), ('スーパー', 'スーパー', 'supermarket'),
+    ('本屋', 'ほんや', 'bookstore'), ('花屋', 'はなや', 'flower shop'), ('八百屋', 'やおや', 'greengrocer'),
+    ('喫茶店', 'きっさてん', 'café, coffee shop'), ('映画館', 'えいがかん', 'movie theater'), ('美術館', 'びじゅつかん', 'art museum'),
+    ('神社', 'じんじゃ', 'Shinto shrine'), ('お寺', 'おてら', 'Buddhist temple'), ('空港', 'くうこう', 'airport'),
+]
+
+
+def town_reference():
+    return _simple_table('Places around town',
+                         'Many shop names end in 屋 (や), "the shop of": 本屋 sells books, 花屋 flowers. Public buildings '
+                         'often end in 館 (a hall: 図書館, 映画館) or 局 (an office: 郵便局).',
+                         ['Word', 'Reading', 'Meaning'], TOWN_ROWS, 'Place words in DangoChains puzzles')
+
+
+SPORTS_MUSIC_ROWS = [
+    ('野球', 'やきゅう', 'baseball', '野球をする'), ('サッカー', 'サッカー', 'soccer', 'サッカーをする'),
+    ('卓球', 'たっきゅう', 'table tennis', '卓球をする'), ('水泳', 'すいえい', 'swimming', '泳ぐ (to swim)'),
+    ('柔道', 'じゅうどう', 'judo', '柔道をする'), ('剣道', 'けんどう', 'kendo', '剣道をする'),
+    ('相撲', 'すもう', 'sumo', '相撲をとる'), ('ピアノ', 'ピアノ', 'piano', 'ピアノを弾く (ひく)'),
+    ('ギター', 'ギター', 'guitar', 'ギターを弾く'), ('バイオリン', 'バイオリン', 'violin', 'バイオリンを弾く'),
+    ('琴', 'こと', 'koto (Japanese zither)', '琴を弾く'), ('三味線', 'しゃみせん', 'shamisen (three-string lute)', '三味線を弾く'),
+    ('笛', 'ふえ', 'flute, whistle', '笛を吹く (ふく)'), ('太鼓', 'たいこ', 'Japanese drum', '太鼓をたたく'),
+]
+
+
+def sports_music_reference():
+    return _simple_table('Sports and instruments, with their verbs',
+                         'Most sports take する (野球をする), but sumo is 相撲をとる. Instruments take the verb for how you play '
+                         'them: 弾く for strings and keys, 吹く for wind instruments, たたく for drums.',
+                         ['Word', 'Reading', 'Meaning', 'Verb'], SPORTS_MUSIC_ROWS, 'Sports and music in DangoChains puzzles')
+
+
+JOB_ROWS = [
+    ('会社員', 'かいしゃいん', 'office worker, company employee'), ('先生', 'せんせい', 'teacher'), ('医者', 'いしゃ', 'doctor'),
+    ('看護師', 'かんごし', 'nurse'), ('警察官', 'けいさつかん', 'police officer'), ('消防士', 'しょうぼうし', 'firefighter'),
+    ('弁護士', 'べんごし', 'lawyer'), ('店員', 'てんいん', 'shop clerk'), ('運転手', 'うんてんしゅ', 'driver'),
+    ('公務員', 'こうむいん', 'civil servant'), ('上司', 'じょうし', 'boss, superior'), ('部下', 'ぶか', 'subordinate'),
+    ('同僚', 'どうりょう', 'coworker'), ('給料', 'きゅうりょう', 'salary, pay'), ('残業', 'ざんぎょう', 'overtime'),
+    ('就活', 'しゅうかつ', 'job hunting (就職活動)'),
+]
+
+
+def jobs_reference():
+    return _simple_table('Jobs and work words',
+                         'Job titles often end in 員 (a member: 会社員, 店員), 士 (a qualified professional: 弁護士, 消防士) or '
+                         '師 (a skilled practitioner: 看護師). At work you answer to your 上司 and work beside your 同僚.',
+                         ['Word', 'Reading', 'Meaning'], JOB_ROWS, 'Work words in DangoChains puzzles')
+
 COLLOCATION_ROWS = [
     ('傘をさす', 'かさをさす', 'to put up an umbrella'), ('写真を撮る', 'しゃしんをとる', 'to take a photo'),
     ('風邪をひく', 'かぜをひく', 'to catch a cold'), ('電話をかける', 'でんわをかける', 'to make a phone call'),
@@ -987,7 +1087,9 @@ TOPIC_EXTRAS = {'counters': counters_reference, 'keigo': keigo_reference, 'onoma
                 'school': school_reference, 'opposites': opposites_reference, 'loanwords': loanwords_reference,
                 'english-from-japanese': english_from_japanese_reference, 'abbreviations': abbreviations_reference,
                 'animals': animals_reference, 'kanji-readings': kanji_readings_reference,
-                'two-readings': two_readings_reference, 'false-friends': false_friends_reference}
+                'two-readings': two_readings_reference, 'false-friends': false_friends_reference,
+                'seasons': seasons_reference, 'house': house_reference, 'town': town_reference,
+                'sports-music': sports_music_reference, 'jobs': jobs_reference}
 
 
 def topic_page(slug, groups):
