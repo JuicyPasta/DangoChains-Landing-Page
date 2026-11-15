@@ -236,7 +236,7 @@ TOPICS = [
      'Special readings (jukujikun): 今日, 果物, 眼鏡, 二十歳…', 'Special readings (熟字訓)',
      'Some words are read as a whole, not kanji by kanji: 果物 is くだもの, 二十歳 is はたち. Learn them as units.'),
     ('kanji-readings', r'\bread [぀-ヿ]|\bread as\b',
-     'Kanji with unusual readings: example words', 'Kanji read an unusual way',
+     "On'yomi vs kun'yomi: Japanese kanji readings with examples", "Kanji readings: on'yomi, kun'yomi and surprises",
      'Most kanji have several readings. Each group below shares one kanji or sound read the same, often unexpected, way.'),
     ('two-readings', r'[Tt]wo readings',
      'Japanese words with two readings and two meanings (人気, 一日, 最中…)', 'One spelling, two readings, two meanings',
@@ -803,6 +803,79 @@ def palindromes_reference():
     return '\n'.join(rows)
 
 
+
+KANJI_READING_ROWS = [
+    ('日', 'ニチ・ジツ', 'ひ・か', '毎日 まいにち, 休日 きゅうじつ, 日 ひ, 三日 みっか'),
+    ('月', 'ゲツ・ガツ', 'つき', '月曜日 げつようび, 一月 いちがつ, 月 つき'),
+    ('水', 'スイ', 'みず', '水曜日 すいようび, 水 みず'),
+    ('金', 'キン・コン', 'かね', '金曜日 きんようび, お金 おかね'),
+    ('山', 'サン', 'やま', '富士山 ふじさん, 山 やま'),
+    ('人', 'ジン・ニン', 'ひと', '日本人 にほんじん, 三人 さんにん, 人 ひと'),
+    ('大', 'ダイ・タイ', 'おお(きい)', '大学 だいがく, 大切 たいせつ, 大きい おおきい'),
+    ('小', 'ショウ', 'ちい(さい)・こ・お', '小学校 しょうがっこう, 小さい ちいさい'),
+    ('中', 'チュウ', 'なか', '中国 ちゅうごく, 中 なか'),
+    ('上', 'ジョウ', 'うえ・あ(げる)・のぼ(る)', '屋上 おくじょう, 上 うえ, 上げる あげる'),
+    ('下', 'カ・ゲ', 'した・さ(げる)・お(りる)', '地下鉄 ちかてつ, 下 した, 下りる おりる'),
+    ('生', 'セイ・ショウ', 'い(きる)・う(まれる)・なま', '学生 がくせい, 一生 いっしょう, 生きる いきる, 生まれる うまれる'),
+    ('学', 'ガク', 'まな(ぶ)', '大学 だいがく, 学ぶ まなぶ'),
+    ('食', 'ショク', 'た(べる)', '食事 しょくじ, 食べる たべる'),
+    ('行', 'コウ・ギョウ', 'い(く)・おこな(う)', '銀行 ぎんこう, 行列 ぎょうれつ, 行く いく'),
+    ('話', 'ワ', 'はな(す)・はなし', '電話 でんわ, 話す はなす'),
+    ('車', 'シャ', 'くるま', '電車 でんしゃ, 車 くるま'),
+    ('東', 'トウ', 'ひがし', '東京 とうきょう, 東 ひがし'),
+]
+
+
+def kanji_readings_reference():
+    rows = ['<h2>On\'yomi and kun\'yomi of common kanji</h2>',
+            '<p>Most kanji have two kinds of reading: the on\'yomi (音読み), borrowed from Chinese, and the kun\'yomi '
+            '(訓読み), a native Japanese word. As a rule of thumb, a kanji inside a compound of several kanji takes its '
+            'on\'yomi (学生 がくせい), and a kanji on its own or followed by kana takes its kun\'yomi (生きる いきる). '
+            'Dictionaries write on\'yomi in katakana and kun\'yomi in hiragana, with the kana that follow in '
+            'parentheses.</p>',
+            '<table class="st-table"><thead><tr><th>Kanji</th><th>On\'yomi</th><th>Kun\'yomi</th><th>Examples</th>'
+            '</tr></thead><tbody>']
+    for k, on, kun, ex in KANJI_READING_ROWS:
+        rows.append(f'<tr><td lang="ja">{e(k)}</td><td lang="ja">{e(on)}</td><td lang="ja">{e(kun)}</td>'
+                    f'<td lang="ja">{e(ex)}</td></tr>')
+    rows += ['</tbody></table>', '<h2>Kanji readings in DangoChains puzzles</h2>']
+    return '\n'.join(rows)
+
+
+TWO_READING_ROWS = [
+    ('上手', 'じょうず', 'good at', 'うわて', 'superior, a cut above'),
+    ('下手', 'へた', 'bad at', 'したて', 'a humble position (下手に出る)'),
+    ('生物', 'せいぶつ', 'living thing', 'なまもの', 'raw or perishable food'),
+    ('一日', 'いちにち', 'one day, all day', 'ついたち', 'the first of the month'),
+    ('今日', 'きょう', 'today', 'こんにち', 'nowadays; today (formal)'),
+    ('大家', 'おおや', 'landlord', 'たいか', 'great master, authority'),
+    ('人気', 'にんき', 'popularity', 'ひとけ', 'signs of people being around'),
+    ('色紙', 'いろがみ', 'colored paper', 'しきし', 'square card for autographs or poems'),
+    ('風車', 'ふうしゃ', 'windmill', 'かざぐるま', 'pinwheel'),
+    ('最中', 'さいちゅう', 'in the middle of', 'もなか', 'monaka, a wafer filled with bean jam'),
+    ('見物', 'けんぶつ', 'sightseeing', 'みもの', 'something worth seeing'),
+    ('分別', 'ぶんべつ', 'sorting (trash)', 'ふんべつ', 'good sense, discretion'),
+    ('目下', 'もっか', 'at present', 'めした', 'a junior, a subordinate'),
+    ('工夫', 'くふう', 'ingenuity, a clever idea', 'こうふ', 'laborer'),
+    ('寒気', 'さむけ', 'a chill, the shivers', 'かんき', 'cold air, the cold'),
+    ('市場', 'いちば', 'marketplace', 'しじょう', 'the market (economics)'),
+    ('仮名', 'かな', 'kana', 'かめい', 'pseudonym, alias'),
+    ('一行', 'いちぎょう', 'one line (of text)', 'いっこう', 'a party of travelers'),
+]
+
+
+def two_readings_reference():
+    rows = ['<h2>Common words with two readings and two meanings</h2>',
+            '<p>The same kanji spelling can stand for two different words. Only context tells you which one is '
+            'meant: 市場 is いちば at the fish market and しじょう in the business news.</p>',
+            '<table class="st-table"><thead><tr><th>Word</th><th>Reading</th><th>Meaning</th><th>Other reading</th>'
+            '<th>Meaning</th></tr></thead><tbody>']
+    for w, r1, m1, r2, m2 in TWO_READING_ROWS:
+        rows.append(f'<tr><td lang="ja">{e(w)}</td><td lang="ja">{e(r1)}</td><td>{e(m1)}</td>'
+                    f'<td lang="ja">{e(r2)}</td><td>{e(m2)}</td></tr>')
+    rows += ['</tbody></table>', '<h2>Two-reading words in DangoChains puzzles</h2>']
+    return '\n'.join(rows)
+
 COLLOCATION_ROWS = [
     ('傘をさす', 'かさをさす', 'to put up an umbrella'), ('写真を撮る', 'しゃしんをとる', 'to take a photo'),
     ('風邪をひく', 'かぜをひく', 'to catch a cold'), ('電話をかける', 'でんわをかける', 'to make a phone call'),
@@ -857,7 +930,8 @@ TOPIC_EXTRAS = {'counters': counters_reference, 'keigo': keigo_reference, 'onoma
                 'wasei-eigo': wasei_reference, 'idioms': idioms_reference, 'weather': weather_reference,
                 'school': school_reference, 'opposites': opposites_reference, 'loanwords': loanwords_reference,
                 'english-from-japanese': english_from_japanese_reference, 'abbreviations': abbreviations_reference,
-                'animals': animals_reference}
+                'animals': animals_reference, 'kanji-readings': kanji_readings_reference,
+                'two-readings': two_readings_reference}
 
 
 def topic_page(slug, groups):
