@@ -876,6 +876,40 @@ def two_readings_reference():
     rows += ['</tbody></table>', '<h2>Two-reading words in DangoChains puzzles</h2>']
     return '\n'.join(rows)
 
+
+MISLEADING_KANJI_ROWS = [
+    ('手紙', 'てがみ', 'hand + paper', 'a letter (in Chinese, 手纸 is toilet paper)'),
+    ('猫背', 'ねこぜ', 'cat + back', 'a hunched back, poor posture'),
+    ('目次', 'もくじ', 'eye + next', 'table of contents'),
+    ('面白い', 'おもしろい', 'face + white', 'interesting, funny'),
+    ('大丈夫', 'だいじょうぶ', 'big + sturdy', 'all right, OK'),
+    ('油断', 'ゆだん', 'oil + cut off', 'carelessness, letting your guard down'),
+    ('皮肉', 'ひにく', 'skin + meat', 'irony, sarcasm'),
+    ('怪我', 'けが', 'strange + self', 'an injury'),
+    ('素敵', 'すてき', 'plain + enemy', 'lovely, wonderful'),
+    ('馬鹿', 'ばか', 'horse + deer', 'a fool; stupid'),
+    ('切手', 'きって', 'cut + hand', 'a postage stamp'),
+    ('名刺', 'めいし', 'name + thorn', 'a business card'),
+    ('留守', 'るす', 'stay + guard', 'being out, nobody home'),
+    ('我慢', 'がまん', 'self + conceit', 'patience, putting up with something'),
+    ('天気', 'てんき', 'sky + spirit', 'the weather'),
+    ('一応', 'いちおう', 'one + respond', 'for now, just in case, more or less'),
+    ('結構', 'けっこう', 'tie + build', 'quite; fine; no, thank you'),
+]
+
+
+def false_friends_reference():
+    rows = ['<h2>Everyday words whose kanji mislead</h2>',
+            '<p>Reading a word kanji by kanji often points the wrong way. Some spellings are old metaphors, and some '
+            '(怪我, 素敵, 馬鹿) are ateji, kanji picked for their sound rather than their meaning. Learn these as whole '
+            'words.</p>',
+            '<table class="st-table"><thead><tr><th>Word</th><th>Reading</th><th>Kanji, literally</th>'
+            '<th>Actually means</th></tr></thead><tbody>']
+    for w, r, lit, m in MISLEADING_KANJI_ROWS:
+        rows.append(f'<tr><td lang="ja">{e(w)}</td><td lang="ja">{e(r)}</td><td>{e(lit)}</td><td>{e(m)}</td></tr>')
+    rows += ['</tbody></table>', '<h2>Misleading kanji in DangoChains puzzles</h2>']
+    return '\n'.join(rows)
+
 COLLOCATION_ROWS = [
     ('傘をさす', 'かさをさす', 'to put up an umbrella'), ('写真を撮る', 'しゃしんをとる', 'to take a photo'),
     ('風邪をひく', 'かぜをひく', 'to catch a cold'), ('電話をかける', 'でんわをかける', 'to make a phone call'),
@@ -931,7 +965,7 @@ TOPIC_EXTRAS = {'counters': counters_reference, 'keigo': keigo_reference, 'onoma
                 'school': school_reference, 'opposites': opposites_reference, 'loanwords': loanwords_reference,
                 'english-from-japanese': english_from_japanese_reference, 'abbreviations': abbreviations_reference,
                 'animals': animals_reference, 'kanji-readings': kanji_readings_reference,
-                'two-readings': two_readings_reference}
+                'two-readings': two_readings_reference, 'false-friends': false_friends_reference}
 
 
 def topic_page(slug, groups):
