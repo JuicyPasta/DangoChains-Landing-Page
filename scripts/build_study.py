@@ -286,8 +286,8 @@ TOPICS = [
     ('weather', r'[Ww]eather|[Rr]ainy season|\b[Ss]ky\b|[Ss]torm|\b[Ss]now\b|\b[Rr]ain\b|[Tt]yphoon',
      'Japanese weather words: 雨, 雪, 台風, 梅雨, 虹 and more', 'Weather and sky words in Japanese',
      'Rain, storms, the rainy season (梅雨) and what you see in the sky, grouped.'),
-    ('animals', r'\b[Aa]nimals?\b|\b[Bb]irds?\b|[Cc]reatures|[Zz]odiac|\b[Ii]nsects?\b|\b[Ff]ish\b|[Pp]ets?\b',
-     'Animals in Japanese: 犬, 牛, うさぎ, ペンギン, クジラ and more', 'Animals in Japanese',
+    ('animals', r'\b[Aa]nimals?\b|\b[Bb]irds?\b|[Cc]reatures|[Zz]odiac|\b[Ii]nsects?\b|\b[Ff]ish\b|[Pp]ets?\b|^(?:Bugs|Real bugs(?: with 虫 in the name)?)$',
+     'Animals and insects in Japanese: 犬, 牛, うさぎ, 蝶, 蝉, クジラ and more', 'Animals in Japanese',
      'Pets, zoo and farm animals, birds, insects and sea creatures. Animal names are written in kanji, hiragana '
      'or katakana, and all three are common.'),
     ('food', r'\b[Ff]oods?\b|[Vv]egetables?|\b[Ff]ruits?\b|[Ss]weets|\b[Dd]rinks\b|[Ss]ushi|[Tt]oppings|\b[Dd]ishes\b|[Ss]nacks|[Bb]ento|[Ss]easonings?',
@@ -372,6 +372,11 @@ TOPICS = [
      'Flowers, trees and plants in Japanese: 花, 木, 桜, 梅, 紅葉 and more', 'Flowers, trees and plants in Japanese',
      'Flower and tree names, the parts of a plant, and what you do in a garden. The groups below are plant words from '
      'past puzzles.'),
+    ('adjectives', r'^(?:な-adjectives(?: ending in い)?|Look like な-adjectives, but aren\'t|How it tastes|Taste words|Basic tastes|'
+                   r'Textures|Describing a book)$',
+     'Japanese adjectives: い-adjectives and な-adjectives with examples', 'Japanese adjectives',
+     'Japanese has two kinds of adjectives, and they change form differently. The groups below are adjectives from '
+     'past puzzles: tastes, textures, the な-adjectives that end in い and the ones that only look like な-adjectives.'),
     ('verbs', r'^(?:True ichidan \(る-verbs\)|Look ichidan, but godan|Ends in る, but a godan verb|Cooking verbs|Cleaning verbs|'
               r'Kitchen verbs|Exercise verbs|Bath-time verbs|Verbs made from (?:English|foreign words)|'
               r'Ways to say ["\'](?:give|receive|eat|say|know|go)["\'](?: or ["\']come["\'])?)$',
@@ -829,6 +834,15 @@ ANIMAL_ROWS = [
 ]
 
 
+INSECT_ROWS = [
+    ('虫', 'むし', 'bug, insect'), ('蝶', 'ちょう', 'butterfly'), ('蜂', 'はち', 'bee, wasp'), ('蝉', 'せみ', 'cicada (the sound of summer)'),
+    ('蜻蛉', 'とんぼ', 'dragonfly (usually とんぼ)'), ('蟻', 'あり', 'ant'), ('蚊', 'か', 'mosquito'), ('蠅', 'はえ', 'fly'),
+    ('蜘蛛', 'くも', 'spider (not an insect, but a 虫 in everyday Japanese)'), ('てんとう虫', 'てんとうむし', 'ladybug'),
+    ('カブトムシ', 'カブトムシ', 'rhinoceros beetle (a summer pet for kids)'), ('鈴虫', 'すずむし', 'bell cricket'),
+    ('蛍', 'ほたる', 'firefly'), ('毛虫', 'けむし', 'hairy caterpillar'),
+]
+
+
 def animals_reference():
     rows = ['<h2>Common animals in Japanese</h2>',
             '<p>Most animal names have a kanji, but everyday writing often uses hiragana (うさぎ, ねずみ) or katakana, '
@@ -837,7 +851,12 @@ def animals_reference():
             '<table class="st-table"><thead><tr><th>Kanji</th><th>Reading</th><th>Meaning</th></tr></thead><tbody>']
     for w, r, m in ANIMAL_ROWS:
         rows.append(f'<tr><td lang="ja">{e(w)}</td><td lang="ja">{e(r)}</td><td>{e(m)}</td></tr>')
-    rows += ['</tbody></table>', '<h2>Animals in DangoChains puzzles</h2>']
+    rows += ['</tbody></table>',
+             _ja_table('Insects in Japanese',
+                       'Bugs in general are 虫 (むし), and many insect names end in 虫: てんとう虫 (ladybug), 鈴虫 (bell '
+                       'cricket). Like animals, insects are often written in kana. Count them with 匹.',
+                       ['Insect', 'Reading', 'Meaning'], INSECT_ROWS),
+             '<h2>Animals in DangoChains puzzles</h2>']
     return '\n'.join(rows)
 
 
@@ -1464,6 +1483,26 @@ def verbs_reference():
                          ['Verb', 'Reading', 'Meaning and group'], VERB_ROWS, 'Verbs in DangoChains puzzles')
 
 
+
+ADJECTIVE_ROWS = [
+    ('大きい', 'おおきい', 'big: い-adjective'), ('小さい', 'ちいさい', 'small: い'), ('高い', 'たかい', 'tall; expensive: い'),
+    ('安い', 'やすい', 'cheap: い'), ('新しい', 'あたらしい', 'new: い'), ('古い', 'ふるい', 'old (things, not people): い'),
+    ('暑い', 'あつい', 'hot (weather): い'), ('寒い', 'さむい', 'cold (weather): い'), ('難しい', 'むずかしい', 'difficult: い'),
+    ('いい', 'いい', 'good: い, irregular (よくない, よかった)'), ('甘い', 'あまい', 'sweet: い'), ('辛い', 'からい', 'spicy: い'),
+    ('静か', 'しずか', 'quiet: な-adjective (静かな部屋)'), ('有名', 'ゆうめい', 'famous: な'), ('便利', 'べんり', 'convenient: な'),
+    ('元気', 'げんき', 'well, lively: な'), ('きれい', 'きれい', 'pretty; clean: な, though it ends in い'),
+    ('嫌い', 'きらい', 'disliked: な, though it ends in い'),
+]
+
+
+def adjectives_reference():
+    return _simple_table('い-adjectives and な-adjectives',
+                         'い-adjectives change their ending: 高い → 高くない (not expensive) → 高かった (was expensive). '
+                         'な-adjectives take な before a noun (静かな部屋, a quiet room) and change with です and じゃない. '
+                         'A few な-adjectives end in い (きれい, 嫌い), and いい is irregular.',
+                         ['Adjective', 'Reading', 'Meaning and type'], ADJECTIVE_ROWS, 'Adjectives in DangoChains puzzles')
+
+
 TOPIC_EXTRAS = {'counters': counters_reference, 'keigo': keigo_reference, 'onomatopoeia': onomatopoeia_reference,
                 'special-readings': special_readings_reference, 'palindromes': palindromes_reference,
                 'collocations': collocations_reference, 'food': food_reference,
@@ -1480,7 +1519,7 @@ TOPIC_EXTRAS = {'counters': counters_reference, 'keigo': keigo_reference, 'onoma
                 'numbers': numbers_reference, 'colors': colors_reference,
                 'feelings': feelings_reference, 'countries': countries_reference, 'plants': plants_reference,
                 'greetings': greetings_reference, 'days-months': days_months_reference,
-                'verbs': verbs_reference}
+                'verbs': verbs_reference, 'adjectives': adjectives_reference}
 
 
 def topic_page(slug, groups):
