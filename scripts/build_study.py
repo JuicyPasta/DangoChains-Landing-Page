@@ -1286,21 +1286,60 @@ def countries_reference():
                          ['Country', 'Reading', 'Meaning'], COUNTRY_ROWS, 'Country words in DangoChains puzzles')
 
 
+FLOWER_ROWS = [
+    ('桜', 'さくら', 'cherry blossom'), ('梅', 'うめ', 'Japanese plum blossom (blooms before cherry)'),
+    ('桃', 'もも', 'peach blossom; peach'), ('菊', 'きく', 'chrysanthemum (the imperial crest)'),
+    ('薔薇', 'ばら', 'rose (usually written バラ)'), ('百合', 'ゆり', 'lily'), ('向日葵', 'ひまわり', 'sunflower'),
+    ('朝顔', 'あさがお', 'morning glory (a summer flower)'), ('紫陽花', 'あじさい', 'hydrangea (rainy season)'),
+    ('椿', 'つばき', 'camellia'), ('藤', 'ふじ', 'wisteria'), ('牡丹', 'ぼたん', 'peony'), ('蓮', 'はす', 'lotus'),
+    ('菖蒲', 'あやめ', 'iris'), ('蒲公英', 'たんぽぽ', 'dandelion (usually written in kana)'),
+    ('水仙', 'すいせん', 'daffodil, narcissus'), ('秋桜', 'コスモス', 'cosmos (an autumn flower)'),
+    ('チューリップ', 'チューリップ', 'tulip'),
+]
+
+TREE_ROWS = [
+    ('木', 'き', 'tree; wood'), ('松', 'まつ', 'pine'), ('竹', 'たけ', 'bamboo'), ('杉', 'すぎ', 'Japanese cedar'),
+    ('檜', 'ひのき', 'Japanese cypress (used for baths and temples)'),
+    ('楓', 'かえで', 'maple (its red autumn leaves are もみじ)'),
+    ('銀杏', 'いちょう', 'ginkgo (its nut is ぎんなん)'), ('柳', 'やなぎ', 'willow'),
+    ('紅葉', 'こうよう / もみじ', 'autumn leaves (こうよう); maple (もみじ)'),
+]
+
 PLANT_ROWS = [
-    ('花', 'はな', 'flower'), ('木', 'き', 'tree; wood'), ('草', 'くさ', 'grass; weeds'), ('葉', 'は', 'leaf (葉っぱ in speech)'),
-    ('枝', 'えだ', 'branch'), ('根', 'ね', 'root'), ('種', 'たね', 'seed'), ('桜', 'さくら', 'cherry blossom; cherry tree'),
-    ('梅', 'うめ', 'Japanese plum (blossom)'), ('松', 'まつ', 'pine'), ('竹', 'たけ', 'bamboo'),
-    ('紅葉', 'こうよう / もみじ', 'autumn leaves (こうよう); maple (もみじ)'), ('菊', 'きく', 'chrysanthemum'),
-    ('向日葵', 'ひまわり', 'sunflower'), ('朝顔', 'あさがお', 'morning glory'), ('庭', 'にわ', 'garden, yard'),
-    ('植える', 'うえる', 'to plant'), ('咲く', 'さく', 'to bloom'), ('水をやる', 'みずをやる', 'to water (plants)'),
+    ('花', 'はな', 'flower'), ('草', 'くさ', 'grass; weeds'), ('葉', 'は', 'leaf (葉っぱ in speech)'),
+    ('花びら', 'はなびら', 'petal'), ('枝', 'えだ', 'branch'), ('幹', 'みき', 'trunk'), ('根', 'ね', 'root'),
+    ('芽', 'め', 'bud, sprout'), ('種', 'たね', 'seed'), ('実', 'み', 'fruit, nut (on a plant)'), ('庭', 'にわ', 'garden, yard'),
+    ('咲く', 'さく', 'to bloom'), ('散る', 'ちる', 'to fall (petals, leaves)'), ('枯れる', 'かれる', 'to wither, die'),
+    ('植える', 'うえる', 'to plant'), ('育てる', 'そだてる', 'to grow, raise'), ('水をやる', 'みずをやる', 'to water (plants)'),
 ]
 
 
+def _ja_table(heading, intro, head, rows):
+    out = [f'<h2>{e(heading)}</h2>', f'<p>{intro}</p>',
+           '<table class="st-table"><thead><tr>' + ''.join(f'<th>{e(h)}</th>' for h in head) + '</tr></thead><tbody>']
+    for r in rows:
+        out.append('<tr>' + ''.join(f'<td lang="ja">{e(c)}</td>' if i < 2 else f'<td>{e(c)}</td>'
+                                     for i, c in enumerate(r)) + '</tr>')
+    out.append('</tbody></table>')
+    return '\n'.join(out)
+
+
 def plants_reference():
-    return _simple_table('Flowers, trees and plant words',
-                         'Flowers 咲く (bloom) and 散る (fall); plants are watered with 水をやる. 花 and 木 change in '
-                         'compounds: 花火 (はなび) is fireworks, not a flower, and 木 reads もく in 木曜日 (Thursday).',
-                         ['Word', 'Reading', 'Meaning'], PLANT_ROWS, 'Plant words in DangoChains puzzles')
+    return '\n'.join([
+        _ja_table('Flower names in Japanese',
+                  'Many flower names have kanji that everyday text skips: バラ, ユリ and たんぽぽ are more common than '
+                  '薔薇, 百合 and 蒲公英. Japan follows the year by its flowers: 梅 and 桜 in spring, 紫陽花 in the '
+                  'rainy season, 朝顔 and 向日葵 in summer, 菊 and コスモス in autumn.',
+                  ['Flower', 'Reading', 'Meaning'], FLOWER_ROWS),
+        _ja_table('Trees in Japanese',
+                  'The word for tree, 木, reads き on its own but もく or ぼく in compounds: 木曜日 (Thursday), 大木 '
+                  '(a big tree). 林 (two trees) is a grove and 森 (three trees) a forest.',
+                  ['Tree', 'Reading', 'Meaning'], TREE_ROWS),
+        _ja_table('Parts of a plant, and what plants do',
+                  'Flowers 咲く (bloom) and 散る (fall); plants are watered with 水をやる. 花 changes meaning in '
+                  'compounds: 花火 (はなび) is fireworks, not a flower.',
+                  ['Word', 'Reading', 'Meaning'], PLANT_ROWS),
+        '<h2>Plant words in DangoChains puzzles</h2>'])
 
 
 GREETING_ROWS = [
