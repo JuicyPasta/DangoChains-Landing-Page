@@ -372,6 +372,12 @@ TOPICS = [
      'Flowers, trees and plants in Japanese: 花, 木, 桜, 梅, 紅葉 and more', 'Flowers, trees and plants in Japanese',
      'Flower and tree names, the parts of a plant, and what you do in a garden. The groups below are plant words from '
      'past puzzles.'),
+    ('days-months', r'^(?:Days of the week|Add 曜日 for a weekday|Add 曜日 to make a day|Weekday kanji|Months|Old month names|'
+                    r'月, the month|Parts of a month|Calendar words|On the calendar|Calendar years|Days off|'
+                    r'Days of the six-day calendar \(六曜\))$',
+     'Days of the week and months in Japanese: 月曜日, 一月, ついたち and more', 'Days of the week, months and dates in Japanese',
+     'The weekdays are named after the sun, moon and five elements, the months are just numbers, and the days of the '
+     'month have their own readings up to the tenth. The groups below are calendar words from past puzzles.'),
     ('greetings', r'^(?:Greetings|Saying thanks|Apologizing|Polite phrases|Polite requests to the listener|'
                   r'Polite ways to say no)$',
      'Japanese greetings and basic phrases: when to say おはよう, ただいま, お疲れさま', 'Greetings and set phrases in Japanese',
@@ -1366,6 +1372,45 @@ def greetings_reference():
                          ['Phrase', 'Romaji', 'When you say it'], GREETING_ROWS, 'Greetings and set phrases in DangoChains puzzles')
 
 
+
+WEEKDAY_ROWS = [
+    ('月曜日', 'げつようび', 'Monday (moon)'), ('火曜日', 'かようび', 'Tuesday (fire)'), ('水曜日', 'すいようび', 'Wednesday (water)'),
+    ('木曜日', 'もくようび', 'Thursday (wood)'), ('金曜日', 'きんようび', 'Friday (metal, gold)'),
+    ('土曜日', 'どようび', 'Saturday (earth)'), ('日曜日', 'にちようび', 'Sunday (sun)'),
+]
+
+MONTH_ROWS = [
+    ('一月', 'いちがつ', 'January'), ('二月', 'にがつ', 'February'), ('三月', 'さんがつ', 'March'),
+    ('四月', 'しがつ', 'April (never よんがつ)'), ('五月', 'ごがつ', 'May'), ('六月', 'ろくがつ', 'June'),
+    ('七月', 'しちがつ', 'July (not なながつ)'), ('八月', 'はちがつ', 'August'), ('九月', 'くがつ', 'September (not きゅうがつ)'),
+    ('十月', 'じゅうがつ', 'October'), ('十一月', 'じゅういちがつ', 'November'), ('十二月', 'じゅうにがつ', 'December'),
+]
+
+DATE_ROWS = [
+    ('一日', 'ついたち', 'the 1st (いちにち means "one day")'), ('二日', 'ふつか', 'the 2nd; two days'),
+    ('三日', 'みっか', 'the 3rd'), ('四日', 'よっか', 'the 4th'), ('五日', 'いつか', 'the 5th'), ('六日', 'むいか', 'the 6th'),
+    ('七日', 'なのか', 'the 7th'), ('八日', 'ようか', 'the 8th'), ('九日', 'ここのか', 'the 9th'), ('十日', 'とおか', 'the 10th'),
+    ('十四日', 'じゅうよっか', 'the 14th'), ('二十日', 'はつか', 'the 20th'), ('二十四日', 'にじゅうよっか', 'the 24th'),
+]
+
+
+def days_months_reference():
+    return '\n'.join([
+        _ja_table('Days of the week in Japanese',
+                  'Each weekday is a kanji plus 曜日 (ようび): the sun, the moon and the five elements. In schedules '
+                  'and on calendars the kanji alone is enough: 月 for Monday, 土日 for the weekend.',
+                  ['Day', 'Reading', 'Meaning'], WEEKDAY_ROWS),
+        _ja_table('Months in Japanese',
+                  'Months are the numbers 1 to 12 plus 月 (がつ). Three take the less common number reading: 四月, '
+                  '七月 and 九月.',
+                  ['Month', 'Reading', 'Meaning'], MONTH_ROWS),
+        _ja_table('Days of the month',
+                  'Dates use 日, but the 1st to the 10th, the 14th, 20th and 24th have their own readings; the rest '
+                  'are regular (十五日 じゅうごにち). The same words count days: 三日 is also "three days".',
+                  ['Date', 'Reading', 'Meaning'], DATE_ROWS),
+        '<h2>Calendar words in DangoChains puzzles</h2>'])
+
+
 TOPIC_EXTRAS = {'counters': counters_reference, 'keigo': keigo_reference, 'onomatopoeia': onomatopoeia_reference,
                 'special-readings': special_readings_reference, 'palindromes': palindromes_reference,
                 'collocations': collocations_reference, 'food': food_reference,
@@ -1381,7 +1426,7 @@ TOPIC_EXTRAS = {'counters': counters_reference, 'keigo': keigo_reference, 'onoma
                 'festivals': festivals_reference, 'health': health_reference,
                 'numbers': numbers_reference, 'colors': colors_reference,
                 'feelings': feelings_reference, 'countries': countries_reference, 'plants': plants_reference,
-                'greetings': greetings_reference}
+                'greetings': greetings_reference, 'days-months': days_months_reference}
 
 
 def topic_page(slug, groups):
