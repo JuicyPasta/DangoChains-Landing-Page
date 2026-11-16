@@ -3,6 +3,9 @@ layout: page
 title: Free games to learn Japanese
 seo_title: "Free games to learn Japanese in your browser"
 description: "Three free daily games for Japanese learners: sort 16 words into hidden groups, find the kanji that completes four words, or build a board for your class. Readings and English meanings after every game."
+alternates:
+  - lang: es
+    url: /es/juegos-para-aprender-japones/
 ---
 {% assign app_store = 'https://apps.apple.com/app/id' | append: site.ios_app_id %}
 
@@ -39,3 +42,5 @@ Type 16 words in four groups and get a link to a playable board, with readings f
 The DangoChains app for iPhone and Android has the same daily boards, plus streaks, a dango collection and an optional daily reminder. It's free; the archive of 900+ past puzzles is a one-time unlock, with no subscription.
 
 <a class="appStoreLink" href="{{ app_store }}" target="_blank" rel="noopener">App Store</a> · <a class="playStoreLink" href="{{ site.playstore_link }}" target="_blank" rel="noopener">Google Play</a>
+
+<p lang="es"><a href="{{ '/es/juegos-para-aprender-japones/' | relative_url }}">En español: juegos gratis para aprender japonés</a></p>

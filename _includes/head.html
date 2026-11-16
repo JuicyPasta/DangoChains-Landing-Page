@@ -8,6 +8,9 @@
 
 	<!-- Share cards (Reddit, Discord, X, iMessage link previews) -->
 	<link rel="canonical" href="{{ page.url | absolute_url }}">
+	{% if page.alternates %}{% for alt in page.alternates %}<link rel="alternate" hreflang="{{ alt.lang }}" href="{{ alt.url | absolute_url }}">
+	{% endfor %}<link rel="alternate" hreflang="{{ page.lang | default: 'en' }}" href="{{ page.url | absolute_url }}">
+	{% endif %}
 	{% if page.url == '/' %}
 	<!-- Site name for search results: lets "dango chains" / 団子チェーン searches match the site -->
 	<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"DangoChains","alternateName":["Dango Chains","団子チェーン"],"url":"{{ '/' | absolute_url }}"}</script>
