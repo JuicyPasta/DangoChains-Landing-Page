@@ -1547,12 +1547,16 @@ TOPIC_EXTRAS = {'counters': counters_reference, 'keigo': keigo_reference, 'onoma
                 'love': love_reference}
 
 
-# Spanish versions (hand-written pages in _pages/es-*.md, Spanish meanings); hreflang both ways.
-ES_PAGES = {'plants': ('/es/flores-en-japones/', 'Flores en japonés'),
-            'greetings': ('/es/saludos-en-japones/', 'Saludos en japonés'),
-            'numbers': ('/es/numeros-en-japones/', 'Números en japonés'),
-            'colors': ('/es/colores-en-japones/', 'Colores en japonés'),
-            'days-months': ('/es/dias-de-la-semana-en-japones/', 'Días de la semana y meses en japonés')}
+# Other-language versions (hand-written pages in _pages/{es,pt}-*.md, meanings in that language); hreflang both ways.
+LANG_PAGES = {'plants': [('es', '/es/flores-en-japones/', 'Flores en japonés')],
+              'greetings': [('es', '/es/saludos-en-japones/', 'Saludos en japonés')],
+              'numbers': [('es', '/es/numeros-en-japones/', 'Números en japonés'),
+                          ('pt', '/pt/numeros-em-japones/', 'Números em japonês')],
+              'colors': [('es', '/es/colores-en-japones/', 'Colores en japonés'),
+                         ('pt', '/pt/cores-em-japones/', 'Cores em japonês')],
+              'days-months': [('es', '/es/dias-de-la-semana-en-japones/', 'Días de la semana y meses en japonés')],
+              'love': [('es', '/es/te-amo-en-japones/', 'Te amo en japonés')],
+              'family': [('es', '/es/familia-en-japones/', 'La familia en japonés')]}
 
 
 def topic_page(slug, groups):
@@ -1560,13 +1564,13 @@ def topic_page(slug, groups):
     words = [w for _, _, c, _ in groups for w in c['words']]
     desc = (f'{len(groups)} groups of Japanese words with readings and English meanings from DangoChains puzzles. '
             + intro.split('. ')[0].rstrip('.') + '. Examples: ' + '、'.join(dict.fromkeys(words[:6])) + '.')
-    es = ES_PAGES.get(slug)
-    extra = f'alternates:\n  - lang: es\n    url: {es[0]}\n' if es else ''
+    alts = LANG_PAGES.get(slug, [])
+    extra = ('alternates:\n' + ''.join(f'  - lang: {l}\n    url: {u}\n' for l, u, _ in alts)) if alts else ''
     body = [front_matter(title, desc, extra), '{% raw %}', STYLE,
             f'<h1>{e(h1)}</h1>', f'<p>{e(intro)} Every group comes from a past DangoChains puzzle; '
             f'{len(groups)} so far, newest first.</p>']
-    if es:
-        body.append(f'<p lang="es">En español: <a href="{es[0]}" target="_self">{e(es[1])}</a></p>')
+    for l, u, label in alts:
+        body.append(f'<p lang="{l}">{"En español" if l == "es" else "Em português"}: <a href="{u}" target="_self">{e(label)}</a></p>')
     if slug in TOPIC_EXTRAS:
         body.append(TOPIC_EXTRAS[slug]())
     for date, tier, c, readings in groups:

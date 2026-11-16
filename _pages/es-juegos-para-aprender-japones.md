@@ -39,7 +39,7 @@ Escribe 16 palabras en cuatro grupos y obtén un enlace a un tablero que se pued
 
 Algunas páginas de estudio ya están en español; las demás están en inglés y salen de los acertijos anteriores:
 
-- En español: [palabras básicas]({{ '/es/palabras-en-japones/' | relative_url }}), [flores]({{ '/es/flores-en-japones/' | relative_url }}), [saludos y frases básicas]({{ '/es/saludos-en-japones/' | relative_url }}), [números]({{ '/es/numeros-en-japones/' | relative_url }}), [colores]({{ '/es/colores-en-japones/' | relative_url }}) y [días de la semana y meses]({{ '/es/dias-de-la-semana-en-japones/' | relative_url }}) en japonés, con significados en español
+- En español: [palabras básicas]({{ '/es/palabras-en-japones/' | relative_url }}), [flores]({{ '/es/flores-en-japones/' | relative_url }}), [saludos y frases básicas]({{ '/es/saludos-en-japones/' | relative_url }}), [números]({{ '/es/numeros-en-japones/' | relative_url }}), [colores]({{ '/es/colores-en-japones/' | relative_url }}), [días de la semana y meses]({{ '/es/dias-de-la-semana-en-japones/' | relative_url }}), [la familia]({{ '/es/familia-en-japones/' | relative_url }}) y [cómo decir «te amo»]({{ '/es/te-amo-en-japones/' | relative_url }}) en japonés, con significados en español
 - [Vocabulario japonés por temas]({{ '/study/topics/' | relative_url }}): números, colores, comida, familia, el cuerpo, la ropa, el clima, la casa, la ciudad, viajes, dinero, salud, contadores, keigo, onomatopeyas y más, cada tema con su tabla de referencia
 - [Listas de vocabulario del JLPT, del N5 al N1]({{ '/study/jlpt/' | relative_url }})
 - [Todos los acertijos anteriores]({{ '/study/' | relative_url }}), con las respuestas ocultas hasta que las quieras ver
