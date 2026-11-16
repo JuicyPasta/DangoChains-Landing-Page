@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Free games to learn Japanese
-seo_title: "Free games to learn Japanese in your browser"
+seo_title: "Japanese learning games: free daily games in your browser"
 description: "Three free daily games for Japanese learners: sort 16 words into hidden groups, find the kanji that completes four words, or build a board for your class. Readings and English meanings after every game."
 alternates:
   - lang: es

@@ -301,7 +301,7 @@ TOPICS = [
      'Japanese uses different verbs for wearing: 着る for the upper body, はく for shoes and trousers, かぶる for hats. '
      'The groups below cover clothes, footwear and what goes with each verb.'),
     ('family', r'\b[Ff]amily\b(?! names?)',
-     'Japanese family words: 父, 母, 祖父, 孫, いとこ and more', 'Family words in Japanese',
+     'Family in Japanese: 父, 母, 祖父, 孫, いとこ and other family words', 'Family words in Japanese',
      'Japanese has two sets of family words: plain ones for your own family (父, 母) and polite ones for someone '
      'else\'s (お父さん, お母さん). The groups below cover both.'),
     ('opposites', r'[Oo]pposite',
@@ -359,7 +359,7 @@ TOPICS = [
     ('feelings', r'^(?:Angry|Getting angry|Crying|Ways to cry|Laughing|Ways to laugh|Smiling|Moods?|Worry|Worries|No worries|'
                  r'How your heart feels|How you feel(?: inside)?|What you feel inside|Your heart|Embarrassed|Wistful feelings|'
                  r'Bad feelings|Hot with feeling|Scary things|Big-hearted)$',
-     'Feelings in Japanese: emotion words like 嬉しい, 悲しい, 怖い, 懐かしい', 'Feelings and emotions in Japanese',
+     'Emotions and feelings in Japanese: 嬉しい, 悲しい, 怖い, 懐かしい and more', 'Feelings and emotions in Japanese',
      'Japanese talks about feelings mostly with い-adjectives (嬉しい, 悲しい, 怖い) and a few verbs (怒る, 泣く, 笑う). '
      'The groups below are feeling words from past puzzles.'),
     ('countries', r'^(?:Countries(?: in Asia| in one kanji \(news style\))?|Asian countries|One-kanji country names|'
@@ -369,12 +369,12 @@ TOPICS = [
      'Britain). The groups below are country and travel-abroad words from past puzzles.'),
     ('plants', r'^(?:Flowers|Growing flowers|Plants|Houseplants|Plant parts|Parts of a (?:plant|tree)|Trees|Kinds of trees|'
                r'Trees that turn red|Leaves|Real grass|Garden|In the garden|Gardening|Garden chores|Garden tools|Garden pond)$',
-     'Flowers and plants in Japanese: 花, 木, 桜, 梅, 紅葉 and garden words', 'Flowers, trees and plants in Japanese',
+     'Flowers, trees and plants in Japanese: 花, 木, 桜, 梅, 紅葉 and more', 'Flowers, trees and plants in Japanese',
      'Flower and tree names, the parts of a plant, and what you do in a garden. The groups below are plant words from '
      'past puzzles.'),
     ('greetings', r'^(?:Greetings|Saying thanks|Apologizing|Polite phrases|Polite requests to the listener|'
                   r'Polite ways to say no)$',
-     'Japanese greetings and set phrases: when to say おはよう, ただいま, お疲れさま', 'Greetings and set phrases in Japanese',
+     'Japanese greetings and basic phrases: when to say おはよう, ただいま, お疲れさま', 'Greetings and set phrases in Japanese',
      'Japanese has a set phrase for most everyday moments: leaving home, coming back, starting and finishing a meal. '
      'The groups below are greeting, thanks and apology phrases from past puzzles.'),
 ]
