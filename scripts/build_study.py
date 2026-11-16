@@ -356,6 +356,27 @@ TOPICS = [
      'Colors in Japanese: 赤, 青, 黄色, 緑 and more, with readings', 'Colors in Japanese',
      'Basic colors, the colors that are also adjectives (赤い, 青い) and words built on 色. The groups below are color '
      'words from past puzzles.'),
+    ('feelings', r'^(?:Angry|Getting angry|Crying|Ways to cry|Laughing|Ways to laugh|Smiling|Moods?|Worry|Worries|No worries|'
+                 r'How your heart feels|How you feel(?: inside)?|What you feel inside|Your heart|Embarrassed|Wistful feelings|'
+                 r'Bad feelings|Hot with feeling|Scary things|Big-hearted)$',
+     'Feelings in Japanese: emotion words like 嬉しい, 悲しい, 怖い, 懐かしい', 'Feelings and emotions in Japanese',
+     'Japanese talks about feelings mostly with い-adjectives (嬉しい, 悲しい, 怖い) and a few verbs (怒る, 泣く, 笑う). '
+     'The groups below are feeling words from past puzzles.'),
+    ('countries', r'^(?:Countries(?: in Asia| in one kanji \(news style\))?|Asian countries|One-kanji country names|'
+                  r'Kanji standing for a country|Going abroad|International|Facts about a country)$',
+     'Countries in Japanese: names, one-kanji news abbreviations, 〜人 and 〜語', 'Countries in Japanese',
+     'Most country names are written in katakana, but newspapers shorten them to one kanji (米 for America, 英 for '
+     'Britain). The groups below are country and travel-abroad words from past puzzles.'),
+    ('plants', r'^(?:Flowers|Growing flowers|Plants|Houseplants|Plant parts|Parts of a (?:plant|tree)|Trees|Kinds of trees|'
+               r'Trees that turn red|Leaves|Real grass|Garden|In the garden|Gardening|Garden chores|Garden tools|Garden pond)$',
+     'Flowers and plants in Japanese: 花, 木, 桜, 梅, 紅葉 and garden words', 'Flowers, trees and plants in Japanese',
+     'Flower and tree names, the parts of a plant, and what you do in a garden. The groups below are plant words from '
+     'past puzzles.'),
+    ('greetings', r'^(?:Greetings|Saying thanks|Apologizing|Polite phrases|Polite requests to the listener|'
+                  r'Polite ways to say no)$',
+     'Japanese greetings and set phrases: when to say おはよう, ただいま, お疲れさま', 'Greetings and set phrases in Japanese',
+     'Japanese has a set phrase for most everyday moments: leaving home, coming back, starting and finishing a meal. '
+     'The groups below are greeting, thanks and apology phrases from past puzzles.'),
 ]
 
 
@@ -1224,6 +1245,88 @@ def food_reference():
     return '\n'.join(rows)
 
 
+
+FEELING_ROWS = [
+    ('嬉しい', 'うれしい', 'happy, glad (about something that happened)'), ('楽しい', 'たのしい', 'fun, enjoyable'),
+    ('悲しい', 'かなしい', 'sad'), ('寂しい', 'さびしい', 'lonely; missing someone'), ('怖い', 'こわい', 'scary; scared'),
+    ('恥ずかしい', 'はずかしい', 'embarrassed, shy'), ('懐かしい', 'なつかしい', 'nostalgic; "that takes me back"'),
+    ('悔しい', 'くやしい', 'frustrated, galled (after losing)'), ('羨ましい', 'うらやましい', 'envious, jealous (of someone)'),
+    ('心配', 'しんぱい', 'worry; 心配する, to worry'), ('安心', 'あんしん', 'relief; 安心する, to feel relieved'),
+    ('驚く', 'おどろく', 'to be surprised (びっくりする in speech)'), ('怒る', 'おこる', 'to get angry'),
+    ('泣く', 'なく', 'to cry'), ('笑う', 'わらう', 'to laugh, to smile'), ('緊張する', 'きんちょうする', 'to be nervous'),
+    ('好き', 'すき', 'liked; 〜が好き, I like ~'), ('嫌い', 'きらい', 'disliked; 〜が嫌い, I dislike ~'),
+]
+
+
+def feelings_reference():
+    return _simple_table('Feeling words in Japanese',
+                         'Feeling adjectives like 嬉しい and 悲しい describe your own feelings. For someone else, Japanese '
+                         'adds そう or がる: 悲しそう (looks sad), 怖がる (to be scared). Note 好き and 嫌い take が: '
+                         '猫が好き, I like cats.',
+                         ['Word', 'Reading', 'Meaning'], FEELING_ROWS, 'Feeling words in DangoChains puzzles')
+
+
+COUNTRY_ROWS = [
+    ('日本', 'にほん', 'Japan (also にっぽん); news kanji 日'), ('アメリカ', 'アメリカ', 'the United States; news kanji 米'),
+    ('イギリス', 'イギリス', 'the United Kingdom; news kanji 英'), ('中国', 'ちゅうごく', 'China; news kanji 中'),
+    ('韓国', 'かんこく', 'South Korea; news kanji 韓'), ('フランス', 'フランス', 'France; news kanji 仏'),
+    ('ドイツ', 'ドイツ', 'Germany; news kanji 独'), ('イタリア', 'イタリア', 'Italy; news kanji 伊'),
+    ('ロシア', 'ロシア', 'Russia; news kanji 露'), ('オーストラリア', 'オーストラリア', 'Australia; news kanji 豪'),
+    ('カナダ', 'カナダ', 'Canada; news kanji 加'), ('インド', 'インド', 'India; news kanji 印'),
+    ('スペイン', 'スペイン', 'Spain'), ('ブラジル', 'ブラジル', 'Brazil'), ('メキシコ', 'メキシコ', 'Mexico'),
+    ('タイ', 'タイ', 'Thailand'), ('ベトナム', 'ベトナム', 'Vietnam'), ('外国', 'がいこく', 'a foreign country'),
+]
+
+
+def countries_reference():
+    return _simple_table('Country names in Japanese',
+                         'Add 人 (じん) for a person and 語 (ご) for a language: 日本人, 日本語, フランス語. English is 英語. '
+                         'Headlines shorten country names to one kanji, so 日米 means Japan and the US, and 訪米 a visit to '
+                         'the US.',
+                         ['Country', 'Reading', 'Meaning'], COUNTRY_ROWS, 'Country words in DangoChains puzzles')
+
+
+PLANT_ROWS = [
+    ('花', 'はな', 'flower'), ('木', 'き', 'tree; wood'), ('草', 'くさ', 'grass; weeds'), ('葉', 'は', 'leaf (葉っぱ in speech)'),
+    ('枝', 'えだ', 'branch'), ('根', 'ね', 'root'), ('種', 'たね', 'seed'), ('桜', 'さくら', 'cherry blossom; cherry tree'),
+    ('梅', 'うめ', 'Japanese plum (blossom)'), ('松', 'まつ', 'pine'), ('竹', 'たけ', 'bamboo'),
+    ('紅葉', 'こうよう / もみじ', 'autumn leaves (こうよう); maple (もみじ)'), ('菊', 'きく', 'chrysanthemum'),
+    ('向日葵', 'ひまわり', 'sunflower'), ('朝顔', 'あさがお', 'morning glory'), ('庭', 'にわ', 'garden, yard'),
+    ('植える', 'うえる', 'to plant'), ('咲く', 'さく', 'to bloom'), ('水をやる', 'みずをやる', 'to water (plants)'),
+]
+
+
+def plants_reference():
+    return _simple_table('Flowers, trees and plant words',
+                         'Flowers 咲く (bloom) and 散る (fall); plants are watered with 水をやる. 花 and 木 change in '
+                         'compounds: 花火 (はなび) is fireworks, not a flower, and 木 reads もく in 木曜日 (Thursday).',
+                         ['Word', 'Reading', 'Meaning'], PLANT_ROWS, 'Plant words in DangoChains puzzles')
+
+
+GREETING_ROWS = [
+    ('おはようございます', 'ohayō gozaimasu', 'good morning (おはよう with friends)'),
+    ('こんにちは', 'konnichiwa', 'hello; good afternoon'), ('こんばんは', 'konbanwa', 'good evening'),
+    ('おやすみなさい', 'oyasumi nasai', 'good night (before bed)'),
+    ('さようなら', 'sayōnara', 'goodbye (when you won\'t see someone for a while)'),
+    ('またね', 'mata ne', 'see you (casual)'), ('はじめまして', 'hajimemashite', 'nice to meet you (first meeting)'),
+    ('よろしくお願いします', 'yoroshiku onegai shimasu', 'after introducing yourself; also "thanks in advance"'),
+    ('ありがとうございます', 'arigatō gozaimasu', 'thank you'), ('どういたしまして', 'dō itashimashite', "you're welcome"),
+    ('すみません', 'sumimasen', 'excuse me; sorry; also thanks for trouble taken'),
+    ('ごめんなさい', 'gomen nasai', "I'm sorry (to friends and family)"),
+    ('いただきます', 'itadakimasu', 'before eating'), ('ごちそうさまでした', 'gochisōsama deshita', 'after eating'),
+    ('いってきます', 'ittekimasu', 'when you leave home'), ('いってらっしゃい', 'itterasshai', 'to someone leaving home'),
+    ('ただいま', 'tadaima', "I'm home"), ('おかえりなさい', 'okaeri nasai', 'welcome home'),
+    ('お疲れさまです', 'otsukaresama desu', 'to coworkers: hello, or thanks for your work'),
+]
+
+
+def greetings_reference():
+    return _simple_table('Everyday Japanese greetings and when to use them',
+                         'Most greetings come in pairs: いってきます is answered with いってらっしゃい, ただいま with '
+                         'おかえりなさい. ございます and なさい make a phrase polite; drop them with friends.',
+                         ['Phrase', 'Romaji', 'When you say it'], GREETING_ROWS, 'Greetings and set phrases in DangoChains puzzles')
+
+
 TOPIC_EXTRAS = {'counters': counters_reference, 'keigo': keigo_reference, 'onomatopoeia': onomatopoeia_reference,
                 'special-readings': special_readings_reference, 'palindromes': palindromes_reference,
                 'collocations': collocations_reference, 'food': food_reference,
@@ -1237,7 +1340,9 @@ TOPIC_EXTRAS = {'counters': counters_reference, 'keigo': keigo_reference, 'onoma
                 'sports-music': sports_music_reference, 'jobs': jobs_reference,
                 'travel': travel_reference, 'time': time_reference, 'money': money_reference,
                 'festivals': festivals_reference, 'health': health_reference,
-                'numbers': numbers_reference, 'colors': colors_reference}
+                'numbers': numbers_reference, 'colors': colors_reference,
+                'feelings': feelings_reference, 'countries': countries_reference, 'plants': plants_reference,
+                'greetings': greetings_reference}
 
 
 def topic_page(slug, groups):
