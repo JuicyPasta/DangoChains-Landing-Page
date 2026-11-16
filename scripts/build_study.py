@@ -291,7 +291,7 @@ TOPICS = [
      'Pets, zoo and farm animals, birds, insects and sea creatures. Animal names are written in kanji, hiragana '
      'or katakana, and all three are common.'),
     ('food', r'\b[Ff]oods?\b|[Vv]egetables?|\b[Ff]ruits?\b|[Ss]weets|\b[Dd]rinks\b|[Ss]ushi|[Tt]oppings|\b[Dd]ishes\b|[Ss]nacks|[Bb]ento|[Ss]easonings?',
-     'Japanese food vocabulary: vegetables, fruit, sweets and drinks', 'Food and drink in Japanese',
+     'Food in Japanese: fruits, vegetables, dishes, sweets and drinks with readings', 'Food and drink in Japanese',
      'Vegetables, fruit, Japanese sweets, drinks, sushi toppings and seasonings, grouped.'),
     ('school', r'[Ss]chool|[Cc]lassroom|[Ss]ubjects\b',
      'Japanese school vocabulary: 黒板, 宿題, 国語, 運動会 and more', 'School words in Japanese',
@@ -1247,15 +1247,36 @@ FOOD_ROWS = [
 ]
 
 
+FRUIT_ROWS = [
+    ('りんご', 'りんご', 'apple (林檎)'), ('みかん', 'みかん', 'mandarin orange'), ('バナナ', 'バナナ', 'banana'),
+    ('いちご', 'いちご', 'strawberry (苺)'), ('ぶどう', 'ぶどう', 'grapes (葡萄)'), ('桃', 'もも', 'peach'),
+    ('梨', 'なし', 'Japanese pear'), ('柿', 'かき', 'persimmon'), ('すいか', 'すいか', 'watermelon (西瓜)'),
+    ('メロン', 'メロン', 'melon'), ('さくらんぼ', 'さくらんぼ', 'cherries'), ('レモン', 'レモン', 'lemon'),
+]
+
+VEGETABLE_ROWS = [
+    ('野菜', 'やさい', 'vegetables'), ('大根', 'だいこん', 'daikon radish'), ('人参', 'にんじん', 'carrot'),
+    ('玉ねぎ', 'たまねぎ', 'onion'), ('じゃがいも', 'じゃがいも', 'potato'), ('キャベツ', 'キャベツ', 'cabbage'),
+    ('きゅうり', 'きゅうり', 'cucumber'), ('トマト', 'トマト', 'tomato'), ('ねぎ', 'ねぎ', 'green onion, leek'),
+    ('なす', 'なす', 'eggplant (茄子)'), ('ほうれん草', 'ほうれんそう', 'spinach'), ('かぼちゃ', 'かぼちゃ', 'pumpkin, kabocha'),
+]
+
+
 def food_reference():
-    rows = ['<h2>Basic food and drink words</h2>',
-            '<p>Before a meal, say いただきます; after it, ごちそうさまでした. ご飯 means both cooked rice and a meal, '
-            'so 晩ご飯 is simply dinner.</p>',
-            '<table class="st-table"><thead><tr><th>Word</th><th>Reading</th><th>Meaning</th></tr></thead><tbody>']
-    for w, r, m in FOOD_ROWS:
-        rows.append(f'<tr><td lang="ja">{e(w)}</td><td lang="ja">{e(r)}</td><td>{e(m)}</td></tr>')
-    rows += ['</tbody></table>', '<h2>Food and drink in DangoChains puzzles</h2>']
-    return '\n'.join(rows)
+    return '\n'.join([
+        _ja_table('Basic food and drink words',
+                  'Before a meal, say いただきます; after it, ごちそうさまでした. ご飯 means both cooked rice and a meal, '
+                  'so 晩ご飯 is simply dinner.',
+                  ['Word', 'Reading', 'Meaning'], FOOD_ROWS),
+        _ja_table('Fruits in Japanese',
+                  'Most fruit names are written in kana, even when kanji exist: りんご is far more common than 林檎. '
+                  'Fruit as a whole is 果物 (くだもの).',
+                  ['Fruit', 'Reading', 'Meaning'], FRUIT_ROWS),
+        _ja_table('Vegetables in Japanese',
+                  'Vegetables are 野菜 (やさい). Imported vegetables usually keep katakana names (キャベツ, トマト); '
+                  'older ones have kanji or hiragana (大根, ねぎ).',
+                  ['Vegetable', 'Reading', 'Meaning'], VEGETABLE_ROWS),
+        '<h2>Food and drink in DangoChains puzzles</h2>'])
 
 
 
