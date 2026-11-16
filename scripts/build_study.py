@@ -372,6 +372,13 @@ TOPICS = [
      'Flowers, trees and plants in Japanese: 花, 木, 桜, 梅, 紅葉 and more', 'Flowers, trees and plants in Japanese',
      'Flower and tree names, the parts of a plant, and what you do in a garden. The groups below are plant words from '
      'past puzzles.'),
+    ('verbs', r'^(?:True ichidan \(る-verbs\)|Look ichidan, but godan|Ends in る, but a godan verb|Cooking verbs|Cleaning verbs|'
+              r'Kitchen verbs|Exercise verbs|Bath-time verbs|Verbs made from (?:English|foreign words)|'
+              r'Ways to say ["\'](?:give|receive|eat|say|know|go)["\'](?: or ["\']come["\'])?)$',
+     'Japanese verbs: ichidan, godan and irregular verbs with examples', 'Japanese verbs',
+     'Japanese verbs come in three groups, and the group decides every form. The groups below are verbs from past '
+     'puzzles: verbs for the kitchen, cleaning and exercise, the る-verbs that are really godan, and the polite and '
+     'plain ways to say "eat", "say" and "give".'),
     ('days-months', r'^(?:Days of the week|Add 曜日 for a weekday|Add 曜日 to make a day|Weekday kanji|Months|Old month names|'
                     r'月, the month|Parts of a month|Calendar words|On the calendar|Calendar years|Days off|'
                     r'Days of the six-day calendar \(六曜\))$',
@@ -1411,6 +1418,31 @@ def days_months_reference():
         '<h2>Calendar words in DangoChains puzzles</h2>'])
 
 
+
+VERB_ROWS = [
+    ('食べる', 'たべる', 'to eat: ichidan (食べます)'), ('見る', 'みる', 'to see, watch: ichidan (見ます)'),
+    ('起きる', 'おきる', 'to get up: ichidan (起きます)'), ('寝る', 'ねる', 'to sleep, go to bed: ichidan (寝ます)'),
+    ('着る', 'きる', 'to wear (on the body): ichidan (着ます)'), ('教える', 'おしえる', 'to teach, tell: ichidan (教えます)'),
+    ('行く', 'いく', 'to go: godan (行きます; て-form 行って)'), ('書く', 'かく', 'to write: godan (書きます)'),
+    ('話す', 'はなす', 'to speak: godan (話します)'), ('飲む', 'のむ', 'to drink: godan (飲みます)'),
+    ('買う', 'かう', 'to buy: godan (買います)'), ('待つ', 'まつ', 'to wait: godan (待ちます)'),
+    ('帰る', 'かえる', 'to go home: godan, though it ends in える (帰ります)'),
+    ('入る', 'はいる', 'to enter: godan, though it ends in いる (入ります)'),
+    ('知る', 'しる', 'to know: godan (知ります; 知っています, I know)'),
+    ('切る', 'きる', 'to cut: godan (切ります), unlike 着る, to wear'),
+    ('する', 'する', 'to do: irregular (します); makes verbs from nouns: 勉強する'),
+    ('来る', 'くる', 'to come: irregular (来ます きます, 来ない こない)'),
+]
+
+
+def verbs_reference():
+    return _simple_table('Common Japanese verbs by group',
+                         'Ichidan verbs (る-verbs) drop る: 食べる → 食べます. Godan verbs (う-verbs) change their last '
+                         'sound: 書く → 書きます. Only する and 来る are irregular. A verb ending in いる or える is '
+                         'usually ichidan, but some are godan: 帰る → 帰ります, not 帰ます.',
+                         ['Verb', 'Reading', 'Meaning and group'], VERB_ROWS, 'Verbs in DangoChains puzzles')
+
+
 TOPIC_EXTRAS = {'counters': counters_reference, 'keigo': keigo_reference, 'onomatopoeia': onomatopoeia_reference,
                 'special-readings': special_readings_reference, 'palindromes': palindromes_reference,
                 'collocations': collocations_reference, 'food': food_reference,
@@ -1426,7 +1458,8 @@ TOPIC_EXTRAS = {'counters': counters_reference, 'keigo': keigo_reference, 'onoma
                 'festivals': festivals_reference, 'health': health_reference,
                 'numbers': numbers_reference, 'colors': colors_reference,
                 'feelings': feelings_reference, 'countries': countries_reference, 'plants': plants_reference,
-                'greetings': greetings_reference, 'days-months': days_months_reference}
+                'greetings': greetings_reference, 'days-months': days_months_reference,
+                'verbs': verbs_reference}
 
 
 def topic_page(slug, groups):
