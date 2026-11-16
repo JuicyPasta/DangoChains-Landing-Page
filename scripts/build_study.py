@@ -260,10 +260,10 @@ TOPICS = [
      'Japanese abbreviations: 就活, 部活, 終電, スマホ and more', 'Japanese abbreviations (略語)',
      'Japanese clips long words and phrases: 就職活動 becomes 就活, スマートフォン becomes スマホ.'),
     ('keigo', r'[Hh]umble|[Hh]onorific|[Kk]eigo|kenjougo|sonkeigo|[Rr]espectful',
-     'Keigo verbs: humble (謙譲語) and honorific (尊敬語) forms', 'Keigo: humble and honorific verbs',
+     'Keigo: Japanese honorific (尊敬語) and humble (謙譲語) verbs with examples', 'Keigo: humble and honorific verbs',
      'Polite Japanese swaps everyday verbs for humble forms (about yourself) or honorific forms (about others).'),
     ('idioms', r'[Ii]diom|四字|[Ff]our-character|[Pp]roverb|ことわざ',
-     'Japanese idioms (四字熟語) and proverbs (ことわざ) with meanings', 'Japanese idioms and proverbs',
+     'Japanese proverbs (ことわざ) and four-kanji idioms (四字熟語) with meanings', 'Japanese idioms and proverbs',
      'Groups of idioms and proverbs that share a word or an idea.'),
     ('false-friends', r"(?:that|which) (?:isn't|aren't|don't|doesn't)|n't about|not about",
      'Kanji that don\'t mean what they look like (目 that isn\'t an eye…)', 'Kanji that don\'t mean what they look like',
@@ -297,7 +297,7 @@ TOPICS = [
      'Japanese school vocabulary: 黒板, 宿題, 国語, 運動会 and more', 'School words in Japanese',
      'School subjects, classroom things and school events: the vocabulary of every Japanese school story.'),
     ('clothes', r'\b[Cc]lothes\b|[Cc]lothing|[Ff]ootwear|[Ww]orn (?:with|on|at)|\b(?:[Ww]inter|[Ss]ummer) wear\b',
-     'Japanese clothes vocabulary, and which verb to wear them with (着る, はく, かぶる)', 'Clothes in Japanese',
+     'Clothes in Japanese: clothing words and the verb to wear each (着る, はく, かぶる)', 'Clothes in Japanese',
      'Japanese uses different verbs for wearing: 着る for the upper body, はく for shoes and trousers, かぶる for hats. '
      'The groups below cover clothes, footwear and what goes with each verb.'),
     ('family', r'\b[Ff]amily\b(?! names?)',
@@ -310,11 +310,11 @@ TOPICS = [
      '勝負 (a match: win or lose). Each group below is built on opposites.'),
     # Beginner vocabulary themes (added 2026-11-15): appended last, so the topics above keep their groups.
     ('seasons', r'^(?:Summer|Winter|Spring|Autumn)\b(?! homework)|^(?:Hot summer day|Cherry blossom season|Season words)|\b(?:[Ss]ummer|[Ww]inter|[Aa]utumn) (?:fun|treats|things|heat|festival|flavors|plants|scenery|warmers|comforts|events|break|vacation)\b|^Keeping warm in winter',
-     'Japanese seasonal vocabulary: words for spring, summer, autumn and winter', 'The four seasons in Japanese',
+     'Japanese seasons: words for spring, summer, autumn and winter', 'The four seasons in Japanese',
      'Japanese marks the seasons with its own vocabulary: 花見 and 桜 in spring, 花火 and 風鈴 in summer, 紅葉 in autumn, '
      'こたつ in winter. Haiku even require a season word (季語). The groups below are seasonal words from past puzzles.'),
     ('house', r'^(?:Rooms(?: of a house)?|Parts of (?:a room|a house|an old Japanese house)|In the (?:bedroom|living room|bathroom|kitchen)|Living room|Bedroom|(?:In a )?Japanese-style room|Kitchen (?:tools|things|staples|fixtures|appliances)|At the kitchen sink|Home (?:appliances|electronics)|Housework)$',
-     'Japanese vocabulary for the house: rooms, kitchen, furniture and housework', 'Around the house in Japanese',
+     'House in Japanese: rooms, kitchen, furniture and housework words', 'Around the house in Japanese',
      'Rooms, furniture, kitchen tools and chores: the everyday words of a Japanese home, including the 和室 '
      '(Japanese-style room) with its 畳, 障子 and 押し入れ.'),
     ('town', r'^(?:Places (?:in town|to (?:have fun|stay|eat|shop|play|live|sleep))|Around town|In town|Getting around town|At the station|(?:At the )?[Pp]ost office|Shops(?: ending in 屋| \(〜屋\))?|At a shop|Shopping street|Cake shop|At the noodle shop|Toy shop)$',
@@ -322,11 +322,11 @@ TOPICS = [
      'Where to eat, shop, stay and play: place words for getting around a Japanese town, including the shops named '
      'with 〜屋 (本屋, 花屋, 八百屋).'),
     ('sports-music', r'^(?:Sports(?: day| words| verbs)?|Ball sports|Team sports people|(?:In )?[Bb]aseball\b.*|(?:Percussion |Japanese |Western |Traditional )?[Ii]nstruments(?: you .*| in old kanji)?|Music(?: class| theory| genres| gear| terms)?|Making music)$',
-     'Sports and musical instruments in Japanese: vocabulary with readings', 'Sports and music in Japanese',
+     'Musical instruments and sports in Japanese, with the verb each takes (弾く, 吹く, する)', 'Sports and music in Japanese',
      'Ball games, team sports, baseball words and musical instruments, Western and traditional (琴, 三味線, 太鼓), '
      'with the verbs that go with them.'),
     ('jobs', r'^(?:Jobs|Job (?:hunting|interview|changes)|Losing a job|Work|Working(?: hours)?|Going to work|At the office|Office (?:machines|wear|equipment|life|work|paperwork)|On an office desk|Work hierarchy|Sales work|Workplace ranks)$',
-     'Jobs and office vocabulary in Japanese: 会社員, 上司, 残業, 就活 and more', 'Jobs and work in Japanese',
+     'Jobs in Japanese: 会社員, 上司, 残業, 就活 and other work words', 'Jobs and work in Japanese',
      'Job titles, office life, job hunting (就活) and company ranks: the vocabulary of working in Japan.'),
     ('travel', r'^(?:Vehicles(?: on the road)?|Old wheeled vehicles|Trip things|Packing for a trip|A car trip|Ski trip|Hot spring trip|Golden Week trip|On a trip|Ways to travel|Travel(?: party)?|Night travel|Old ways to travel|Train travel|Trains|On the train|Train (?:words|tickets|seats)|Kinds of trains|Car parts|Inside a car|On the bus|At the airport)$',
      'Japanese travel and transport vocabulary: trains, buses, cars and trips', 'Travel and transport in Japanese',
@@ -337,11 +337,11 @@ TOPICS = [
      'Telling the time, parts of the day and units of time, with the reading changes that trip learners up '
      '(一分 is いっぷん, not いちふん).'),
     ('money', r'^(?:Money(?: verbs| talk| matters| words without 金)?|Raising money|Collecting money|Borrowing money|Saving money|Ways to save money|金, money|Household money|Company money|Prices|Rising prices|Price words|Pay|Paying(?: up)?|Ways to pay|Shopping(?: deals)?)$',
-     'Money and shopping vocabulary in Japanese: prices, paying and saving', 'Money and shopping in Japanese',
+     'Money in Japanese: prices, paying, saving and shopping words', 'Money and shopping in Japanese',
      'Prices, paying, saving and borrowing: the money words of everyday Japanese, including the pair learners mix up, '
      '借りる (to borrow) and 貸す (to lend).'),
     ('festivals', r'^(?:Festival (?:drumming|stalls|night)|Doll Festival.*|On the Doll Festival table|Festivals(?: and fairs)?)$',
-     'Japanese festival vocabulary: stalls, dances, fireworks and festival days', 'Festivals in Japanese',
+     'Japanese festivals: 祭り, 花火大会, 盆踊り and the festival year, with readings', 'Festivals in Japanese',
      'Summer 祭り with food stalls (屋台), Bon dancing and fireworks, and the festival days of the year, from ひな祭り '
      'in March to 七夕 in July.'),
     ('health', r"^(?:At the hospital|Hospital (?:visit|words from (?:English|German)|tools)|A hospital stay|Being sick|When you're sick|Feeling sick|At the doctor's)$",
