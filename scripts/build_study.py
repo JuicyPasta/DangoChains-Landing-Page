@@ -1546,9 +1546,9 @@ def topic_page(slug, groups):
 
 
 def topics_index(topics):
-    title = 'Japanese vocabulary by topic: counters, keigo, wasei-eigo and more'
-    desc = ('Japanese word groups by topic, with readings and English meanings: counters, kanji readings, verb '
-            'collocations, wasei-eigo, loanwords, abbreviations, keigo, idioms and more.')
+    title = 'Japanese vocabulary lists by topic: numbers, colors, food, family, verbs and more'
+    desc = ('Japanese vocabulary by topic with readings and English meanings: numbers, colors, days and months, family, '
+            'food, animals, clothes, flowers, verbs, adjectives, greetings, counters, keigo, idioms and more.')
     body = [front_matter(title, desc), '{% raw %}', STYLE, '<h1>Japanese vocabulary by topic</h1>',
             '<p>Every group from past DangoChains puzzles, sorted by the kind of trick it plays. Each word has its '
             'reading and an English meaning.</p>', '<ul class="st-topics">']
