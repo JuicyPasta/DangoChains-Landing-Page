@@ -284,7 +284,7 @@ TOPICS = [
      'Words for the body and the face, grouped the way the puzzles use them. Some groups play with the words, '
      'like words that start with a body part.'),
     ('weather', r'[Ww]eather|[Rr]ainy season|\b[Ss]ky\b|[Ss]torm|\b[Ss]now\b|\b[Rr]ain\b|[Tt]yphoon',
-     'Japanese weather words: 雨, 雪, 台風, 梅雨, 虹 and more', 'Weather and sky words in Japanese',
+     'Weather in Japanese: 雨, 雪, 台風, 梅雨, 虹 and other weather words', 'Weather and sky words in Japanese',
      'Rain, storms, the rainy season (梅雨) and what you see in the sky, grouped.'),
     ('animals', r'\b[Aa]nimals?\b|\b[Bb]irds?\b|[Cc]reatures|[Zz]odiac|\b[Ii]nsects?\b|\b[Ff]ish\b|[Pp]ets?\b|^(?:Bugs|Real bugs(?: with 虫 in the name)?)$',
      'Animals and insects in Japanese: 犬, 牛, うさぎ, 蝶, 蝉, クジラ and more', 'Animals in Japanese',
@@ -372,6 +372,10 @@ TOPICS = [
      'Flowers, trees and plants in Japanese: 花, 木, 桜, 梅, 紅葉 and more', 'Flowers, trees and plants in Japanese',
      'Flower and tree names, the parts of a plant, and what you do in a garden. The groups below are plant words from '
      'past puzzles.'),
+    ('love', r'^(?:Love|Romance|Love and longing|Love life)$',
+     'Love in Japanese: 好き, 愛してる, 恋, 片思い and other love words', 'Love words in Japanese',
+     'How Japanese says "I love you" (mostly it doesn\'t), and the words for crushes, dating and first love. The groups '
+     'below are love and romance words from past puzzles.'),
     ('adjectives', r'^(?:な-adjectives(?: ending in い)?|Look like な-adjectives, but aren\'t|How it tastes|Taste words|Basic tastes|'
                    r'Textures|Describing a book)$',
      'Japanese adjectives: い-adjectives and な-adjectives with examples', 'Japanese adjectives',
@@ -1503,6 +1507,26 @@ def adjectives_reference():
                          ['Adjective', 'Reading', 'Meaning and type'], ADJECTIVE_ROWS, 'Adjectives in DangoChains puzzles')
 
 
+
+LOVE_ROWS = [
+    ('好き', 'すき', 'to like; to love. 好きです is the classic confession'), ('大好き', 'だいすき', 'to love, like a lot'),
+    ('愛してる', 'あいしてる', '"I love you": strong, and rare in everyday speech'), ('愛', 'あい', 'love (deep, lasting)'),
+    ('恋', 'こい', 'romantic love, being in love'), ('恋人', 'こいびと', 'sweetheart, partner'),
+    ('彼氏', 'かれし', 'boyfriend'), ('彼女', 'かのじょ', 'girlfriend; she'), ('片思い', 'かたおもい', 'a one-sided crush'),
+    ('初恋', 'はつこい', 'first love'), ('一目惚れ', 'ひとめぼれ', 'love at first sight'),
+    ('告白', 'こくはく', 'confessing your feelings (asking someone out)'), ('付き合う', 'つきあう', 'to go out with, to date'),
+    ('デート', 'デート', 'a date'), ('結婚', 'けっこん', 'marriage; 結婚する, to get married'),
+]
+
+
+def love_reference():
+    return _simple_table('Saying "I love you" in Japanese, and other love words',
+                         'Japanese rarely says 愛してる out loud. 好き and 大好き do most of the work, and a relationship '
+                         'usually starts with a 告白: 好きです、付き合ってください (I like you; will you go out with me?). '
+                         '恋 is falling in love; 愛 is the deeper, lasting kind.',
+                         ['Word', 'Reading', 'Meaning'], LOVE_ROWS, 'Love words in DangoChains puzzles')
+
+
 TOPIC_EXTRAS = {'counters': counters_reference, 'keigo': keigo_reference, 'onomatopoeia': onomatopoeia_reference,
                 'special-readings': special_readings_reference, 'palindromes': palindromes_reference,
                 'collocations': collocations_reference, 'food': food_reference,
@@ -1519,7 +1543,8 @@ TOPIC_EXTRAS = {'counters': counters_reference, 'keigo': keigo_reference, 'onoma
                 'numbers': numbers_reference, 'colors': colors_reference,
                 'feelings': feelings_reference, 'countries': countries_reference, 'plants': plants_reference,
                 'greetings': greetings_reference, 'days-months': days_months_reference,
-                'verbs': verbs_reference, 'adjectives': adjectives_reference}
+                'verbs': verbs_reference, 'adjectives': adjectives_reference,
+                'love': love_reference}
 
 
 def topic_page(slug, groups):
