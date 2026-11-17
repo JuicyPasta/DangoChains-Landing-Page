@@ -1611,7 +1611,10 @@ def topics_index(topics):
              '<a href="/hiragana-chart/" target="_self">hiragana chart</a> · <a href="/katakana-chart/" target="_self">katakana chart</a> · '
              '<a href="/japanese-particles/" target="_self">particles</a> · '
              '<a href="/beautiful-japanese-words/" target="_self">beautiful words</a> · '
-             '<a href="/cute-japanese-words/" target="_self">cute words</a></p>',
+             '<a href="/cute-japanese-words/" target="_self">cute words</a> · '
+             '<a href="/japanese-slang/" target="_self">slang</a> · '
+             '<a href="/cat-in-japanese/" target="_self">cat</a> · <a href="/dog-in-japanese/" target="_self">dog</a> · '
+             '<a href="/moon-in-japanese/" target="_self">moon</a> · <a href="/friend-in-japanese/" target="_self">friend</a></p>',
              CTA, '{% endraw %}']
     return '\n'.join(body) + '\n'
 
