@@ -15,7 +15,7 @@ description: "How to say cat in Japanese: 猫 (neko), with kitten, meow, calico,
 <tr><td lang="ja">子猫</td><td lang="ja">こねこ</td><td>koneko</td><td>kitten</td></tr>
 <tr><td lang="ja">野良猫</td><td lang="ja">のらねこ</td><td>noraneko</td><td>stray cat</td></tr>
 <tr><td lang="ja">飼い猫</td><td lang="ja">かいねこ</td><td>kaineko</td><td>pet cat</td></tr>
-<tr><td lang="ja">黒猫</td><td lang="ja">くろねこ</td><td>kuroneko</td><td>black cat (lucky in Japan)</td></tr>
+<tr><td lang="ja">黒猫</td><td lang="ja">くろねこ</td><td>kuroneko</td><td>black cat (traditionally a lucky charm in Japan)</td></tr>
 <tr><td lang="ja">三毛猫</td><td lang="ja">みけねこ</td><td>mikeneko</td><td>calico (three-colour) cat</td></tr>
 <tr><td lang="ja">招き猫</td><td lang="ja">まねきねこ</td><td>maneki-neko</td><td>the beckoning lucky cat in shops</td></tr>
 <tr><td lang="ja">猫カフェ</td><td lang="ja">ねこカフェ</td><td>neko kafe</td><td>cat café</td></tr>
