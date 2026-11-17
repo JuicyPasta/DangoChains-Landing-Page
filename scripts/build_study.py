@@ -291,7 +291,7 @@ TOPICS = [
      'Pets, zoo and farm animals, birds, insects and sea creatures. Animal names are written in kanji, hiragana '
      'or katakana, and all three are common.'),
     ('food', r'\b[Ff]oods?\b|[Vv]egetables?|\b[Ff]ruits?\b|[Ss]weets|\b[Dd]rinks\b|[Ss]ushi|[Tt]oppings|\b[Dd]ishes\b|[Ss]nacks|[Bb]ento|[Ss]easonings?',
-     'Food in Japanese: fruits, vegetables, dishes, sweets and drinks with readings', 'Food and drink in Japanese',
+     'Japanese food names: dishes, fruits, vegetables, sweets and drinks with readings', 'Food and drink in Japanese',
      'Vegetables, fruit, Japanese sweets, drinks, sushi toppings and seasonings, grouped.'),
     ('school', r'[Ss]chool|[Cc]lassroom|[Ss]ubjects\b',
      'Japanese school vocabulary: 黒板, 宿題, 国語, 運動会 and more', 'School words in Japanese',
@@ -1607,7 +1607,11 @@ def topics_index(topics):
             body.append(f'<li><a href="/study/topics/{slug}/" target="_self">{e(h1)}</a> ({len(topics[slug])} groups)</li>')
     body += ['</ul>', '<p><b>By JLPT level:</b> <a href="/study/jlpt/" target="_self">N5 to N1 word lists</a></p>',
              '<p><b>Start here:</b> <a href="/japanese-words/" target="_self">64 basic Japanese words</a> · '
-             '<a href="/phrases/" target="_self">30 basic Japanese phrases</a></p>',
+             '<a href="/phrases/" target="_self">30 basic Japanese phrases</a> · '
+             '<a href="/hiragana-chart/" target="_self">hiragana chart</a> · <a href="/katakana-chart/" target="_self">katakana chart</a> · '
+             '<a href="/japanese-particles/" target="_self">particles</a> · '
+             '<a href="/beautiful-japanese-words/" target="_self">beautiful words</a> · '
+             '<a href="/cute-japanese-words/" target="_self">cute words</a></p>',
              CTA, '{% endraw %}']
     return '\n'.join(body) + '\n'
 
