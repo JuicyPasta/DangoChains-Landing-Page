@@ -373,7 +373,7 @@ TOPICS = [
      'Flower and tree names, the parts of a plant, and what you do in a garden. The groups below are plant words from '
      'past puzzles.'),
     ('love', r'^(?:Love|Romance|Love and longing|Love life)$',
-     'Love in Japanese: 好き, 愛してる, 恋, 片思い and other love words', 'Love words in Japanese',
+     'I love you in Japanese: 好き, 大好き, 愛してる and other love words', 'Love in Japanese: how to say I love you',
      'How Japanese says "I love you" (mostly it doesn\'t), and the words for crushes, dating and first love. The groups '
      'below are love and romance words from past puzzles.'),
     ('adjectives', r'^(?:な-adjectives(?: ending in い)?|Look like な-adjectives, but aren\'t|How it tastes|Taste words|Basic tastes|'
@@ -1614,7 +1614,8 @@ def topics_index(topics):
              '<a href="/cute-japanese-words/" target="_self">cute words</a> · '
              '<a href="/japanese-slang/" target="_self">slang</a> · '
              '<a href="/cat-in-japanese/" target="_self">cat</a> · <a href="/dog-in-japanese/" target="_self">dog</a> · '
-             '<a href="/moon-in-japanese/" target="_self">moon</a> · <a href="/friend-in-japanese/" target="_self">friend</a></p>',
+             '<a href="/moon-in-japanese/" target="_self">moon</a> · <a href="/friend-in-japanese/" target="_self">friend</a> · '
+             '<a href="/dragon-in-japanese/" target="_self">dragon</a> · <a href="/japanese-last-names/" target="_self">last names</a></p>',
              CTA, '{% endraw %}']
     return '\n'.join(body) + '\n'
 

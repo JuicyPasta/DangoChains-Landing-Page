@@ -2,13 +2,21 @@
 layout: page
 permalink: /beautiful-japanese-words/
 title: "Beautiful Japanese words"
-seo_title: "Beautiful Japanese words with deep meanings: komorebi, wabi-sabi, ikigai and 21 more"
+seo_title: "Beautiful in Japanese: きれい, 美しい, and 24 beautiful words with deep meanings"
 description: "24 beautiful Japanese words with deep meanings, each with kanji, reading, romaji and what it really means: komorebi, mono no aware, wabi-sabi, ikigai, ichigo ichie, tsundoku, koi no yokan and more."
 ---
 
 <style>.st-table{border-collapse:collapse;margin:.3em 0 1em;width:100%}.st-table th,.st-table td{border-bottom:1px solid #e6e6e6;padding:.35em .5em;text-align:left;vertical-align:top}.st-table td[lang=ja]{font-size:1.1em;white-space:nowrap}.st-cta{background:#f6f2ea;border-radius:12px;padding:1em 1.2em;margin:2em 0}</style>
 <h1>Beautiful Japanese words with deep meanings</h1>
 <p>Some Japanese words pack a whole scene or feeling into a few kanji, which is why they turn up on lists of "untranslatable" words. Here are 24, with the reading and what each one means in use. A few (<i>wabi-sabi</i>, <i>ikigai</i>) mean something broader in English than in everyday Japanese; the notes say so.</p>
+<h2>How to say "beautiful"</h2>
+<table class="st-table"><thead><tr><th>Word</th><th>Reading</th><th>Romaji</th><th>Meaning</th></tr></thead><tbody>
+<tr><td lang="ja">綺麗</td><td lang="ja">きれい</td><td>kirei</td><td>beautiful, pretty; also "clean". The everyday word (usually written in hiragana)</td></tr>
+<tr><td lang="ja">美しい</td><td lang="ja">うつくしい</td><td>utsukushii</td><td>beautiful, in a more serious or literary way (scenery, music, writing)</td></tr>
+<tr><td lang="ja">素敵</td><td lang="ja">すてき</td><td>suteki</td><td>lovely, wonderful (a dress, an idea, a person)</td></tr>
+<tr><td lang="ja">美人</td><td lang="ja">びじん</td><td>bijin</td><td>a beautiful woman</td></tr>
+<tr><td lang="ja">絶景</td><td lang="ja">ぜっけい</td><td>zekkei</td><td>a breathtaking view</td></tr>
+</tbody></table>
 <h2>Nature and the seasons</h2>
 <table class="st-table"><thead><tr><th>Word</th><th>Reading</th><th>Romaji</th><th>Meaning</th></tr></thead><tbody>
 <tr><td lang="ja">木漏れ日</td><td lang="ja">こもれび</td><td>komorebi</td><td>sunlight filtering through the leaves of trees</td></tr>

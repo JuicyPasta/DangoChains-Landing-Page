@@ -2,7 +2,7 @@
 layout: page
 permalink: /cute-japanese-words/
 title: "Cute Japanese words"
-seo_title: "Cute Japanese words: kawaii, fuwafuwa, mochimochi and 21 more, with meanings"
+seo_title: "Cute in Japanese: かわいい (kawaii) and 23 more cute Japanese words"
 description: "24 cute Japanese words with readings, romaji and meanings: kawaii, fuwafuwa, mofumofu, mochimochi, kirakira, pokapoka, hiyoko, dango and more, including the sound words that make Japanese sound soft."
 ---
 
