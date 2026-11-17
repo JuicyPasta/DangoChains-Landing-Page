@@ -1420,7 +1420,16 @@ def greetings_reference():
     return _simple_table('Everyday Japanese greetings and when to use them',
                          'Most greetings come in pairs: いってきます is answered with いってらっしゃい, ただいま with '
                          'おかえりなさい. ございます and なさい make a phrase polite; drop them with friends.',
-                         ['Phrase', 'Romaji', 'When you say it'], GREETING_ROWS, 'Greetings and set phrases in DangoChains puzzles')
+                         ['Phrase', 'Romaji', 'When you say it'], GREETING_ROWS, 'Greetings and set phrases in DangoChains puzzles') + (
+        '<p><b>Phrase guides</b> (every way to say it, and when): '
+        '<a href="/phrases/hello-in-japanese/" target="_self">hello</a> · '
+        '<a href="/phrases/thank-you-in-japanese/" target="_self">thank you</a> · '
+        '<a href="/phrases/sorry-in-japanese/" target="_self">sorry</a> · '
+        '<a href="/phrases/goodbye-in-japanese/" target="_self">goodbye</a> · '
+        '<a href="/phrases/good-morning-in-japanese/" target="_self">good morning</a> · '
+        '<a href="/phrases/good-night-in-japanese/" target="_self">good night</a> · '
+        '<a href="/phrases/how-are-you-in-japanese/" target="_self">how are you</a> · '
+        '<a href="/phrases/" target="_self">30 basic phrases</a></p>')
 
 
 
@@ -1597,6 +1606,8 @@ def topics_index(topics):
         if topics.get(slug):
             body.append(f'<li><a href="/study/topics/{slug}/" target="_self">{e(h1)}</a> ({len(topics[slug])} groups)</li>')
     body += ['</ul>', '<p><b>By JLPT level:</b> <a href="/study/jlpt/" target="_self">N5 to N1 word lists</a></p>',
+             '<p><b>Start here:</b> <a href="/japanese-words/" target="_self">64 basic Japanese words</a> · '
+             '<a href="/phrases/" target="_self">30 basic Japanese phrases</a></p>',
              CTA, '{% endraw %}']
     return '\n'.join(body) + '\n'
 

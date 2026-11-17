@@ -6,6 +6,8 @@ title: "Palabras en japonés"
 seo_title: "Palabras en japonés: 64 palabras básicas con significado y romaji"
 description: "Palabras básicas en japonés con kanji, lectura, romaji y significado en español: personas, comida, lugares, tiempo, verbos y adjetivos de nivel inicial (JLPT N5)."
 alternates:
+  - lang: en
+    url: /japanese-words/
   - lang: pt
     url: /pt/palavras-em-japones/
 ---
