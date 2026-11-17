@@ -31,10 +31,17 @@ Type 16 words in four groups and get a link to a playable board, with readings f
 
 [Make a board]({{ '/make/' | relative_url }})
 
+## Kana quiz
+
+Learning to read? See a hiragana or katakana character and pick its romaji, twenty a round, with the ones you missed listed at the end. Add the voiced sounds (が, ぱ) and combinations (きゃ) when the basics feel easy.
+
+[Hiragana quiz]({{ '/hiragana-quiz/' | relative_url }}) · [Katakana quiz]({{ '/katakana-quiz/' | relative_url }}) · [Hiragana chart]({{ '/hiragana-chart/' | relative_url }})
+
 ## Study between games
 
 - [JLPT N5 to N1 word lists]({{ '/study/jlpt/' | relative_url }}) from past puzzles
 - [Vocabulary by topic]({{ '/study/topics/' | relative_url }}): counters, keigo, onomatopoeia, wasei-eigo and more
+- [Basic Japanese phrases]({{ '/phrases/' | relative_url }}) and [64 basic words]({{ '/japanese-words/' | relative_url }})
 - [Every past puzzle]({{ '/study/' | relative_url }}), with the answers behind a spoiler gate
 
 ## The app
