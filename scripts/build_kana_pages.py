@@ -1,0 +1,161 @@
+"""Writes _pages/{hiragana-chart,katakana-chart,japanese-alphabet}.md. Run: python3 scripts/build_kana_pages.py . (repo root). Edit here, not in the .md files."""
+import os, sys
+ROOT = sys.argv[1]
+STYLE = ('<style>.st-table{border-collapse:collapse;margin:.3em 0 1em;width:100%}.st-table th,.st-table td{border-bottom:1px solid #e6e6e6;padding:.35em .5em;text-align:left;vertical-align:top}'
+         '.st-table td[lang=ja]{font-size:1.1em;white-space:nowrap}.st-cta{background:#f6f2ea;border-radius:12px;padding:1em 1.2em;margin:2em 0}'
+         '.kana-grid{border-collapse:collapse;margin:.4em 0 1.2em;width:100%;max-width:34rem;table-layout:fixed}'
+         '.kana-grid td,.kana-grid th{border:1px solid #e6e6e6;text-align:center;padding:.3em .1em}.kana-grid th{font-size:.8em;opacity:.7}'
+         '.kana-grid td span{display:block;font-size:1.7em;line-height:1.2}.kana-grid td small{display:block;font-size:.85em;opacity:.75}</style>')
+CTA = ('<div class="st-cta"><p><b>Practise reading with a daily puzzle.</b> DangoChains gives you 16 Japanese words a day to sort into 4 hidden groups. '
+       'The Easy board uses everyday words with furigana (kana over every kanji), so it\'s good kana reading practice. Free in your browser; after each game you '
+       'see every word\'s reading and English meaning. <a href="/play/?t=easy">Play today\'s Easy puzzle</a></p></div>')
+GOJUON = [('', ['a', 'i', 'u', 'e', 'o'], 'あいうえお'), ('k', ['ka', 'ki', 'ku', 'ke', 'ko'], 'かきくけこ'), ('s', ['sa', 'shi', 'su', 'se', 'so'], 'さしすせそ'),
+          ('t', ['ta', 'chi', 'tsu', 'te', 'to'], 'たちつてと'), ('n', ['na', 'ni', 'nu', 'ne', 'no'], 'なにぬねの'), ('h', ['ha', 'hi', 'fu', 'he', 'ho'], 'はひふへほ'),
+          ('m', ['ma', 'mi', 'mu', 'me', 'mo'], 'まみむめも'), ('y', ['ya', '', 'yu', '', 'yo'], 'や　ゆ　よ'), ('r', ['ra', 'ri', 'ru', 're', 'ro'], 'らりるれろ'),
+          ('w', ['wa', '', '', '', 'o (wo)'], 'わ　　　を'), ('n', ['n', '', '', '', ''], 'ん　　　　')]
+DAKUTEN = [('g', ['ga', 'gi', 'gu', 'ge', 'go'], 'がぎぐげご'), ('z', ['za', 'ji', 'zu', 'ze', 'zo'], 'ざじずぜぞ'), ('d', ['da', 'ji', 'zu', 'de', 'do'], 'だぢづでど'),
+           ('b', ['ba', 'bi', 'bu', 'be', 'bo'], 'ばびぶべぼ'), ('p', ['pa', 'pi', 'pu', 'pe', 'po'], 'ぱぴぷぺぽ')]
+YOON = [('ky', 'き'), ('sh', 'し'), ('ch', 'ち'), ('ny', 'に'), ('hy', 'ひ'), ('my', 'み'), ('ry', 'り'), ('gy', 'ぎ'), ('j', 'じ'), ('by', 'び'), ('py', 'ぴ')]
+
+def kata(s):
+    return ''.join(chr(ord(c) + 0x60) if 'ぁ' <= c <= 'ゖ' else c for c in s)
+
+def grid(rows, conv, heads=('a', 'i', 'u', 'e', 'o')):
+    out = ['<table class="kana-grid"><thead><tr><th></th>' + ''.join(f'<th>{h}</th>' for h in heads) + '</tr></thead><tbody>']
+    for cons, roms, chars in rows:
+        cells = []
+        for ch, ro in zip(chars, roms):
+            cells.append('<td></td>' if ch == '　' else f'<td><span lang="ja">{conv(ch)}</span><small>{ro}</small></td>')
+        out.append(f'<tr><th>{cons or "–"}</th>' + ''.join(cells) + '</tr>')
+    out.append('</tbody></table>')
+    return '\n'.join(out)
+
+def yoon_grid(conv):
+    out = ['<table class="kana-grid"><thead><tr><th></th><th>ya</th><th>yu</th><th>yo</th></tr></thead><tbody>']
+    for cons, base in YOON:
+        cells = ''
+        for small, v in (('ゃ', 'a'), ('ゅ', 'u'), ('ょ', 'o')):
+            ro = cons + v if cons in ('sh', 'ch', 'j') else cons + 'y'[0:0] + v
+            if cons not in ('sh', 'ch', 'j'):
+                ro = cons + v  # ky + a = kya
+            cells += f'<td><span lang="ja">{conv(base + small)}</span><small>{ro}</small></td>'
+        out.append(f'<tr><th>{conv(base)}</th>{cells}</tr>')
+    out.append('</tbody></table>')
+    return '\n'.join(out)
+
+def simple(head, rows, ja_cols=(0,)):
+    out = ['<table class="st-table"><thead><tr>' + ''.join(f'<th>{h}</th>' for h in head) + '</tr></thead><tbody>']
+    for r in rows:
+        out.append('<tr>' + ''.join(f'<td lang="ja">{c}</td>' if i in ja_cols else f'<td>{c}</td>' for i, c in enumerate(r)) + '</tr>')
+    out.append('</tbody></table>')
+    return '\n'.join(out)
+
+def write(name, permalink, title, seo, desc, body):
+    fm = f'---\nlayout: page\npermalink: {permalink}\ntitle: "{title}"\nseo_title: "{seo}"\ndescription: "{desc}"\n---\n\n'
+    open(os.path.join(ROOT, '_pages', name), 'w', encoding='utf-8').write(fm + STYLE + '\n' + body + '\n')
+
+ident = lambda s: s
+NAV = ('<p><b>Japanese scripts:</b> <a href="/japanese-alphabet/">the Japanese alphabet explained</a> · <a href="/hiragana-chart/">hiragana chart</a> · '
+       '<a href="/katakana-chart/">katakana chart</a> · <a href="/hiragana-quiz/">hiragana quiz</a> · <a href="/katakana-quiz/">katakana quiz</a> · <a href="/japanese-words/">64 basic words</a> · <a href="/phrases/">basic phrases</a> · '
+       '<a href="/study/jlpt/n5/">JLPT N5 words</a></p>')
+
+write('hiragana-chart.md', '/hiragana-chart/', 'Hiragana chart',
+ 'Hiragana chart with romaji: all 46 characters, dakuten and combinations',
+ 'Hiragana chart with romaji: the 46 basic hiragana, the voiced ones with dakuten (が, ざ, だ, ば, ぱ), the combinations like きゃ and しょ, the small っ, long vowels, and the characters that trip learners up.',
+ '\n'.join(['<h1>Hiragana chart</h1>',
+  '<p>Hiragana is the first Japanese script to learn: 46 basic characters, each one a syllable. It writes grammar (endings and particles like <span lang="ja">は</span>, <span lang="ja">を</span>, <span lang="ja">です</span>), '
+  'native words without common kanji, and the furigana printed over kanji. Read the chart by rows: the consonant on the left plus the vowel at the top. '
+  'Japanese order runs あいうえお, not a e i o u.</p>',
+  '<p><b>Test yourself:</b> <a href="/hiragana-quiz/">hiragana quiz</a> (free, 20 questions a round).</p>', '<h2>The 46 basic hiragana</h2>', grid(GOJUON, ident),
+  '<p><b>Watch these:</b> <span lang="ja">し</span> is <i>shi</i>, <span lang="ja">ち</span> <i>chi</i>, <span lang="ja">つ</span> <i>tsu</i> and <span lang="ja">ふ</span> <i>fu</i> (between f and h). '
+  '<span lang="ja">を</span> sounds like <i>o</i> and is only used as a particle. As particles, <span lang="ja">は</span> is read <i>wa</i> and <span lang="ja">へ</span> <i>e</i>. '
+  '<span lang="ja">ん</span> is the only consonant that stands alone.</p>',
+  '<h2>Dakuten and handakuten: voiced sounds</h2>',
+  '<p>Two small marks (<span lang="ja">゛</span>, <i>dakuten</i>) make a sound voiced: k → g, s → z, t → d, h → b. A small circle (<span lang="ja">゜</span>, <i>handakuten</i>) turns h into p. '
+  '<span lang="ja">ぢ</span> and <span lang="ja">づ</span> sound like <span lang="ja">じ</span> and <span lang="ja">ず</span> and are rare.</p>', grid(DAKUTEN, ident),
+  '<h2>Combinations (yōon)</h2>',
+  '<p>A small <span lang="ja">ゃ</span>, <span lang="ja">ゅ</span> or <span lang="ja">ょ</span> after an i-column character makes one syllable: <span lang="ja">き</span> + <span lang="ja">ゃ</span> = <span lang="ja">きゃ</span> <i>kya</i>. '
+  'Compare <span lang="ja">びょういん</span> (<i>byōin</i>, hospital) with <span lang="ja">びよういん</span> (<i>biyōin</i>, hair salon).</p>', yoon_grid(ident),
+  '<h2>Small っ and long vowels</h2>',
+  simple(['Example', 'Romaji', 'Meaning', 'What happens'], [
+   ('きって', 'kitte', 'stamp', 'a small <span lang="ja">っ</span> doubles the next consonant (a short pause)'),
+   ('きて', 'kite', 'come (and…)', 'without it, no pause'),
+   ('おかあさん', 'okāsan', 'mother', 'a vowel written twice is held twice as long'),
+   ('おばさん / おばあさん', 'obasan / obāsan', 'aunt / grandmother', 'the length changes the word'),
+   ('がっこう', 'gakkō', 'school', 'お + う is a long ō'),
+   ('とけい', 'tokei', 'clock', 'え + い is usually read as a long ē'),
+  ]),
+  '<h2>Characters that look alike</h2>',
+  simple(['Pair', 'Romaji', 'Tell them apart'], [
+   ('さ / ち', 'sa / chi', 'mirror images'), ('ぬ / め', 'nu / me', 'ぬ has a loop at the end'), ('ね / れ / わ', 'ne / re / wa', 'look at the tail: loop, kick out, curve'),
+   ('る / ろ', 'ru / ro', 'る has a loop'), ('は / ほ', 'ha / ho', 'ほ has an extra stroke on top'), ('き / さ', 'ki / sa', 'き has two crossbars'),
+   ('い / り', 'i / ri', 'り is longer on the right'), ('う / ら', 'u / ra', 'different first stroke'),
+  ]),
+  '<h2>First words to read</h2>',
+  simple(['Hiragana', 'Romaji', 'Meaning'], [
+   ('ねこ', 'neko', 'cat'), ('いぬ', 'inu', 'dog'), ('さくら', 'sakura', 'cherry blossom'), ('すし', 'sushi', 'sushi'),
+   ('ありがとう', 'arigatō', 'thank you'), ('おはよう', 'ohayō', 'good morning'), ('ともだち', 'tomodachi', 'friend'), ('みず', 'mizu', 'water'),
+  ]),
+  '<p>Once these are easy, move on to <a href="/katakana-chart/">katakana</a> (the same sounds, used for foreign words) and then kanji, a few at a time.</p>',
+  NAV, CTA]))
+
+EXT = [('ファ', 'fa', 'ファン (fan)'), ('フィ', 'fi', 'フィルム (film)'), ('フェ', 'fe', 'カフェ (café)'), ('フォ', 'fo', 'フォーク (fork)'),
+       ('ティ', 'ti', 'パーティー (party)'), ('ディ', 'di', 'ディナー (dinner)'), ('トゥ', 'tu', 'タトゥー (tattoo)'),
+       ('ウィ', 'wi', 'ウィンドウ (window, on a computer)'), ('ウェ', 'we', 'ウェブ (web)'), ('ウォ', 'wo', 'ウォーター (water, in brand names)'),
+       ('シェ', 'she', 'シェア (share)'), ('ジェ', 'je', 'ジェット (jet)'), ('チェ', 'che', 'チェック (check)'), ('ヴ', 'vu', 'ヴァイオリン (violin; also バイオリン)')]
+write('katakana-chart.md', '/katakana-chart/', 'Katakana chart',
+ 'Katakana chart with romaji: all 46 characters, extra sounds for foreign words and ー',
+ 'Katakana chart with romaji: the 46 basic katakana, dakuten (ガ, ザ, ダ, バ, パ), combinations like キャ and ショ, the long-vowel mark ー, the extra sounds for foreign words (ファ, ティ, ウィ) and the lookalikes シ/ツ and ソ/ン.',
+ '\n'.join(['<h1>Katakana chart</h1>',
+  '<p>Katakana spells the same sounds as <a href="/hiragana-chart/">hiragana</a>, with sharper shapes. It writes words borrowed from other languages '
+  '(<span lang="ja">コーヒー</span> <i>kōhī</i>, coffee; <span lang="ja">テレビ</span> <i>terebi</i>, TV), foreign names, many animal and plant names in science, sound effects, and words written for emphasis, '
+  'the way English uses italics. Read the chart by rows: consonant on the left plus vowel at the top.</p>',
+  '<p><b>Test yourself:</b> <a href="/katakana-quiz/">katakana quiz</a> (free, 20 questions a round).</p>', '<h2>The 46 basic katakana</h2>', grid(GOJUON, kata),
+  '<h2>Dakuten and handakuten</h2>', grid(DAKUTEN, kata),
+  '<h2>Combinations (yōon)</h2>', yoon_grid(kata),
+  '<h2>The long-vowel mark ー</h2>',
+  '<p>Katakana marks a long vowel with a dash, <span lang="ja">ー</span>, instead of a second vowel: <span lang="ja">コーヒー</span> <i>kōhī</i> (coffee), '
+  '<span lang="ja">ケーキ</span> <i>kēki</i> (cake), <span lang="ja">スーパー</span> <i>sūpā</i> (supermarket). In vertical text the dash runs top to bottom. '
+  'A small <span lang="ja">ッ</span> doubles the next consonant, as in hiragana: <span lang="ja">ベッド</span> <i>beddo</i> (bed).</p>',
+  '<h2>Extra sounds for foreign words</h2>',
+  '<p>Japanese has no native <i>fa</i>, <i>ti</i> or <i>we</i>, so katakana combines a full-size character with a small vowel to spell them.</p>',
+  simple(['Katakana', 'Romaji', 'Example'], EXT),
+  '<h2>Characters that look alike</h2>',
+  simple(['Pair', 'Romaji', 'Tell them apart'], [
+   ('シ / ツ', 'shi / tsu', 'シ\'s dots sit on the left and its stroke sweeps up from the bottom; ツ\'s dots sit on top and its stroke falls from the top'),
+   ('ソ / ン', 'so / n', 'same rule: ソ\'s long stroke falls from the top, ン\'s rises from the bottom'),
+   ('ク / ケ / タ', 'ku / ke / ta', 'ケ has a separate crossbar; タ has an inner stroke'), ('ウ / ワ / フ', 'u / wa / fu', 'count the strokes: 3, 2, 1'),
+   ('ノ / メ', 'no / me', 'メ adds a crossing stroke'), ('ロ / コ', 'ro / ko', 'ロ is closed'), ('チ / テ', 'chi / te', 'チ has a stroke through the middle'),
+   ('カ / 力', 'ka / chikara (kanji for power)', 'the same shape; context tells you which'),
+  ]),
+  '<h2>First katakana words</h2>',
+  simple(['Katakana', 'Romaji', 'Meaning'], [
+   ('パン', 'pan', 'bread (from Portuguese)'), ('カメラ', 'kamera', 'camera'), ('テレビ', 'terebi', 'TV'), ('アイス', 'aisu', 'ice cream'),
+   ('ホテル', 'hoteru', 'hotel'), ('バス', 'basu', 'bus'), ('トイレ', 'toire', 'toilet'), ('コンビニ', 'konbini', 'convenience store'),
+  ]),
+  '<p>Many katakana words are shortened or changed from English: see <a href="/study/topics/wasei-eigo/">wasei-eigo</a> and <a href="/study/topics/loanwords/">loanwords</a>.</p>',
+  NAV, CTA]))
+
+write('japanese-alphabet.md', '/japanese-alphabet/', 'The Japanese alphabet',
+ 'The Japanese alphabet: hiragana, katakana and kanji explained for beginners',
+ 'Japanese has no single alphabet: it mixes hiragana, katakana and kanji, and uses romaji for Latin letters. What each script is for, how they combine in one sentence, and the order to learn them, with charts.',
+ '\n'.join(['<h1>The Japanese alphabet, explained</h1>',
+  '<p>Japanese doesn\'t have one alphabet. Everyday writing mixes three scripts, often in the same sentence, and a fourth (Latin letters) shows up on signs and keyboards.</p>',
+  simple(['Script', 'How many', 'Used for', 'Example'], [
+   ('ひらがな hiragana', '46 basic', 'grammar endings and particles, native words, furigana over kanji', '<span lang="ja">ねこ</span> (cat), <span lang="ja">ありがとう</span>'),
+   ('カタカナ katakana', '46 basic', 'foreign words and names, sound effects, emphasis', '<span lang="ja">コーヒー</span> (coffee), <span lang="ja">アメリカ</span>'),
+   ('漢字 kanji', '2,136 in the official everyday list', 'the meaning-carrying parts: nouns and the stems of verbs and adjectives', '<span lang="ja">山</span> (mountain), <span lang="ja">食べる</span> (to eat)'),
+   ('ローマ字 rōmaji', '26 letters', 'Japanese written in Latin letters: typing, station signs, textbooks', '<i>arigatō</i>'),
+  ]),
+  '<h2>All three in one sentence</h2>',
+  '<p lang="ja" style="font-size:1.4em">私はコーヒーを飲みます。</p>',
+  '<p><i>Watashi wa kōhī o nomimasu</i>: "I drink coffee." <span lang="ja">私</span> (I) and <span lang="ja">飲</span> (drink) are kanji; <span lang="ja">コーヒー</span> is katakana because it is a borrowed word; '
+  '<span lang="ja">は</span>, <span lang="ja">を</span> and the verb ending <span lang="ja">みます</span> are hiragana. Kanji carry the meaning, hiragana carries the grammar, and the mix also shows where words begin, since Japanese doesn\'t use spaces.</p>',
+  '<h2>What to learn first</h2>',
+  '<ol><li><b><a href="/hiragana-chart/">Hiragana</a></b> first: every sound in the language, and enough to read anything with furigana. Most learners get through it in one to two weeks.</li>'
+  '<li><b><a href="/katakana-chart/">Katakana</a></b> next: the same sounds, so it goes faster, and it unlocks menus and signs full of borrowed words.</li>'
+  '<li><b>Kanji</b> a few at a time, inside words rather than alone: <a href="/study/jlpt/n5/">JLPT N5 words</a>, <a href="/study/topics/numbers/">numbers</a>, '
+  '<a href="/study/topics/days-months/">days of the week</a>. A kanji usually has more than one reading; see <a href="/study/topics/kanji-readings/">onyomi vs kunyomi</a>.</li></ol>',
+  '<p>Romaji helps at the very start, but drop it early: Japanese readers never see it, and spellings like <i>ō</i> vs <i>ou</i> hide how words are written.</p>',
+  NAV, CTA]))
+print('ok')
