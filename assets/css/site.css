@@ -157,7 +157,7 @@ rt { font-size: 55%; font-weight: 500; line-height: 1; letter-spacing: 0; user-s
 .site-footer__fine { grid-column: 1 / -1; padding-top: var(--s-4); border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; gap: 4px 16px; justify-content: space-between; color: var(--muted); font-size: var(--fs-sm); }
 .site-footer__fine a { color: inherit; }
 @media (min-width: 760px) {
-  .site-footer__in { grid-template-columns: 1.6fr repeat(4, minmax(0, 1fr)); padding-top: var(--s-8); }
+  .site-footer__in { grid-template-columns: 1.6fr repeat(5, minmax(0, 1fr)); padding-top: var(--s-8); }
   .site-footer__brand { grid-column: auto; }
 }
 
