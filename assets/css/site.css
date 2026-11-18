@@ -599,6 +599,7 @@ a.chip:hover { box-shadow: inset 0 0 0 1.5px var(--line-strong); }
   .prose .st-nav > :nth-child(3) { grid-area: auto; }
 }
 .prose .st-nav a:hover { background: var(--surface-2); }
+@media (max-width: 360px) { .prose .st-nav a { padding: 0 10px; font-size: var(--fs-s); } } /* "November 15 →" fit 320 px phones */
 .prose .st-cta { margin: var(--s-6) 0; padding: var(--s-5); border-radius: var(--r-xl); background: var(--surface-2); }
 .prose .st-cta p { margin: 0; }
 .prose .st-months h2 { margin: 1.6em 0 .6em; font-size: var(--fs-xl); }
@@ -621,16 +622,19 @@ a.chip:hover { box-shadow: inset 0 0 0 1.5px var(--line-strong); }
   .prose .st-table td:nth-child(1) { grid-area: 1 / 1; white-space: normal; }
   .prose .st-table td:nth-child(2) { grid-area: 2 / 1; font-size: var(--fs-s); color: var(--ink-2); white-space: normal; }
   .prose .st-table td:nth-child(3) { grid-area: 1 / 2 / 3 / 3; align-self: center; }
+  .prose .st-table td:nth-child(n+4) { grid-column: 1 / 3; white-space: normal; } /* 4th+ columns (examples, translations) get their own full-width line */
+  .prose .st-table td[lang=ja] { white-space: normal; } /* long readings and keigo forms wrap instead of pushing the page sideways */
 }
 
 /* ---------- listen buttons (assets/js/say.js; only added when the device has a Japanese voice) ---------- */
-.prose .say-btn { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; margin-left: 6px; padding: 0; border: 0; border-radius: var(--r-pill); background: var(--surface-2); color: var(--ink-2); vertical-align: middle; cursor: pointer; -webkit-tap-highlight-color: transparent; transition: background-color .15s, color .15s; }
-.prose .say-btn:hover { background: var(--tile-hover); color: var(--ink); }
-.prose .say-btn.is-speaking { background: var(--accent); color: var(--on-accent); }
+.say-btn { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; margin-left: 6px; padding: 0; border: 0; border-radius: var(--r-pill); background: var(--surface-2); color: var(--ink-2); vertical-align: middle; cursor: pointer; -webkit-tap-highlight-color: transparent; transition: background-color .15s, color .15s; }
+.say-btn:hover { background: var(--tile-hover); color: var(--ink); }
+.say-btn.is-speaking { background: var(--accent); color: var(--on-accent); }
 .prose .say-kana { cursor: pointer; border-radius: var(--r-sm); -webkit-tap-highlight-color: transparent; transition: background-color .15s; }
 .prose .say-kana:hover { background: var(--surface-2); }
 .prose .say-kana.is-speaking { background: var(--near-bg); }
 .prose .say-hint { margin: 0 0 .4em; font-size: var(--fs-s); color: var(--muted); }
+.dc-rv-group .say-btn { align-self: center; margin-left: -6px; background: color-mix(in srgb, var(--surface) 70%, transparent); }
 
 /* ---------- 404 ---------- */
 .lost { text-align: center; padding: var(--s-8) 0 0; }
