@@ -9,6 +9,20 @@
     'みゃmya みゅmyu みょmyo りゃrya りゅryu りょryo ぎゃgya ぎゅgyu ぎょgyo じゃja じゅju じょjo びゃbya びゅbyu びょbyo ぴゃpya ぴゅpyu ぴょpyo';
   var ROUND = 20;
 
+  // Sound: the device's own Japanese voice (Web Speech API), only if it has one. Off/on is remembered.
+  var synth = window.speechSynthesis, jaVoice = null, sound = true;
+  try { sound = localStorage.getItem('dc.kanaQuiz.sound') !== 'off'; } catch (e) {}
+  function findVoice() {
+    if (jaVoice || !synth || typeof window.SpeechSynthesisUtterance !== 'function') return !!jaVoice;
+    var v = (synth.getVoices() || []).filter(function (x) { return /^ja(-|_|$)/i.test(x.lang); });
+    if (v.length) jaVoice = v.filter(function (x) { return x.localService; })[0] || v[0];
+    return !!jaVoice;
+  }
+  function say(t, force) {
+    if (!jaVoice || (!sound && !force)) return;
+    try { synth.cancel(); var u = new SpeechSynthesisUtterance(t); u.lang = 'ja-JP'; u.voice = jaVoice; u.rate = 0.85; synth.speak(u); } catch (e) {}
+  }
+
   function parse(str) {
     return str.split(' ').map(function (t) { var m = t.match(/^([ぁ-ゖ]+)([a-z]+)$/); return { k: m[1], r: m[2] }; });
   }
@@ -48,6 +62,19 @@
       });
       bar.appendChild(grp);
     });
+    if (jaVoice) {
+      var sb = el('button', 'kq-chip' + (sound ? ' is-on' : ''), sound ? '\uD83D\uDD0A Sound' : '\uD83D\uDD07 Sound');
+      sb.type = 'button'; sb.setAttribute('aria-pressed', sound ? 'true' : 'false');
+      sb.title = 'Hear each kana after you answer';
+      sb.addEventListener('click', function () {
+        sound = !sound;
+        try { localStorage.setItem('dc.kanaQuiz.sound', sound ? 'on' : 'off'); } catch (e) {}
+        track('kana_quiz_sound', { on: sound });
+        sb.className = 'kq-chip' + (sound ? ' is-on' : ''); sb.setAttribute('aria-pressed', sound ? 'true' : 'false');
+        sb.textContent = sound ? '\uD83D\uDD0A Sound' : '\uD83D\uDD07 Sound';
+      });
+      var sg = el('div', 'kq-seg'); sg.appendChild(sb); bar.appendChild(sg);
+    }
     return bar;
   }
 
@@ -92,6 +119,7 @@
   function answer(btn, item) {
     if (locked) return; locked = true;
     var ok = btn.getAttribute('data-r') === item.r;
+    say(item.k);
     if (ok) { score++; streak++; btn.classList.add('is-good'); }
     else {
       streak = 0; btn.classList.add('is-bad'); missed.push(item);
@@ -108,9 +136,13 @@
     box.appendChild(el('p', 'kq-score', score + ' / ' + q.length));
     box.appendChild(el('p', '', score === q.length ? 'Perfect round!' : (score > prev && prev ? 'New best (was ' + prev + ').' : 'Best: ' + Math.max(prev, score) + ' / ' + q.length + '.')));
     if (missed.length) {
-      box.appendChild(el('p', '', 'Review the ones you missed:'));
+      box.appendChild(el('p', '', jaVoice ? 'Review the ones you missed (tap one to hear it):' : 'Review the ones you missed:'));
       var ul = el('ul', 'kq-missed');
-      missed.forEach(function (m) { var li = el('li'); var s = el('span', '', m.k); s.lang = 'ja'; li.appendChild(s); li.appendChild(document.createTextNode(' ' + m.r)); ul.appendChild(li); });
+      missed.forEach(function (m) {
+        var li = el('li'); var s = el(jaVoice ? 'button' : 'span', jaVoice ? 'kq-say' : '', m.k); s.lang = 'ja';
+        if (jaVoice) { s.type = 'button'; s.setAttribute('aria-label', 'Listen: ' + m.k + ' (' + m.r + ')'); s.addEventListener('click', function () { say(m.k, true); }); }
+        li.appendChild(s); li.appendChild(document.createTextNode(' ' + m.r)); ul.appendChild(li);
+      });
       box.appendChild(ul);
     }
     var again = el('button', 'kq-btn', 'Play again'); again.type = 'button'; again.addEventListener('click', start);
@@ -126,5 +158,14 @@
     var n = parseInt(e.key, 10);
     if (n >= 1 && n <= 4) { var b = root.querySelectorAll('.kq-opt')[n - 1]; if (b) b.click(); }
   });
+  if (!findVoice() && synth) {
+    var onv = function () {
+      if (findVoice()) {
+        var bar = root.querySelector('.kq-controls');
+        if (bar) bar.parentNode.replaceChild(controls(), bar);
+      }
+    };
+    if (synth.addEventListener) synth.addEventListener('voiceschanged', onv); else synth.onvoiceschanged = onv;
+  }
   start();
 })();
