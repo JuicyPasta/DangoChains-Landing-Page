@@ -2,14 +2,14 @@
 layout: page
 permalink: /katakana-chart/
 title: "Katakana chart"
-seo_title: "Katakana chart with romaji: all 46 characters, extra sounds for foreign words and ー"
-description: "Katakana chart with romaji: the 46 basic katakana, dakuten (ガ, ザ, ダ, バ, パ), combinations like キャ and ショ, the long-vowel mark ー, the extra sounds for foreign words (ファ, ティ, ウィ) and the lookalikes シ/ツ and ソ/ン."
+seo_title: "Katakana chart with romaji and audio: all 46 characters, extra sounds for foreign words and ー"
+description: "Katakana chart with romaji: the 46 basic katakana, dakuten (ガ, ザ, ダ, バ, パ), combinations like キャ and ショ, the long-vowel mark ー, the extra sounds for foreign words (ファ, ティ, ウィ) and the lookalikes シ/ツ and ソ/ン. Tap any character to hear it."
 ---
 
 <style>.st-table{border-collapse:collapse;margin:.3em 0 1em;width:100%}.st-table th,.st-table td{border-bottom:1px solid #e6e6e6;padding:.35em .5em;text-align:left;vertical-align:top}.st-table td[lang=ja]{font-size:1.1em;white-space:nowrap}.st-cta{background:#f6f2ea;border-radius:12px;padding:1em 1.2em;margin:2em 0}.kana-grid{border-collapse:collapse;margin:.4em 0 1.2em;width:100%;max-width:34rem;table-layout:fixed}.kana-grid td,.kana-grid th{border:1px solid #e6e6e6;text-align:center;padding:.3em .1em}.kana-grid th{font-size:.8em;opacity:.7}.kana-grid td span{display:block;font-size:1.7em;line-height:1.2}.kana-grid td small{display:block;font-size:.85em;opacity:.75}</style>
 <h1>Katakana chart</h1>
 <p>Katakana spells the same sounds as <a href="/hiragana-chart/">hiragana</a>, with sharper shapes. It writes words borrowed from other languages (<span lang="ja">コーヒー</span> <i>kōhī</i>, coffee; <span lang="ja">テレビ</span> <i>terebi</i>, TV), foreign names, many animal and plant names in science, sound effects, and words written for emphasis, the way English uses italics. Read the chart by rows: consonant on the left plus vowel at the top.</p>
-<p><b>Test yourself:</b> <a href="/katakana-quiz/">katakana quiz</a> (free, 20 questions a round).</p>
+<p><b>Hear them:</b> tap any character in the charts below (it uses your device's Japanese voice). <b>Test yourself:</b> <a href="/katakana-quiz/">katakana quiz</a> (free, 20 questions a round, with sound).</p>
 <h2>The 46 basic katakana</h2>
 <table class="kana-grid"><thead><tr><th></th><th>a</th><th>i</th><th>u</th><th>e</th><th>o</th></tr></thead><tbody>
 <tr><th>–</th><td><span lang="ja">ア</span><small>a</small></td><td><span lang="ja">イ</span><small>i</small></td><td><span lang="ja">ウ</span><small>u</small></td><td><span lang="ja">エ</span><small>e</small></td><td><span lang="ja">オ</span><small>o</small></td></tr>

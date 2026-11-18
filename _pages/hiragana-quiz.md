@@ -3,7 +3,7 @@ layout: page
 permalink: /hiragana-quiz/
 title: "Hiragana quiz"
 seo_title: "Hiragana quiz: free kana practice game with romaji (no sign-up)"
-description: "A free hiragana quiz in your browser: see a character, pick its romaji, 20 questions a round. Practise the 46 basic hiragana, add dakuten (が, ぱ) and combinations (きゃ), or switch to katakana. Tracks your best score."
+description: "A free hiragana quiz in your browser: see a character, pick its romaji, 20 questions a round. Practise the 46 basic hiragana, add dakuten (が, ぱ) and combinations (きゃ), or switch to katakana. Hear each one as you answer. Tracks your best score."
 ---
 
 <h1>Hiragana quiz</h1>

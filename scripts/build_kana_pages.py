@@ -60,13 +60,13 @@ NAV = ('<p><b>Japanese scripts:</b> <a href="/japanese-alphabet/">the Japanese a
        '<a href="/study/jlpt/n5/">JLPT N5 words</a></p>')
 
 write('hiragana-chart.md', '/hiragana-chart/', 'Hiragana chart',
- 'Hiragana chart with romaji: all 46 characters, dakuten and combinations',
- 'Hiragana chart with romaji: the 46 basic hiragana, the voiced ones with dakuten (が, ざ, だ, ば, ぱ), the combinations like きゃ and しょ, the small っ, long vowels, and the characters that trip learners up.',
+ 'Hiragana chart with romaji and audio: all 46 characters, dakuten and combinations',
+ 'Hiragana chart with romaji: the 46 basic hiragana, the voiced ones with dakuten (が, ざ, だ, ば, ぱ), the combinations like きゃ and しょ, the small っ, long vowels, and the characters that trip learners up. Tap any character to hear it.',
  '\n'.join(['<h1>Hiragana chart</h1>',
   '<p>Hiragana is the first Japanese script to learn: 46 basic characters, each one a syllable. It writes grammar (endings and particles like <span lang="ja">は</span>, <span lang="ja">を</span>, <span lang="ja">です</span>), '
   'native words without common kanji, and the furigana printed over kanji. Read the chart by rows: the consonant on the left plus the vowel at the top. '
   'Japanese order runs あいうえお, not a e i o u.</p>',
-  '<p><b>Test yourself:</b> <a href="/hiragana-quiz/">hiragana quiz</a> (free, 20 questions a round).</p>', '<h2>The 46 basic hiragana</h2>', grid(GOJUON, ident),
+  '<p><b>Hear them:</b> tap any character in the charts below (it uses your device\'s Japanese voice). <b>Test yourself:</b> <a href="/hiragana-quiz/">hiragana quiz</a> (free, 20 questions a round, with sound).</p>', '<h2>The 46 basic hiragana</h2>', grid(GOJUON, ident),
   '<p><b>Watch these:</b> <span lang="ja">し</span> is <i>shi</i>, <span lang="ja">ち</span> <i>chi</i>, <span lang="ja">つ</span> <i>tsu</i> and <span lang="ja">ふ</span> <i>fu</i> (between f and h). '
   '<span lang="ja">を</span> sounds like <i>o</i> and is only used as a particle. As particles, <span lang="ja">は</span> is read <i>wa</i> and <span lang="ja">へ</span> <i>e</i>. '
   '<span lang="ja">ん</span> is the only consonant that stands alone.</p>',
@@ -104,13 +104,13 @@ EXT = [('ファ', 'fa', 'ファン (fan)'), ('フィ', 'fi', 'フィルム (film
        ('ウィ', 'wi', 'ウィンドウ (window, on a computer)'), ('ウェ', 'we', 'ウェブ (web)'), ('ウォ', 'wo', 'ウォーター (water, in brand names)'),
        ('シェ', 'she', 'シェア (share)'), ('ジェ', 'je', 'ジェット (jet)'), ('チェ', 'che', 'チェック (check)'), ('ヴ', 'vu', 'ヴァイオリン (violin; also バイオリン)')]
 write('katakana-chart.md', '/katakana-chart/', 'Katakana chart',
- 'Katakana chart with romaji: all 46 characters, extra sounds for foreign words and ー',
- 'Katakana chart with romaji: the 46 basic katakana, dakuten (ガ, ザ, ダ, バ, パ), combinations like キャ and ショ, the long-vowel mark ー, the extra sounds for foreign words (ファ, ティ, ウィ) and the lookalikes シ/ツ and ソ/ン.',
+ 'Katakana chart with romaji and audio: all 46 characters, extra sounds for foreign words and ー',
+ 'Katakana chart with romaji: the 46 basic katakana, dakuten (ガ, ザ, ダ, バ, パ), combinations like キャ and ショ, the long-vowel mark ー, the extra sounds for foreign words (ファ, ティ, ウィ) and the lookalikes シ/ツ and ソ/ン. Tap any character to hear it.',
  '\n'.join(['<h1>Katakana chart</h1>',
   '<p>Katakana spells the same sounds as <a href="/hiragana-chart/">hiragana</a>, with sharper shapes. It writes words borrowed from other languages '
   '(<span lang="ja">コーヒー</span> <i>kōhī</i>, coffee; <span lang="ja">テレビ</span> <i>terebi</i>, TV), foreign names, many animal and plant names in science, sound effects, and words written for emphasis, '
   'the way English uses italics. Read the chart by rows: consonant on the left plus vowel at the top.</p>',
-  '<p><b>Test yourself:</b> <a href="/katakana-quiz/">katakana quiz</a> (free, 20 questions a round).</p>', '<h2>The 46 basic katakana</h2>', grid(GOJUON, kata),
+  '<p><b>Hear them:</b> tap any character in the charts below (it uses your device\'s Japanese voice). <b>Test yourself:</b> <a href="/katakana-quiz/">katakana quiz</a> (free, 20 questions a round, with sound).</p>', '<h2>The 46 basic katakana</h2>', grid(GOJUON, kata),
   '<h2>Dakuten and handakuten</h2>', grid(DAKUTEN, kata),
   '<h2>Combinations (yōon)</h2>', yoon_grid(kata),
   '<h2>The long-vowel mark ー</h2>',

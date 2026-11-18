@@ -2,14 +2,14 @@
 layout: page
 permalink: /hiragana-chart/
 title: "Hiragana chart"
-seo_title: "Hiragana chart with romaji: all 46 characters, dakuten and combinations"
-description: "Hiragana chart with romaji: the 46 basic hiragana, the voiced ones with dakuten (が, ざ, だ, ば, ぱ), the combinations like きゃ and しょ, the small っ, long vowels, and the characters that trip learners up."
+seo_title: "Hiragana chart with romaji and audio: all 46 characters, dakuten and combinations"
+description: "Hiragana chart with romaji: the 46 basic hiragana, the voiced ones with dakuten (が, ざ, だ, ば, ぱ), the combinations like きゃ and しょ, the small っ, long vowels, and the characters that trip learners up. Tap any character to hear it."
 ---
 
 <style>.st-table{border-collapse:collapse;margin:.3em 0 1em;width:100%}.st-table th,.st-table td{border-bottom:1px solid #e6e6e6;padding:.35em .5em;text-align:left;vertical-align:top}.st-table td[lang=ja]{font-size:1.1em;white-space:nowrap}.st-cta{background:#f6f2ea;border-radius:12px;padding:1em 1.2em;margin:2em 0}.kana-grid{border-collapse:collapse;margin:.4em 0 1.2em;width:100%;max-width:34rem;table-layout:fixed}.kana-grid td,.kana-grid th{border:1px solid #e6e6e6;text-align:center;padding:.3em .1em}.kana-grid th{font-size:.8em;opacity:.7}.kana-grid td span{display:block;font-size:1.7em;line-height:1.2}.kana-grid td small{display:block;font-size:.85em;opacity:.75}</style>
 <h1>Hiragana chart</h1>
 <p>Hiragana is the first Japanese script to learn: 46 basic characters, each one a syllable. It writes grammar (endings and particles like <span lang="ja">は</span>, <span lang="ja">を</span>, <span lang="ja">です</span>), native words without common kanji, and the furigana printed over kanji. Read the chart by rows: the consonant on the left plus the vowel at the top. Japanese order runs あいうえお, not a e i o u.</p>
-<p><b>Test yourself:</b> <a href="/hiragana-quiz/">hiragana quiz</a> (free, 20 questions a round).</p>
+<p><b>Hear them:</b> tap any character in the charts below (it uses your device's Japanese voice). <b>Test yourself:</b> <a href="/hiragana-quiz/">hiragana quiz</a> (free, 20 questions a round, with sound).</p>
 <h2>The 46 basic hiragana</h2>
 <table class="kana-grid"><thead><tr><th></th><th>a</th><th>i</th><th>u</th><th>e</th><th>o</th></tr></thead><tbody>
 <tr><th>–</th><td><span lang="ja">あ</span><small>a</small></td><td><span lang="ja">い</span><small>i</small></td><td><span lang="ja">う</span><small>u</small></td><td><span lang="ja">え</span><small>e</small></td><td><span lang="ja">お</span><small>o</small></td></tr>

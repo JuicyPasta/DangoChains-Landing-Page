@@ -3,7 +3,7 @@ layout: page
 permalink: /katakana-quiz/
 title: "Katakana quiz"
 seo_title: "Katakana quiz: free practice game with romaji (no sign-up)"
-description: "A free katakana quiz in your browser: see a character, pick its romaji, 20 questions a round. Practise the 46 basic katakana, add ガ and パ and combinations like キャ, or mix in hiragana. Tracks your best score."
+description: "A free katakana quiz in your browser: see a character, pick its romaji, 20 questions a round. Practise the 46 basic katakana, add ガ and パ and combinations like キャ, or mix in hiragana. Hear each one as you answer. Tracks your best score."
 ---
 
 <h1>Katakana quiz</h1>
