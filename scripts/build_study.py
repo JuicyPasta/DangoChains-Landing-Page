@@ -512,7 +512,9 @@ def group_table(c, readings):
     glosses = c.get('glosses') or [''] * len(c['words'])
     for w, g in zip(c['words'], glosses):
         r = kana(w, readings.get(w))
-        rows.append(f'<tr><td lang="ja">{e(w)}</td><td lang="ja">{e(r if r != w else "")}</td><td>{e(g or "")}</td></tr>')
+        rm = romaji(r) if r else ''
+        tail = f'<small class="rmj" lang="ja-Latn">{e(rm)}</small>' if rm else ''
+        rows.append(f'<tr><td lang="ja">{e(w)}</td><td lang="ja">{e(r if r != w else "")}{tail}</td><td>{e(g or "")}</td></tr>')
     rows.append('</tbody></table>')
     return '\n'.join(rows)
 
@@ -1795,7 +1797,7 @@ def jlpt_page(lvl, words):
         seen = (f'<a href="/study/{h["date"]}/#{h["tier"]}" target="_self">{e(short_date(d))}, {d.year}</a>'
                 + (f' <small>+{h["count"] - 1} more</small>' if h['count'] > 1 else ''))
         reading = h['reading'] if h['reading'] != w else ''
-        body.append(f'<tr><td lang="ja">{e(w)}</td><td lang="ja">{e(reading)}</td><td>{e(h["meaning"])}</td><td>{seen}</td></tr>')
+        body.append(f'<tr><td lang="ja">{e(w)}</td>{reading_td(reading)}<td>{e(h["meaning"])}</td><td>{seen}</td></tr>')
     body += ['</tbody></table>', jlpt_nav(lvl), JLPT_SOURCE, CTA, '{% endraw %}']
     return '\n'.join(body) + '\n'
 
