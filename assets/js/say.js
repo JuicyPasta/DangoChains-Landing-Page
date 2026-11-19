@@ -29,12 +29,17 @@
   function clean(t) {
     return t.replace(/[（）()「」『』]/g, '').replace(/\s*\/\s*/g, '、').replace(/[〜~…]/g, '').trim();
   }
-  function cellText(el) {
+  function cellRaw(el) {
     var c = el.cloneNode(true);
     var junk = c.querySelectorAll('rt, rp, .say-btn, small');
     for (var i = 0; i < junk.length; i++) junk[i].remove();
-    return clean(c.textContent || '');
+    return (c.textContent || '').trim();
   }
+  function cellText(el) {
+    return clean(cellRaw(el));
+  }
+  // "父（ちち）": a word with its kana reading in brackets; say the reading.
+  var BRACKETED = /^[^\uff08(]+[\uff08(]([\u3040-\u30ff\u30fc]+)[\uff09)]$/;
   function speak(text, from) {
     if (!text) return;
     synth.cancel();
@@ -97,8 +102,11 @@
       var next = td.nextElementSibling;
       var text = cellText(td);
       var reading = next && next.tagName === 'TD' && next.getAttribute('lang') === 'ja' ? cellText(next) : '';
+      var bracketed = cellRaw(td).match(BRACKETED);
       if (reading && KANA.test(reading) && !KANA.test(text)) {
         addButton(td, reading, text);
+      } else if (bracketed) {
+        addButton(td, bracketed[1], text);
       } else {
         // Particles: は, へ and を alone would be read ha / he / wo; as particles they are wa / e / o.
         var rom = next && next.tagName === 'TD' ? (next.textContent || '').trim().toLowerCase() : '';

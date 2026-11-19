@@ -36,6 +36,86 @@ LEVEL_NAME = {'easy': 'easiest', 'medium': 'second', 'hard': 'third', 'expert': 
 
 e = html.escape
 
+# Hepburn romaji for the reading columns of the topic reference tables (beginners searching
+# "family in japanese" can't read kana yet). Long o/u/a/e get macrons like the phrase pages
+# (おとうさん → otōsan); いい stays ii. Returns '' for anything that isn't plain kana.
+_KANA_DIGRAPHS = {
+    'きゃ': 'kya', 'きゅ': 'kyu', 'きょ': 'kyo', 'しゃ': 'sha', 'しゅ': 'shu', 'しょ': 'sho', 'しぇ': 'she',
+    'ちゃ': 'cha', 'ちゅ': 'chu', 'ちょ': 'cho', 'ちぇ': 'che', 'にゃ': 'nya', 'にゅ': 'nyu', 'にょ': 'nyo',
+    'ひゃ': 'hya', 'ひゅ': 'hyu', 'ひょ': 'hyo', 'みゃ': 'mya', 'みゅ': 'myu', 'みょ': 'myo',
+    'りゃ': 'rya', 'りゅ': 'ryu', 'りょ': 'ryo', 'ぎゃ': 'gya', 'ぎゅ': 'gyu', 'ぎょ': 'gyo',
+    'じゃ': 'ja', 'じゅ': 'ju', 'じょ': 'jo', 'じぇ': 'je', 'ぢゃ': 'ja', 'ぢゅ': 'ju', 'ぢょ': 'jo',
+    'びゃ': 'bya', 'びゅ': 'byu', 'びょ': 'byo', 'ぴゃ': 'pya', 'ぴゅ': 'pyu', 'ぴょ': 'pyo',
+    'てぃ': 'ti', 'でぃ': 'di', 'とぅ': 'tu', 'ふぁ': 'fa', 'ふぃ': 'fi', 'ふぇ': 'fe', 'ふぉ': 'fo',
+    'うぃ': 'wi', 'うぇ': 'we', 'うぉ': 'wo', 'ゔぁ': 'va', 'ゔぃ': 'vi', 'ゔぇ': 've', 'ゔぉ': 'vo',
+}
+_KANA = dict(zip(
+    'あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわをん'
+    'がぎぐげござじずぜぞだぢづでどばびぶべぼぱぴぷぺぽぁぃぅぇぉゔ',
+    'a i u e o ka ki ku ke ko sa shi su se so ta chi tsu te to na ni nu ne no ha hi fu he ho ma mi mu me mo '
+    'ya yu yo ra ri ru re ro wa o n ga gi gu ge go za ji zu ze zo da ji zu de do ba bi bu be bo pa pi pu pe po '
+    'a i u e o vu'.split()))
+_MACRON = {'a': 'ā', 'i': 'ī', 'u': 'ū', 'e': 'ē', 'o': 'ō'}
+
+
+def _romaji_word(kana):
+    k = ''.join(chr(ord(c) - 0x60) if 'ァ' <= c <= 'ヶ' else c for c in kana)
+    out, i, double = [], 0, False
+    while i < len(k):
+        c = k[i]
+        if c == 'っ':
+            double, i = True, i + 1
+            continue
+        if c == 'ー':
+            if out and out[-1][-1] in _MACRON:
+                out[-1] = out[-1][:-1] + _MACRON[out[-1][-1]]
+            i += 1
+            continue
+        syl = _KANA_DIGRAPHS.get(k[i:i + 2])
+        if syl:
+            i += 2
+        elif c in _KANA:
+            syl, i = _KANA[c], i + 1
+        else:
+            return ''
+        if double:
+            syl = ('t' + syl) if syl.startswith('ch') else (syl[0] + syl)
+            double = False
+        if out and out[-1] == 'n' and syl[0] in 'aiueoy':
+            out[-1] = "n'"
+        out.append(syl)
+    s = ''.join(out)
+    for a, b in (('ou', 'ō'), ('oo', 'ō'), ('uu', 'ū'), ('aa', 'ā'), ('ee', 'ē')):
+        s = s.replace(a, b)
+    return s
+
+
+def romaji(reading):
+    """'おとうさん' → 'otōsan'; 'ひたい・おでこ' → 'hitai / odeko'; '' when not plain kana."""
+    words = [w for w in re.split(r'[・、/\s]+', reading.replace('〜', '').replace('～', '').strip()) if w]
+    # The particle を is its own word in romaji: かさをさす → kasa o sasu.
+    out = [' o '.join(_romaji_word(x) for x in w.split('を')).strip() if w != 'を' else 'o' for w in words]
+    ok = all(all(_romaji_word(x) for x in w.split('を') if x) for w in words)
+    return ' / '.join(out) if out and ok else ''
+
+
+def reading_td(reading):
+    """A reading cell with its romaji on a muted second line (say.js ignores <small>)."""
+    rm = romaji(reading)
+    tail = f'<small class="rmj" lang="ja-Latn">{e(rm)}</small>' if rm else ''
+    return f'<td lang="ja">{e(reading)}{tail}</td>'
+
+
+def family_td(text):
+    """'父（ちち）' → the cell plus 'chichi'; 'おじ（伯父・叔父）' → 'oji'."""
+    parts = re.findall(r'[（(]([ぁ-ゖァ-ヺー]+)[）)]', text)
+    if not parts:
+        m = re.match(r'[ぁ-ゖァ-ヺー]+', text)
+        parts = [m.group(0)] if m else []
+    rm = ' / '.join(r for r in (romaji(p) for p in parts) if r)
+    tail = f'<small class="rmj" lang="ja-Latn">{e(rm)}</small>' if rm else ''
+    return f'<td lang="ja">{e(text)}{tail}</td>'
+
 
 def load_feed():
     """{date: {tier: (puzzle, readings)}} for every board in the feed."""
@@ -463,7 +543,7 @@ def counters_reference():
             '三本 is さんぼん. When you don\'t know the counter, the native つ series works for most things up to nine.</p>',
             '<table class="st-table"><thead><tr><th>Counter</th><th>Reading</th><th>Used for</th><th>Examples</th></tr></thead><tbody>']
     for c, r, use, ex in COUNTER_ROWS:
-        rows.append(f'<tr><td lang="ja">{e(c)}</td><td lang="ja">{e(r)}</td><td>{e(use)}</td><td lang="ja">{e(ex)}</td></tr>')
+        rows.append(f'<tr><td lang="ja">{e(c)}</td>{reading_td(r)}<td>{e(use)}</td><td lang="ja">{e(ex)}</td></tr>')
     rows += ['</tbody></table>', '<h2>Counters in DangoChains puzzles</h2>']
     return '\n'.join(rows)
 
@@ -552,7 +632,7 @@ def family_reference():
             '<table class="st-table"><thead><tr><th>English</th><th>Your own family</th>'
             '<th>Someone else\'s family</th></tr></thead><tbody>']
     for en, own, other in FAMILY_ROWS:
-        rows.append(f'<tr><td>{e(en)}</td><td lang="ja">{e(own)}</td><td lang="ja">{e(other)}</td></tr>')
+        rows.append(f'<tr><td>{e(en)}</td>{family_td(own)}{family_td(other)}</tr>')
     rows += ['</tbody></table>', '<h2>Family words in DangoChains puzzles</h2>']
     return '\n'.join(rows)
 
@@ -577,7 +657,7 @@ def body_parts_reference():
             'and 指 is a finger or a toe (足の指).</p>',
             '<table class="st-table"><thead><tr><th>Word</th><th>Reading</th><th>Meaning</th></tr></thead><tbody>']
     for w, r, m in BODY_ROWS:
-        rows.append(f'<tr><td lang="ja">{e(w)}</td><td lang="ja">{e(r)}</td><td>{e(m)}</td></tr>')
+        rows.append(f'<tr><td lang="ja">{e(w)}</td>{reading_td(r)}<td>{e(m)}</td></tr>')
     rows += ['</tbody></table>', '<h2>Body words in DangoChains puzzles</h2>']
     return '\n'.join(rows)
 
@@ -601,7 +681,7 @@ def clothes_reference():
             '外す（はずす）.</p>',
             '<table class="st-table"><thead><tr><th>Verb</th><th>Reading</th><th>For</th><th>Examples</th></tr></thead><tbody>']
     for v, r, use, ex in WEAR_ROWS:
-        rows.append(f'<tr><td lang="ja">{e(v)}</td><td lang="ja">{e(r)}</td><td>{e(use)}</td><td lang="ja">{e(ex)}</td></tr>')
+        rows.append(f'<tr><td lang="ja">{e(v)}</td>{reading_td(r)}<td>{e(use)}</td><td lang="ja">{e(ex)}</td></tr>')
     rows += ['</tbody></table>', '<h2>Clothes in DangoChains puzzles</h2>']
     return '\n'.join(rows)
 
@@ -678,11 +758,11 @@ def idioms_reference():
             'These are the ones you will meet most in conversation, school and the news.</p>',
             '<table class="st-table"><thead><tr><th>Idiom</th><th>Reading</th><th>Meaning</th></tr></thead><tbody>']
     for w, r, m in YOJI_ROWS:
-        rows.append(f'<tr><td lang="ja">{e(w)}</td><td lang="ja">{e(r)}</td><td>{e(m)}</td></tr>')
+        rows.append(f'<tr><td lang="ja">{e(w)}</td>{reading_td(r)}<td>{e(m)}</td></tr>')
     rows += ['</tbody></table>', '<h2>Well-known proverbs (ことわざ)</h2>',
              '<table class="st-table"><thead><tr><th>Proverb</th><th>Reading</th><th>Meaning</th></tr></thead><tbody>']
     for w, r, m in PROVERB_ROWS:
-        rows.append(f'<tr><td lang="ja">{e(w)}</td><td lang="ja">{e(r)}</td><td>{e(m)}</td></tr>')
+        rows.append(f'<tr><td lang="ja">{e(w)}</td>{reading_td(r)}<td>{e(m)}</td></tr>')
     rows += ['</tbody></table>', '<h2>Idioms in DangoChains puzzles</h2>']
     return '\n'.join(rows)
 
@@ -704,7 +784,7 @@ def weather_reference():
             '(晴れる, 曇る). Cold weather is 寒い; something cold to the touch is 冷たい.</p>',
             '<table class="st-table"><thead><tr><th>Word</th><th>Reading</th><th>Meaning</th></tr></thead><tbody>']
     for w, r, m in WEATHER_ROWS:
-        rows.append(f'<tr><td lang="ja">{e(w)}</td><td lang="ja">{e(r)}</td><td>{e(m)}</td></tr>')
+        rows.append(f'<tr><td lang="ja">{e(w)}</td>{reading_td(r)}<td>{e(m)}</td></tr>')
     rows += ['</tbody></table>', '<h2>Weather words in DangoChains puzzles</h2>']
     return '\n'.join(rows)
 
@@ -728,7 +808,7 @@ def school_reference():
             'people sometimes say ばけがく for chemistry.</p>',
             '<table class="st-table"><thead><tr><th>Word</th><th>Reading</th><th>Meaning</th></tr></thead><tbody>']
     for w, r, m in SCHOOL_ROWS:
-        rows.append(f'<tr><td lang="ja">{e(w)}</td><td lang="ja">{e(r)}</td><td>{e(m)}</td></tr>')
+        rows.append(f'<tr><td lang="ja">{e(w)}</td>{reading_td(r)}<td>{e(m)}</td></tr>')
     rows += ['</tbody></table>', '<h2>School words in DangoChains puzzles</h2>']
     return '\n'.join(rows)
 
@@ -754,7 +834,7 @@ def opposites_reference():
             '寒暖 is temperature, 勝負 is the match itself. Most of these use the on\'yomi (Chinese) readings.</p>',
             '<table class="st-table"><thead><tr><th>Word</th><th>Reading</th><th>Parts</th><th>Meaning</th></tr></thead><tbody>']
     for w, r, parts, m in OPPOSITE_ROWS:
-        rows.append(f'<tr><td lang="ja">{e(w)}</td><td lang="ja">{e(r)}</td><td lang="ja">{e(parts)}</td><td>{e(m)}</td></tr>')
+        rows.append(f'<tr><td lang="ja">{e(w)}</td>{reading_td(r)}<td lang="ja">{e(parts)}</td><td>{e(m)}</td></tr>')
     rows += ['</tbody></table>', '<h2>Opposites in DangoChains puzzles</h2>']
     return '\n'.join(rows)
 
@@ -801,7 +881,7 @@ def english_from_japanese_reference():
             'American diplomats and soldiers.</p>',
             '<table class="st-table"><thead><tr><th>English</th><th>Japanese</th><th>Reading</th><th>Literally</th></tr></thead><tbody>']
     for en, w, r, lit in FROM_JAPANESE_ROWS:
-        rows.append(f'<tr><td>{e(en)}</td><td lang="ja">{e(w)}</td><td lang="ja">{e(r)}</td><td>{e(lit)}</td></tr>')
+        rows.append(f'<tr><td>{e(en)}</td><td lang="ja">{e(w)}</td>{reading_td(r)}<td>{e(lit)}</td></tr>')
     rows += ['</tbody></table>', '<h2>In DangoChains puzzles</h2>']
     return '\n'.join(rows)
 
@@ -854,7 +934,7 @@ def animals_reference():
             'with 頭.</p>',
             '<table class="st-table"><thead><tr><th>Kanji</th><th>Reading</th><th>Meaning</th></tr></thead><tbody>']
     for w, r, m in ANIMAL_ROWS:
-        rows.append(f'<tr><td lang="ja">{e(w)}</td><td lang="ja">{e(r)}</td><td>{e(m)}</td></tr>')
+        rows.append(f'<tr><td lang="ja">{e(w)}</td>{reading_td(r)}<td>{e(m)}</td></tr>')
     rows += ['</tbody></table>',
              _ja_table('Insects in Japanese',
                        'Bugs in general are 虫 (むし), and many insect names end in 虫: てんとう虫 (ladybug), 鈴虫 (bell '
@@ -884,7 +964,7 @@ def special_readings_reference():
             'words; these are the ones learners meet first.</p>',
             '<table class="st-table"><thead><tr><th>Word</th><th>Reading</th><th>Meaning</th></tr></thead><tbody>']
     for w, r, m in JUKUJIKUN_ROWS:
-        rows.append(f'<tr><td lang="ja">{e(w)}</td><td lang="ja">{e(r)}</td><td>{e(m)}</td></tr>')
+        rows.append(f'<tr><td lang="ja">{e(w)}</td>{reading_td(r)}<td>{e(m)}</td></tr>')
     rows += ['</tbody></table>', '<h2>Special readings in DangoChains puzzles</h2>']
     return '\n'.join(rows)
 
@@ -1013,7 +1093,7 @@ def false_friends_reference():
             '<table class="st-table"><thead><tr><th>Word</th><th>Reading</th><th>Kanji, literally</th>'
             '<th>Actually means</th></tr></thead><tbody>']
     for w, r, lit, m in MISLEADING_KANJI_ROWS:
-        rows.append(f'<tr><td lang="ja">{e(w)}</td><td lang="ja">{e(r)}</td><td>{e(lit)}</td><td>{e(m)}</td></tr>')
+        rows.append(f'<tr><td lang="ja">{e(w)}</td>{reading_td(r)}<td>{e(lit)}</td><td>{e(m)}</td></tr>')
     rows += ['</tbody></table>', '<h2>Misleading kanji in DangoChains puzzles</h2>']
     return '\n'.join(rows)
 
@@ -1254,7 +1334,7 @@ def collocations_reference():
             'you さす it, and medicine is drunk (飲む) even as a pill. Learn the noun and its verb together.</p>',
             '<table class="st-table"><thead><tr><th>Phrase</th><th>Reading</th><th>Meaning</th></tr></thead><tbody>']
     for w, r, m in COLLOCATION_ROWS:
-        rows.append(f'<tr><td lang="ja">{e(w)}</td><td lang="ja">{e(r)}</td><td>{e(m)}</td></tr>')
+        rows.append(f'<tr><td lang="ja">{e(w)}</td>{reading_td(r)}<td>{e(m)}</td></tr>')
     rows += ['</tbody></table>', '<h2>Collocations in DangoChains puzzles</h2>']
     return '\n'.join(rows)
 

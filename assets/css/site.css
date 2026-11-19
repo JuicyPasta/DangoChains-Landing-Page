@@ -585,6 +585,7 @@ a.chip:hover { box-shadow: inset 0 0 0 1.5px var(--line-strong); }
 .prose .st-table thead th { border-bottom-color: var(--line-strong); }
 .prose .st-table td[lang=ja] { font-size: 1.0625rem; white-space: nowrap; }
 .prose .st-table td[lang=ja]:first-child { font-weight: 700; }
+.prose .st-table td small.rmj { display: block; margin-top: 1px; font-size: .8125rem; font-weight: 400; color: var(--muted); white-space: normal; }
 .prose .st-table td:last-child { color: var(--ink-2); }
 .prose .st-src { margin-top: -.4em; font-size: var(--fs-s); color: var(--muted); }
 .prose .st-group { margin-top: 1.8em; font-size: var(--fs-xl); }
