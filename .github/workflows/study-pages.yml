@@ -28,7 +28,21 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add study
           git commit -m "Study pages: daily update"
-          git push
+          # The projects sweep pushes to main around this time too (2026-11-18: the push was
+          # rejected and 11-17 never published). On a rejected push, rebuild on top of the new
+          # main instead of rebasing generated files.
+          pushed=""
+          for attempt in 1 2 3 4 5; do
+            if git push; then pushed=1; break; fi
+            sleep $((attempt * 10))
+            git fetch origin main
+            git reset --hard origin/main
+            python3 scripts/build_study.py
+            if [ -z "$(git status --porcelain study)" ]; then echo "no change after rebuild"; exit 0; fi
+            git add study
+            git commit -m "Study pages: daily update"
+          done
+          [ -n "$pushed" ] || { echo "push failed 5 times"; exit 1; }
           # Pushes made with GITHUB_TOKEN may not start a legacy Pages build on their own.
           gh api -X POST "repos/${GITHUB_REPOSITORY}/pages/builds" || true
           # Announce the new day page and the hub to Bing & co. once Pages has had time to deploy.
