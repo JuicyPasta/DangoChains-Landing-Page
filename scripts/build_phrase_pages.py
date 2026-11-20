@@ -75,7 +75,7 @@ page('phrases-thank-you-in-japanese.md', '/phrases/thank-you-in-japanese/', 'Tha
   '(<i>gochisōsama deshita</i>), which thanks whoever cooked or paid; it\'s also what you say to the staff as you leave a small restaurant.</p>',
   '<p><small>Where it comes from: <span lang="ja">ありがとう</span> was once written <span lang="ja">有難う</span>, from <span lang="ja">有り難い</span> '
   '(<i>arigatai</i>, "hard to have", so rare and precious). Today it is almost always written in hiragana.</small></p>',
-  more('thank-you-in-japanese'), CTA]))
+  more('thank-you-in-japanese'), '<p lang="es">En español: <a href="/es/gracias-en-japones/">Gracias en japonés</a></p>', CTA]), extra_fm='alternates:\n  - lang: es\n    url: /es/gracias-en-japones/\n')
 
 # ---- hello ----
 page('phrases-hello-in-japanese.md', '/phrases/hello-in-japanese/', 'Hello in Japanese',
@@ -108,7 +108,7 @@ page('phrases-hello-in-japanese.md', '/phrases/hello-in-japanese/', 'Hello in Ja
    ('いらっしゃいませ', 'irasshaimase', 'shop and restaurant staff', 'welcome (customers don\'t answer it; a nod is enough)'),
   ]),
   '<p>To start talking to a stranger, for example to ask the way, Japanese uses <span lang="ja">すみません</span> (<i>sumimasen</i>, "excuse me") rather than hello.</p>',
-  more('hello-in-japanese'), CTA]))
+  more('hello-in-japanese'), '<p lang="es">En español: <a href="/es/hola-en-japones/">Hola en japonés</a></p>', CTA]), extra_fm='alternates:\n  - lang: es\n    url: /es/hola-en-japones/\n')
 
 # ---- goodbye ----
 page('phrases-goodbye-in-japanese.md', '/phrases/goodbye-in-japanese/', 'Goodbye in Japanese',

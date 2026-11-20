@@ -4,6 +4,9 @@ permalink: /phrases/thank-you-in-japanese/
 title: "Thank you in Japanese"
 seo_title: "Thank you in Japanese: ありがとう, ありがとうございます and when to use each"
 description: "How to say thank you in Japanese: arigatō, arigatō gozaimasu, arigatō gozaimashita, dōmo, sumimasen and more, with romaji, politeness level and when to use each, plus how to answer."
+alternates:
+  - lang: es
+    url: /es/gracias-en-japones/
 ---
 
 <style>.st-table{border-collapse:collapse;margin:.3em 0 1em;width:100%}.st-table th,.st-table td{border-bottom:1px solid #e6e6e6;padding:.35em .5em;text-align:left;vertical-align:top}.st-table td[lang=ja]{font-size:1.1em;white-space:nowrap}.st-cta{background:#f6f2ea;border-radius:12px;padding:1em 1.2em;margin:2em 0}</style>
@@ -35,4 +38,5 @@ description: "How to say thank you in Japanese: arigatō, arigatō gozaimasu, ar
 <p>Before eating, people say <span lang="ja">いただきます</span> (<i>itadakimasu</i>); after eating, <span lang="ja">ごちそうさまでした</span> (<i>gochisōsama deshita</i>), which thanks whoever cooked or paid; it's also what you say to the staff as you leave a small restaurant.</p>
 <p><small>Where it comes from: <span lang="ja">ありがとう</span> was once written <span lang="ja">有難う</span>, from <span lang="ja">有り難い</span> (<i>arigatai</i>, "hard to have", so rare and precious). Today it is almost always written in hiragana.</small></p>
 <p><b>More everyday phrases:</b> <a href="/phrases/hello-in-japanese/">Hello in Japanese</a> · <a href="/phrases/sorry-in-japanese/">Sorry in Japanese</a> · <a href="/phrases/goodbye-in-japanese/">Goodbye in Japanese</a> · <a href="/phrases/good-morning-in-japanese/">Good morning in Japanese</a> · <a href="/phrases/good-night-in-japanese/">Good night in Japanese</a> · <a href="/phrases/how-are-you-in-japanese/">How are you in Japanese</a> · <a href="/phrases/yes-and-no-in-japanese/">Yes and no in Japanese</a> · <a href="/phrases/please-in-japanese/">Please in Japanese</a> · <a href="/phrases/happy-birthday-in-japanese/">Happy birthday in Japanese</a> · <a href="/phrases/cheers-in-japanese/">Cheers in Japanese</a> · <a href="/phrases/welcome-in-japanese/">Welcome in Japanese</a> · <a href="/phrases/happy-new-year-in-japanese/">Happy New Year in Japanese</a> · <a href="/phrases/merry-christmas-in-japanese/">Merry Christmas in Japanese</a> · <a href="/phrases/">all basic phrases</a> · <a href="/study/topics/greetings/">greetings word groups from past puzzles</a> · <a href="/japanese-words/">basic Japanese words</a></p>
+<p lang="es">En español: <a href="/es/gracias-en-japones/">Gracias en japonés</a></p>
 <div class="st-cta"><p><b>Learn words by playing.</b> DangoChains is a free daily puzzle for Japanese learners: sort 16 Japanese words into 4 hidden groups, at three levels, in your browser. After each game you see every word's reading and English meaning. <a href="/play/">Play today's puzzle</a> · <a href="/learn-japanese-games/">more free Japanese games</a></p></div>

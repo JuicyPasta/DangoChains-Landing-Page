@@ -12,7 +12,7 @@ alternates:
 
 <style>.st-table{border-collapse:collapse;margin:.3em 0 1em;width:100%}.st-table th,.st-table td{border-bottom:1px solid #e6e6e6;padding:.35em .5em;text-align:left;vertical-align:top}.st-table td[lang=ja]{font-size:1.1em;white-space:nowrap}.st-cta{background:#f6f2ea;border-radius:12px;padding:1em 1.2em;margin:2em 0}</style>
 <h1>Frases en japonés</h1>
-<p>Frases en japonés para el día a día, para viajar y para decir lo que sientes, con su romaji y su significado en español, y al final algunas frases bonitas y proverbios japoneses. En japonés la misma idea cambia según con quién hablas: です y ます hacen una frase cortés, y entre amigos se omiten (ありがとうございます → ありがとう). Para los saludos y cuándo se usa cada uno, mira <a href="/es/saludos-en-japones/">saludos en japonés</a>.</p>
+<p>Frases en japonés para el día a día, para viajar y para decir lo que sientes, con su romaji y su significado en español, y al final algunas frases bonitas y proverbios japoneses. En japonés la misma idea cambia según con quién hablas: です y ます hacen una frase cortés, y entre amigos se omiten (ありがとうございます → ありがとう). Para los saludos y cuándo se usa cada uno, mira <a href="/es/saludos-en-japones/">saludos en japonés</a>; guías completas: <a href="/es/hola-en-japones/">hola en japonés</a> y <a href="/es/gracias-en-japones/">gracias en japonés</a>.</p>
 <h2>Frases básicas</h2>
 <table class="st-table"><thead><tr><th>Japonés</th><th>Romaji</th><th>Significado</th></tr></thead><tbody>
 <tr><td lang="ja">はい</td><td>hai</td><td>sí</td></tr>
