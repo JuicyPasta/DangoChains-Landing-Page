@@ -8,6 +8,8 @@ description: "Cómo se dice hola en japonés: konnichiwa, ohayō, konbanwa, mosh
 alternates:
   - lang: en
     url: /phrases/hello-in-japanese/
+  - lang: pt
+    url: /pt/ola-em-japones/
 ---
 
 <style>.st-table{border-collapse:collapse;margin:.3em 0 1em;width:100%}.st-table th,.st-table td{border-bottom:1px solid #e6e6e6;padding:.35em .5em;text-align:left;vertical-align:top}.st-table td[lang=ja]{font-size:1.1em;white-space:nowrap}.st-cta{background:#f6f2ea;border-radius:12px;padding:1em 1.2em;margin:2em 0}</style>

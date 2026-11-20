@@ -108,7 +108,7 @@ page('phrases-hello-in-japanese.md', '/phrases/hello-in-japanese/', 'Hello in Ja
    ('いらっしゃいませ', 'irasshaimase', 'shop and restaurant staff', 'welcome (customers don\'t answer it; a nod is enough)'),
   ]),
   '<p>To start talking to a stranger, for example to ask the way, Japanese uses <span lang="ja">すみません</span> (<i>sumimasen</i>, "excuse me") rather than hello.</p>',
-  more('hello-in-japanese'), '<p lang="es">En español: <a href="/es/hola-en-japones/">Hola en japonés</a></p>', CTA]), extra_fm='alternates:\n  - lang: es\n    url: /es/hola-en-japones/\n')
+  more('hello-in-japanese'), '<p lang="es">En español: <a href="/es/hola-en-japones/">Hola en japonés</a></p>', CTA]), extra_fm='alternates:\n  - lang: es\n    url: /es/hola-en-japones/\n  - lang: pt\n    url: /pt/ola-em-japones/\n')
 
 # ---- goodbye ----
 page('phrases-goodbye-in-japanese.md', '/phrases/goodbye-in-japanese/', 'Goodbye in Japanese',
