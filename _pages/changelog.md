@@ -9,6 +9,29 @@ include_in_header: true
 <section class="release" markdown="1">
 <span class="tag">Latest</span>
 
+## Version 1.0.6
+
+App Store: November 20, 2026. Google Play: coming soon.
+
+- Hear every word: after each game, tap 🔊 next to any word in Word Groups to hear it in Japanese. It uses your device's own Japanese voice and reads the kana, so kanji come out right
+- New English (UK) and English (Australia) App Store listings
+
+</section>
+
+<section class="release" markdown="1">
+
+## Version 1.0.5
+
+App Store: November 16, 2026. Google Play: November 17, 2026 (to everyone from November 19).
+
+- On tablets, a bigger board and archive calendar, centred on the screen
+- Event links open the app directly
+- App Store listing in seven languages, with Japanese screenshots
+
+</section>
+
+<section class="release" markdown="1">
+
 ## Version 1.0.4
 
 App Store: November 10, 2026. Google Play: November 10, 2026 (to everyone from November 11).
