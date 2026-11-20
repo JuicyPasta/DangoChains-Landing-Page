@@ -50,8 +50,8 @@ def simple(head, rows, ja_cols=(0,)):
     out.append('</tbody></table>')
     return '\n'.join(out)
 
-def write(name, permalink, title, seo, desc, body):
-    fm = f'---\nlayout: page\npermalink: {permalink}\ntitle: "{title}"\nseo_title: "{seo}"\ndescription: "{desc}"\n---\n\n'
+def write(name, permalink, title, seo, desc, body, extra_fm=''):
+    fm = f'---\nlayout: page\npermalink: {permalink}\ntitle: "{title}"\nseo_title: "{seo}"\ndescription: "{desc}"\n{extra_fm}---\n\n'
     open(os.path.join(ROOT, '_pages', name), 'w', encoding='utf-8').write(fm + STYLE + '\n' + body + '\n')
 
 ident = lambda s: s
@@ -157,5 +157,73 @@ write('japanese-alphabet.md', '/japanese-alphabet/', 'The Japanese alphabet',
   '<li><b>Kanji</b> a few at a time, inside words rather than alone: <a href="/study/jlpt/n5/">JLPT N5 words</a>, <a href="/study/topics/numbers/">numbers</a>, '
   '<a href="/study/topics/days-months/">days of the week</a>. A kanji usually has more than one reading; see <a href="/study/topics/kanji-readings/">onyomi vs kunyomi</a>.</li></ol>',
   '<p>Romaji helps at the very start, but drop it early: Japanese readers never see it, and spellings like <i>ō</i> vs <i>ou</i> hide how words are written.</p>',
-  NAV, CTA]))
+  '<p lang="es">En español: <a href="/es/alfabeto-japones/">Alfabeto japonés: hiragana y katakana</a></p>',
+  NAV, CTA]), extra_fm='alternates:\n  - lang: es\n    url: /es/alfabeto-japones/\n')
+
+# ---- Spanish: alfabeto japonés (letras japonesas / abecedario japonés; ~95,800 searches a month, Keyword Planner 2026-11-20) ----
+CTA_ES = ('<div class="st-cta"><p><b>Practica la lectura con un juego diario.</b> Cada día hay tres tableros de 16 palabras japonesas para ordenar en 4 grupos, '
+          'gratis en el navegador. El tablero Fácil usa palabras de todos los días con furigana (kana sobre cada kanji), así que sirve para practicar hiragana. '
+          'El juego está en inglés y japonés; al final ves la lectura y el significado (en inglés) de cada palabra. <a href="/play/?t=easy">Jugar el Fácil de hoy</a> · '
+          '<a href="/es/juegos-para-aprender-japones/">más juegos para aprender japonés</a></p></div>')
+write('es-alfabeto-japones.md', '/es/alfabeto-japones/', 'Alfabeto japonés',
+ 'Alfabeto japonés (abecedario): hiragana y katakana con romaji, pronunciación y audio',
+ 'El alfabeto japonés explicado en español: las letras japonesas son hiragana, katakana y kanji. Tablas de hiragana y katakana con romaji, sonidos con dakuten, combinaciones, cómo se pronuncia cada sonido para hispanohablantes y audio en cada carácter.',
+ '\n'.join(['<h1>Alfabeto japonés: hiragana y katakana</h1>',
+  '<p>El japonés no tiene un solo alfabeto. Lo que se suele llamar «abecedario japonés» o «letras japonesas» son tres sistemas que se mezclan en la misma frase: '
+  'el hiragana y el katakana, que son silabarios (cada carácter es una sílaba, como か <i>ka</i>, no una letra), y los kanji, que representan ideas. '
+  'El romaji es el japonés escrito con nuestro alfabeto.</p>',
+  simple(['Sistema', 'Cuántos', 'Para qué sirve', 'Ejemplo'], [
+   ('ひらがな hiragana', '46 básicos', 'la gramática (terminaciones y partículas), palabras japonesas y el furigana sobre los kanji', '<span lang="ja">ねこ</span> (gato), <span lang="ja">ありがとう</span>'),
+   ('カタカナ katakana', '46 básicos', 'palabras extranjeras, nombres de otros países, onomatopeyas y énfasis', '<span lang="ja">コーヒー</span> (café), <span lang="ja">スペイン</span> (España)'),
+   ('漢字 kanji', '2.136 en la lista oficial de uso común', 'el significado: sustantivos y la raíz de verbos y adjetivos', '<span lang="ja">山</span> (montaña), <span lang="ja">食べる</span> (comer)'),
+   ('ローマ字 rōmaji', '26 letras', 'teclados, carteles de estaciones y libros para principiantes', '<i>arigatō</i>'),
+  ]),
+  '<p><b>Escúchalos:</b> toca cualquier carácter de las tablas para oírlo (usa la voz japonesa de tu dispositivo). Las tablas se leen por filas: la consonante de la izquierda más la vocal de arriba. '
+  'El orden japonés es あいうえお (a, i, u, e, o).</p>',
+  '<h2>Hiragana: los 46 caracteres básicos</h2>', grid(GOJUON, ident),
+  '<p><b>Ojo:</b> <span lang="ja">し</span> es <i>shi</i>, <span lang="ja">ち</span> <i>chi</i>, <span lang="ja">つ</span> <i>tsu</i> y <span lang="ja">ふ</span> <i>fu</i>. '
+  '<span lang="ja">を</span> suena <i>o</i> y solo se usa como partícula. Como partículas, <span lang="ja">は</span> se lee <i>wa</i> y <span lang="ja">へ</span> <i>e</i>.</p>',
+  '<h2>Katakana: los 46 caracteres básicos</h2>',
+  '<p>Los mismos sonidos que el hiragana, con trazos más rectos. Se usa sobre todo para palabras que vienen de otros idiomas: <span lang="ja">パン</span> <i>pan</i> viene del portugués y '
+  '<span lang="ja">テレビ</span> <i>terebi</i> del inglés. En katakana una vocal larga se marca con un guion: <span lang="ja">コーヒー</span> <i>kōhī</i>.</p>', grid(GOJUON, kata),
+  '<h2>Sonidos sonoros: dakuten y handakuten</h2>',
+  '<p>Dos rayitas (<span lang="ja">゛</span>, <i>dakuten</i>) cambian k → g, s → z, t → d y h → b; un circulito (<span lang="ja">゜</span>, <i>handakuten</i>) cambia h → p.</p>',
+  grid(DAKUTEN, ident), grid(DAKUTEN, kata),
+  '<h2>Combinaciones (yōon)</h2>',
+  '<p>Un <span lang="ja">ゃ</span>, <span lang="ja">ゅ</span> o <span lang="ja">ょ</span> pequeño después de un carácter de la columna i forma una sola sílaba: '
+  '<span lang="ja">き</span> + <span lang="ja">ゃ</span> = <span lang="ja">きゃ</span> <i>kya</i>. No es lo mismo <span lang="ja">びょういん</span> (<i>byōin</i>, hospital) que '
+  '<span lang="ja">びよういん</span> (<i>biyōin</i>, peluquería).</p>', yoon_grid(ident),
+  '<h2>Cómo se pronuncia (para hispanohablantes)</h2>',
+  '<p>Casi todos los sonidos del japonés existen en español; estos son los que cambian.</p>',
+  simple(['Romaji', 'Cómo suena', 'Ejemplo'], [
+   ('a, i, u, e, o', 'como en español, pero la <i>u</i> sin redondear los labios; al final de です o ます casi no se oye (<i>des</i>, <i>mas</i>)', '<span lang="ja">です</span> desu'),
+   ('h (ha, hi, he, ho)', 'una jota suave, aspirada; nunca muda', '<span lang="ja">はな</span> hana (flor)'),
+   ('fu', 'entre «fu» y «ju»: se sopla sin apoyar el labio en los dientes', '<span lang="ja">ふじ</span> Fuji'),
+   ('j (ja, ji, ju, jo)', 'como la «y» fuerte de «yo» o la j inglesa de «jeans»; nunca como la jota española', '<span lang="ja">じかん</span> jikan (tiempo)'),
+   ('g (ga, gi, gu, ge, go)', 'siempre como en «gato»: <i>gi</i> suena «gui» y <i>ge</i> «gue»', '<span lang="ja">げんき</span> genki (con energía)'),
+   ('z (za, zu, ze, zo)', 'una s sonora, como la z del inglés «zoo»', '<span lang="ja">みず</span> mizu (agua)'),
+   ('r (ra, ri, ru, re, ro)', 'una r suave de un solo toque, como en «pero»; nunca la rr', '<span lang="ja">さくら</span> sakura'),
+   ('sh, ch, ts', '<i>sh</i> como en el inglés «she»; <i>ch</i> como en español; <i>ts</i> como en «tsunami»', '<span lang="ja">しお</span> shio, <span lang="ja">ちず</span> chizu, <span lang="ja">つき</span> tsuki'),
+   ('n (ん)', 'una n que forma sílaba propia; antes de b, m o p suena casi como m', '<span lang="ja">ほん</span> hon, <span lang="ja">しんぶん</span> shinbun'),
+   ('ā, ī, ū, ē, ō', 'vocal larga: dura el doble y cambia el significado', '<span lang="ja">おばさん</span> obasan (tía) / <span lang="ja">おばあさん</span> obāsan (abuela)'),
+   ('っ pequeña', 'una pausa breve que duplica la consonante siguiente', '<span lang="ja">きって</span> kitte (sello)'),
+  ], ja_cols=()),
+  '<h2>Primeras palabras para leer</h2>',
+  simple(['Japonés', 'Romaji', 'Significado'], [
+   ('ねこ', 'neko', 'gato'), ('いぬ', 'inu', 'perro'), ('さくら', 'sakura', 'flor de cerezo'), ('すし', 'sushi', 'sushi'),
+   ('ありがとう', 'arigatō', 'gracias'), ('おはよう', 'ohayō', 'buenos días'), ('ともだち', 'tomodachi', 'amigo'), ('みず', 'mizu', 'agua'),
+   ('パン', 'pan', 'pan (del portugués)'), ('テレビ', 'terebi', 'televisión'), ('ホテル', 'hoteru', 'hotel'), ('スペイン', 'Supein', 'España'),
+  ]),
+  '<h2>En qué orden aprenderlos</h2>',
+  '<ol><li><b>Hiragana</b> primero: tiene todos los sonidos del idioma y con él puedes leer cualquier texto con furigana. La mayoría lo aprende en una o dos semanas.</li>'
+  '<li><b>Katakana</b> después: son los mismos sonidos, así que va más rápido, y abre menús y carteles llenos de palabras extranjeras.</li>'
+  '<li><b>Kanji</b> poco a poco y dentro de palabras: <a href="/es/numeros-en-japones/">números</a>, <a href="/es/dias-de-la-semana-en-japones/">días de la semana</a>, '
+  '<a href="/es/familia-en-japones/">familia</a>. Un kanji suele tener más de una lectura.</li></ol>',
+  '<p><b>Ponte a prueba</b> (en inglés, gratis, con sonido): <a href="/hiragana-quiz/">quiz de hiragana</a> · <a href="/katakana-quiz/">quiz de katakana</a>. '
+  'El romaji ayuda al principio, pero conviene dejarlo pronto: los japoneses no lo usan.</p>',
+  CTA_ES,
+  '<p>Más en español: <a href="/es/palabras-en-japones/">palabras en japonés</a> · <a href="/es/frases-en-japones/">frases en japonés</a> · <a href="/es/saludos-en-japones/">saludos</a> · '
+  '<a href="/es/numeros-en-japones/">números</a> · <a href="/es/colores-en-japones/">colores</a> · <a href="/es/comida-en-japones/">comida</a> · <a href="/es/flores-en-japones/">flores</a></p>',
+  '<p>En inglés: <a href="/japanese-alphabet/">The Japanese alphabet</a> · <a href="/hiragana-chart/">Hiragana chart</a> · <a href="/katakana-chart/">Katakana chart</a></p>',
+ ]), extra_fm='lang: es\nalternates:\n  - lang: en\n    url: /japanese-alphabet/\n')
 print('ok')
