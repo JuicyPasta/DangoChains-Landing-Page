@@ -403,5 +403,5 @@ page('phrases.md', '/phrases/', 'Basic Japanese phrases',
   '<p>More: <a href="/japanese-words/">basic Japanese words</a> · <a href="/hiragana-chart/">hiragana chart</a> · <a href="/katakana-chart/">katakana chart</a> · <a href="/study/topics/greetings/">greetings and set phrases from past puzzles</a> · '
   '<a href="/study/topics/numbers/">numbers</a> · <a href="/study/topics/days-months/">days of the week and months</a> · <a href="/study/topics/">all vocabulary topics</a></p>',
   '<p lang="es">En español: <a href="/es/frases-en-japones/">Frases en japonés</a></p>',
-  CTA]), extra_fm='alternates:\n  - lang: es\n    url: /es/frases-en-japones/\n')
+  CTA]), extra_fm='alternates:\n  - lang: es\n    url: /es/frases-en-japones/\n  - lang: pt\n    url: /pt/frases-em-japones/\n')
 print('ok')
