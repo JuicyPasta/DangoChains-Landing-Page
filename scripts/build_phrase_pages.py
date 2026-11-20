@@ -75,7 +75,7 @@ page('phrases-thank-you-in-japanese.md', '/phrases/thank-you-in-japanese/', 'Tha
   '(<i>gochisōsama deshita</i>), which thanks whoever cooked or paid; it\'s also what you say to the staff as you leave a small restaurant.</p>',
   '<p><small>Where it comes from: <span lang="ja">ありがとう</span> was once written <span lang="ja">有難う</span>, from <span lang="ja">有り難い</span> '
   '(<i>arigatai</i>, "hard to have", so rare and precious). Today it is almost always written in hiragana.</small></p>',
-  more('thank-you-in-japanese'), '<p lang="es">En español: <a href="/es/gracias-en-japones/">Gracias en japonés</a></p>', CTA]), extra_fm='alternates:\n  - lang: es\n    url: /es/gracias-en-japones/\n')
+  more('thank-you-in-japanese'), '<p lang="es">En español: <a href="/es/gracias-en-japones/">Gracias en japonés</a></p>', CTA]), extra_fm='alternates:\n  - lang: es\n    url: /es/gracias-en-japones/\n  - lang: pt\n    url: /pt/obrigado-em-japones/\n')
 
 # ---- hello ----
 page('phrases-hello-in-japanese.md', '/phrases/hello-in-japanese/', 'Hello in Japanese',
@@ -133,7 +133,7 @@ page('phrases-goodbye-in-japanese.md', '/phrases/goodbye-in-japanese/', 'Goodbye
    ('お元気で', 'o-genki de', 'polite', 'take care, before a long parting'),
    ('いってきます', 'ittekimasu', 'neutral', 'leaving home: "I\'m off" (answered with <span lang="ja">いってらっしゃい</span>)'),
   ]),
-  more('goodbye-in-japanese'), CTA]))
+  more('goodbye-in-japanese'), '<p lang="es">En español: <a href="/es/adios-en-japones/">Adiós en japonés</a></p>', CTA]), extra_fm='alternates:\n  - lang: es\n    url: /es/adios-en-japones/\n')
 
 # ---- good morning ----
 page('phrases-good-morning-in-japanese.md', '/phrases/good-morning-in-japanese/', 'Good morning in Japanese',

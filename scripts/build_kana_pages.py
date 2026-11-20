@@ -287,7 +287,7 @@ write('pt-alfabeto-japones.md', '/pt/alfabeto-japones/', 'Alfabeto japonês',
   '<li><b>Kanji</b> aos poucos e dentro de palavras: <a href="/pt/numeros-em-japones/">números</a>, <a href="/pt/cores-em-japones/">cores</a>. Um kanji costuma ter mais de uma leitura.</li></ol>',
   '<p><b>Teste-se</b> (em inglês, grátis, com som): <a href="/hiragana-quiz/">quiz de hiragana</a> · <a href="/katakana-quiz/">quiz de katakana</a>.</p>',
   CTA_PT,
-  '<p>Mais em português: <a href="/pt/palavras-em-japones/">palavras em japonês</a> · <a href="/pt/numeros-em-japones/">números</a> · <a href="/pt/cores-em-japones/">cores</a></p>',
+  '<p>Mais em português: <a href="/pt/obrigado-em-japones/">obrigado em japonês</a> · <a href="/pt/palavras-em-japones/">palavras em japonês</a> · <a href="/pt/numeros-em-japones/">números</a> · <a href="/pt/cores-em-japones/">cores</a></p>',
   '<p>Em espanhol: <a href="/es/alfabeto-japones/">Alfabeto japonés</a> · em inglês: <a href="/japanese-alphabet/">The Japanese alphabet</a></p>',
  ]), extra_fm='lang: pt\nalternates:\n  - lang: en\n    url: /japanese-alphabet/\n  - lang: es\n    url: /es/alfabeto-japones/\n')
 print('ok')
