@@ -41,4 +41,5 @@ alternates:
 <tr><td lang="ja">一億</td><td lang="ja">いちおく</td><td>ichioku</td><td>100.000.000</td></tr>
 </tbody></table>
 <div class="st-cta"><p><b>Pratique com um jogo diário.</b> Todo dia há três tabuleiros com 16 palavras japonesas para separar em 4 grupos, de graça no navegador: <a href="/play/">jogar o desafio de hoje</a>. O jogo é em inglês e japonês; no fim você vê a leitura e o significado (em inglês) de cada palavra. <a href="/pt/palavras-em-japones/">Palavras básicas em japonês</a>.</p></div>
+<p>Mais em português: <a href="/pt/alfabeto-japones/">alfabeto japonês (hiragana e katakana)</a></p>
 <p>Em inglês: <a href="/study/topics/numbers/">Japanese numbers</a>.</p>

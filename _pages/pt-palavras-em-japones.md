@@ -98,4 +98,5 @@ alternates:
 <tr><td lang="ja">大丈夫</td><td lang="ja">だいじょうぶ</td><td>daijōbu</td><td>tudo bem; sem problema</td></tr>
 </tbody></table>
 <div class="st-cta"><p><b>Pratique com um jogo diário.</b> Todo dia há três tabuleiros com 16 palavras japonesas para separar em 4 grupos, de graça no navegador: <a href="/play/">jogar o desafio de hoje</a>. O jogo é em inglês e japonês; no fim você vê a leitura e o significado (em inglês) de cada palavra.</p></div>
+<p>Mais em português: <a href="/pt/alfabeto-japones/">alfabeto japonês (hiragana e katakana)</a></p>
 <p>Mais: <a href="/study/topics/">vocabulário japonês por tema</a> (em inglês) e <a href="/study/jlpt/n5/">a lista do JLPT N5</a> (em inglês).</p>
