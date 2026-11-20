@@ -1646,7 +1646,8 @@ LANG_PAGES = {'plants': [('es', '/es/flores-en-japones/', 'Flores en japonés')]
               'colors': [('es', '/es/colores-en-japones/', 'Colores en japonés'),
                          ('pt', '/pt/cores-em-japones/', 'Cores em japonês')],
               'days-months': [('es', '/es/dias-de-la-semana-en-japones/', 'Días de la semana y meses en japonés')],
-              'love': [('es', '/es/te-amo-en-japones/', 'Te amo en japonés')],
+              'love': [('es', '/es/te-amo-en-japones/', 'Te amo en japonés'),
+                       ('pt', '/pt/eu-te-amo-em-japones/', 'Eu te amo em japonês')],
               'family': [('es', '/es/familia-en-japones/', 'La familia en japonés')],
               'food': [('es', '/es/comida-en-japones/', 'Comida en japonés')]}
 
