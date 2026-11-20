@@ -222,7 +222,7 @@ write('es-alfabeto-japones.md', '/es/alfabeto-japones/', 'Alfabeto japonés',
   '<p><b>Ponte a prueba</b> (en inglés, gratis, con sonido): <a href="/hiragana-quiz/">quiz de hiragana</a> · <a href="/katakana-quiz/">quiz de katakana</a>. '
   'El romaji ayuda al principio, pero conviene dejarlo pronto: los japoneses no lo usan.</p>',
   CTA_ES,
-  '<p>Más en español: <a href="/es/palabras-en-japones/">palabras en japonés</a> · <a href="/es/frases-en-japones/">frases en japonés</a> · <a href="/es/saludos-en-japones/">saludos</a> · '
+  '<p>Más en español: <a href="/es/nombres-japoneses/">nombres japoneses</a> · <a href="/es/palabras-en-japones/">palabras en japonés</a> · <a href="/es/frases-en-japones/">frases en japonés</a> · <a href="/es/saludos-en-japones/">saludos</a> · '
   '<a href="/es/numeros-en-japones/">números</a> · <a href="/es/colores-en-japones/">colores</a> · <a href="/es/comida-en-japones/">comida</a> · <a href="/es/flores-en-japones/">flores</a></p>',
   '<p>En inglés: <a href="/japanese-alphabet/">The Japanese alphabet</a> · <a href="/hiragana-chart/">Hiragana chart</a> · <a href="/katakana-chart/">Katakana chart</a></p>',
  ]), extra_fm='lang: es\nalternates:\n  - lang: en\n    url: /japanese-alphabet/\n')

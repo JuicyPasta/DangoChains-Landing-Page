@@ -16,7 +16,7 @@ function addDays(ymd, n) { const p = ymd.split('-'); return new Date(Date.UTC(+p
 const PAGES = ['/', '/play/', '/play/?t=medium', '/play/?t=hard', '/play/?d=' + addDays(T, -9) + '&t=easy', '/make/', '/bridge/', '/bridge/?t=hard',
   '/how-to-play/', '/changelog/', '/privacypolicy/', '/tos/', '/study/', '/study/' + addDays(T, -2) + '/', '/study/2026-08-21/', '/study/topics/',
   '/study/topics/idioms/', '/study/topics/kanji-readings/', '/study/topics/collocations/', '/study/topics/counters/',
-  '/es/frases-en-japones/', '/es/flores-en-japones/', '/es/saludos-en-japones/', '/es/comida-en-japones/', '/es/alfabeto-japones/', '/japanese-alphabet/', '/es/gracias-en-japones/', '/es/hola-en-japones/', '/phrases/', '/404.html'];
+  '/es/frases-en-japones/', '/es/flores-en-japones/', '/es/saludos-en-japones/', '/es/comida-en-japones/', '/es/alfabeto-japones/', '/japanese-alphabet/', '/es/gracias-en-japones/', '/es/hola-en-japones/', '/es/nombres-japoneses/', '/phrases/', '/404.html'];
 
 async function allWords() {
   const index = await L.getJson(base + '/feed/v1/index.json'), boards = [];
