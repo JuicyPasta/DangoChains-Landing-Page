@@ -36,5 +36,5 @@ alternates:
 <tr><td lang="ja">お疲れさまです</td><td>otsukaresama desu</td><td>entre compañeros de trabajo: hola, o gracias por tu trabajo</td></tr>
 </tbody></table>
 <div class="st-cta"><p><b>Practica con un juego diario.</b> Cada día hay tres tableros de 16 palabras japonesas para ordenar en 4 grupos, gratis en el navegador: <a href="/play/">jugar el reto de hoy</a>. El juego está en inglés y japonés; al final de cada partida ves la lectura y el significado (en inglés) de cada palabra. <a href="/es/juegos-para-aprender-japones/">Más juegos para aprender japonés</a>.</p></div>
-<p>Más frases útiles, para viajar y frases bonitas: <a href="/es/frases-en-japones/">frases en japonés</a>. Guías: <a href="/es/hola-en-japones/">hola en japonés</a> · <a href="/es/gracias-en-japones/">gracias en japonés</a>.</p>
+<p>Más frases útiles, para viajar y frases bonitas: <a href="/es/frases-en-japones/">frases en japonés</a>. Guías: <a href="/es/hola-en-japones/">hola en japonés</a> · <a href="/es/buenos-dias-en-japones/">buenos días en japonés</a> · <a href="/es/gracias-en-japones/">gracias en japonés</a>.</p>
 <p>En inglés: <a href="/study/topics/greetings/">Japanese greetings and basic phrases</a>, con los grupos de palabras de acertijos anteriores.</p>

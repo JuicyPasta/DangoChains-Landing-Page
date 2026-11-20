@@ -154,7 +154,7 @@ page('phrases-good-morning-in-japanese.md', '/phrases/good-morning-in-japanese/'
    ('早起き', 'はやおき', 'hayaoki', 'getting up early'), ('起きる', 'おきる', 'okiru', 'to get up'), ('目覚まし時計', 'めざましどけい', 'mezamashi-dokei', 'alarm clock'),
    ('よく眠れた？', 'よくねむれた？', 'yoku nemureta?', 'did you sleep well?'), ('いい天気ですね', 'いいてんきですね', 'ii tenki desu ne', 'nice weather, isn\'t it'),
   ]),
-  more('good-morning-in-japanese'), CTA]))
+  more('good-morning-in-japanese'), '<p lang="es">En español: <a href="/es/buenos-dias-en-japones/">Buenos días en japonés</a></p>', CTA]), extra_fm='alternates:\n  - lang: es\n    url: /es/buenos-dias-en-japones/\n')
 
 # ---- good night ----
 page('phrases-good-night-in-japanese.md', '/phrases/good-night-in-japanese/', 'Good night in Japanese',
