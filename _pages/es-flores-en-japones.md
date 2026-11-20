@@ -4,7 +4,7 @@ lang: es
 permalink: /es/flores-en-japones/
 title: "Flores en japonés"
 seo_title: "Flores en japonés: nombres de flores con lectura y significado"
-description: "Los nombres de las flores en japonés con kanji, lectura, romaji y significado en español: sakura, ume, ajisai, himawari, kiku y más, y la estación que marca cada una."
+description: "Los nombres de las flores en japonés con kanji, lectura, romaji y significado en español: sakura, ume, ajisai, himawari, kiku y más, la estación de cada una y lo que significan en el hanakotoba (el lenguaje de las flores)."
 alternates:
   - lang: en
     url: /study/topics/plants/
@@ -33,6 +33,30 @@ alternates:
 <tr><td lang="ja">水仙</td><td lang="ja">すいせん</td><td>suisen</td><td>narciso</td></tr>
 <tr><td lang="ja">秋桜</td><td lang="ja">コスモス</td><td>kosumosu</td><td>cosmos (flor de otoño)</td></tr>
 <tr><td lang="ja">チューリップ</td><td lang="ja">チューリップ</td><td>chūrippu</td><td>tulipán</td></tr>
+<tr><td lang="ja">撫子</td><td lang="ja">なでしこ</td><td>nadeshiko</td><td>clavelina (flor silvestre de otoño)</td></tr>
+<tr><td lang="ja">桔梗</td><td lang="ja">ききょう</td><td>kikyō</td><td>campanilla china, flor de globo</td></tr>
+<tr><td lang="ja">彼岸花</td><td lang="ja">ひがんばな</td><td>higanbana</td><td>lirio araña rojo (florece en el equinoccio de otoño)</td></tr>
+<tr><td lang="ja">金木犀</td><td lang="ja">きんもくせい</td><td>kinmokusei</td><td>osmanto, olivo fragante (su olor anuncia el otoño)</td></tr>
+<tr><td lang="ja">菫</td><td lang="ja">すみれ</td><td>sumire</td><td>violeta</td></tr>
+<tr><td lang="ja">蘭</td><td lang="ja">らん</td><td>ran</td><td>orquídea</td></tr>
+<tr><td lang="ja">竜胆</td><td lang="ja">りんどう</td><td>rindō</td><td>genciana</td></tr>
+<tr><td lang="ja">山茶花</td><td lang="ja">さざんか</td><td>sazanka</td><td>camelia sasanqua (florece en invierno)</td></tr>
+</tbody></table>
+<h2>El significado de las flores: hanakotoba</h2>
+<p>En japonés, el lenguaje de las flores se llama 花言葉 (はなことば, hanakotoba). Se usa al elegir un ramo, y muchos nombres de chicas japonesas son nombres de flores (さくら, ゆり, すみれ). Los significados cambian un poco según la fuente y el color; estos son los más citados.</p>
+<table class="st-table"><thead><tr><th>Flor</th><th>Hanakotoba</th><th>Romaji</th><th>Significado</th></tr></thead><tbody>
+<tr><td lang="ja">桜（さくら）</td><td lang="ja">精神の美（せいしんのび）</td><td>seishin no bi</td><td>belleza del espíritu</td></tr>
+<tr><td lang="ja">梅（うめ）</td><td lang="ja">高潔（こうけつ）</td><td>kōketsu</td><td>nobleza, integridad</td></tr>
+<tr><td lang="ja">菊（きく）</td><td lang="ja">高貴（こうき）</td><td>kōki</td><td>nobleza; el crisantemo blanco se asocia al luto</td></tr>
+<tr><td lang="ja">赤い薔薇（あかいばら）</td><td lang="ja">愛情（あいじょう）</td><td>aijō</td><td>amor (rosa roja)</td></tr>
+<tr><td lang="ja">百合（ゆり）</td><td lang="ja">純潔（じゅんけつ）</td><td>junketsu</td><td>pureza</td></tr>
+<tr><td lang="ja">向日葵（ひまわり）</td><td lang="ja">憧れ（あこがれ）</td><td>akogare</td><td>admiración, anhelo</td></tr>
+<tr><td lang="ja">紫陽花（あじさい）</td><td lang="ja">移り気（うつりぎ）</td><td>utsurigi</td><td>inconstancia (cambia de color)</td></tr>
+<tr><td lang="ja">撫子（なでしこ）</td><td lang="ja">純愛（じゅんあい）</td><td>jun'ai</td><td>amor puro</td></tr>
+<tr><td lang="ja">桔梗（ききょう）</td><td lang="ja">誠実（せいじつ）</td><td>seijitsu</td><td>sinceridad, lealtad</td></tr>
+<tr><td lang="ja">蓮（はす）</td><td lang="ja">清らかな心（きよらかなこころ）</td><td>kiyoraka na kokoro</td><td>corazón puro</td></tr>
+<tr><td lang="ja">藤（ふじ）</td><td lang="ja">優しさ（やさしさ）</td><td>yasashisa</td><td>ternura, amabilidad</td></tr>
+<tr><td lang="ja">彼岸花（ひがんばな）</td><td lang="ja">再会（さいかい）</td><td>saikai</td><td>reencuentro; también se asocia a la muerte</td></tr>
 </tbody></table>
 <h2>Palabras útiles</h2>
 <p>Las flores 咲く (florecen) y sus pétalos 散る (caen). 花見 es la costumbre de reunirse bajo los cerezos en flor.</p>
@@ -47,4 +71,5 @@ alternates:
 <tr><td lang="ja">葉</td><td lang="ja">は</td><td>ha</td><td>hoja</td></tr>
 </tbody></table>
 <div class="st-cta"><p><b>Practica con un juego diario.</b> Cada día hay tres tableros de 16 palabras japonesas para ordenar en 4 grupos, gratis en el navegador: <a href="/play/">jugar el reto de hoy</a>. El juego está en inglés y japonés; al final de cada partida ves la lectura y el significado (en inglés) de cada palabra. <a href="/es/juegos-para-aprender-japones/">Más juegos para aprender japonés</a>.</p></div>
+<p>Más en español: <a href="/es/frases-en-japones/">frases en japonés</a> · <a href="/es/palabras-en-japones/">palabras en japonés</a> · <a href="/es/colores-en-japones/">colores</a></p>
 <p>En inglés: <a href="/study/topics/plants/">Flowers, trees and plants in Japanese</a>, con los grupos de palabras de acertijos anteriores.</p>

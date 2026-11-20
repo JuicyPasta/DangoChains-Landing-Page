@@ -402,5 +402,6 @@ page('phrases.md', '/phrases/', 'Basic Japanese phrases',
   table(['Japanese', 'Romaji', 'Meaning'], hub_rows),
   '<p>More: <a href="/japanese-words/">basic Japanese words</a> · <a href="/hiragana-chart/">hiragana chart</a> · <a href="/katakana-chart/">katakana chart</a> · <a href="/study/topics/greetings/">greetings and set phrases from past puzzles</a> · '
   '<a href="/study/topics/numbers/">numbers</a> · <a href="/study/topics/days-months/">days of the week and months</a> · <a href="/study/topics/">all vocabulary topics</a></p>',
-  CTA]))
+  '<p lang="es">En español: <a href="/es/frases-en-japones/">Frases en japonés</a></p>',
+  CTA]), extra_fm='alternates:\n  - lang: es\n    url: /es/frases-en-japones/\n')
 print('ok')

@@ -4,6 +4,9 @@ permalink: /phrases/
 title: "Basic Japanese phrases"
 seo_title: "Basic Japanese phrases: 30 everyday phrases with romaji and meanings, plus 14 guides"
 description: "Basic Japanese phrases for beginners: hello, thank you, sorry, goodbye, please, excuse me, how much, I don't understand and more, with romaji, meanings and guides to when each is used."
+alternates:
+  - lang: es
+    url: /es/frases-en-japones/
 ---
 
 <style>.st-table{border-collapse:collapse;margin:.3em 0 1em;width:100%}.st-table th,.st-table td{border-bottom:1px solid #e6e6e6;padding:.35em .5em;text-align:left;vertical-align:top}.st-table td[lang=ja]{font-size:1.1em;white-space:nowrap}.st-cta{background:#f6f2ea;border-radius:12px;padding:1em 1.2em;margin:2em 0}</style>
@@ -43,4 +46,5 @@ description: "Basic Japanese phrases for beginners: hello, thank you, sorry, goo
 <tr><td lang="ja">おめでとうございます</td><td>omedetō gozaimasu</td><td>congratulations · <a href="/phrases/happy-birthday-in-japanese/">more</a></td></tr>
 </tbody></table>
 <p>More: <a href="/japanese-words/">basic Japanese words</a> · <a href="/hiragana-chart/">hiragana chart</a> · <a href="/katakana-chart/">katakana chart</a> · <a href="/study/topics/greetings/">greetings and set phrases from past puzzles</a> · <a href="/study/topics/numbers/">numbers</a> · <a href="/study/topics/days-months/">days of the week and months</a> · <a href="/study/topics/">all vocabulary topics</a></p>
+<p lang="es">En español: <a href="/es/frases-en-japones/">Frases en japonés</a></p>
 <div class="st-cta"><p><b>Learn words by playing.</b> DangoChains is a free daily puzzle for Japanese learners: sort 16 Japanese words into 4 hidden groups, at three levels, in your browser. After each game you see every word's reading and English meaning. <a href="/play/">Play today's puzzle</a> · <a href="/learn-japanese-games/">more free Japanese games</a></p></div>
