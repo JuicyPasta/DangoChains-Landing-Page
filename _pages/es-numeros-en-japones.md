@@ -41,4 +41,5 @@ alternates:
 <tr><td lang="ja">一億</td><td lang="ja">いちおく</td><td>ichioku</td><td>100.000.000</td></tr>
 </tbody></table>
 <div class="st-cta"><p><b>Practica con un juego diario.</b> Cada día hay tres tableros de 16 palabras japonesas para ordenar en 4 grupos, gratis en el navegador: <a href="/play/">jugar el reto de hoy</a>. El juego está en inglés y japonés; al final de cada partida ves la lectura y el significado (en inglés) de cada palabra. <a href="/es/juegos-para-aprender-japones/">Más juegos para aprender japonés</a>.</p></div>
+<p>Más en español: <a href="/es/kanji-japones/">kanji japonés</a> · <a href="/es/alfabeto-japones/">alfabeto japonés</a></p>
 <p>En inglés: <a href="/study/topics/numbers/">Japanese numbers</a>, con los grupos de palabras de acertijos anteriores.</p>
