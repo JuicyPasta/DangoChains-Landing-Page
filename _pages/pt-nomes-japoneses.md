@@ -88,6 +88,7 @@ alternates:
 <tr><td lang="ja">山田</td><td lang="ja">やまだ</td><td>Yamada</td><td>arrozal da montanha</td></tr>
 </tbody></table>
 <h2>Seu nome em japonês (katakana)</h2>
+<p><b>Escreva o seu agora:</b> <a href="/pt/seu-nome-em-japones/">seu nome em japonês</a> (o tradutor passa para katakana na hora).</p>
 <p>Nomes estrangeiros não se traduzem: escrevem-se em <a href="/pt/alfabeto-japones/">katakana</a> pelo som, não pela grafia. Como o japonês quase não tem sílabas terminadas em consoante (só <i>n</i>), acrescenta-se uma vogal: Carlos vira <i>Ka-ru-ro-su</i>. L e R se escrevem igual (linha ラ), o «j» de João vira <i>jo</i> (<span lang="ja">ジョ</span>) e a vogal tônica longa ganha um traço <span lang="ja">ー</span> (Lucas, Bruno).</p>
 <table class="st-table"><thead><tr><th>Nome</th><th>Katakana</th><th>Romaji</th></tr></thead><tbody>
 <tr><td>Maria</td><td lang="ja">マリア</td><td>Maria</td></tr>

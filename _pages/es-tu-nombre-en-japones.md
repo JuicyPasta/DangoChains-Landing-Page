@@ -4,6 +4,9 @@ lang: es
 permalink: /es/tu-nombre-en-japones/
 title: "Tu nombre en japonés"
 seo_title: "Tu nombre en japonés: escríbelo en katakana (traductor de nombres gratis)"
+alternates:
+  - lang: pt
+    url: /pt/seu-nome-em-japones/
 description: "Escribe tu nombre y míralo en japonés, en katakana, con su lectura en romaji y audio. Cómo se pasa cada sonido del español (c, z, j, ll, r, ñ) al japonés y 40 nombres comunes ya escritos: María, José, Lucía, Santiago."
 ---
 
@@ -96,6 +99,7 @@ description: "Escribe tu nombre y míralo en japonés, en katakana, con su lectu
 <p><b>¿Hay una sola forma correcta?</b> No hay una forma oficial. Algunas personas alargan la vocal acentuada (<span lang="ja">ルシーア</span>) o escriben la <i>ll</i> como <span lang="ja">リャ</span> o <span lang="ja">ヤ</span>; si en Japón ya escriben tu nombre de otra forma, usa esa. En pasaportes y tarjetas de residencia se usa el alfabeto latino.</p>
 <p><b>¿Cómo me presento?</b> <span lang="ja">わたしは マリア です。</span> (<i>Watashi wa Maria desu</i>, «Soy María»). Sin <i>-san</i>: el sufijo nunca se usa con el propio nombre. Más frases en <a href="/es/hola-en-japones/">hola en japonés</a> y <a href="/es/frases-en-japones/">frases en japonés</a>.</p>
 <div class="st-cta"><p><b>Practica con un juego diario.</b> Cada día hay tres tableros de 16 palabras japonesas para ordenar en 4 grupos, gratis en el navegador: <a href="/play/">jugar el reto de hoy</a>. El juego está en inglés y japonés; al final de cada partida ves la lectura y el significado (en inglés) de cada palabra. <a href="/es/juegos-para-aprender-japones/">Más juegos para aprender japonés</a>.</p></div>
+<p>En portugués: <a href="/pt/seu-nome-em-japones/">Seu nome em japonês</a></p>
 <p>Más en español: <a href="/es/katakana/">tabla de katakana</a> · <a href="/es/hiragana/">tabla de hiragana</a> · <a href="/es/alfabeto-japones/">alfabeto japonés</a> · <a href="/es/nombres-japoneses/">nombres japoneses</a> · <a href="/es/kanji-japones/">kanji japonés</a> · <a href="/es/saludos-en-japones/">saludos</a></p>
 <script src="{{ '/assets/js/nombre-katakana.js' | relative_url }}"></script>
 <script>
@@ -122,7 +126,7 @@ description: "Escribe tu nombre y míralo en japonés, en katakana, con su lectu
     });
     partsEl.innerHTML = html.join('');
     clearTimeout(timer);
-    timer = setTimeout(function () { if (!tracked) { tracked = true; track('name_katakana', { words: r.words.length }); } }, 1500);
+    timer = setTimeout(function () { if (!tracked) { tracked = true; track('name_katakana', { words: r.words.length, lang: 'es' }); } }, 1500);
   }
   inp.addEventListener('input', render);
   var synth = window.speechSynthesis, voice = null;

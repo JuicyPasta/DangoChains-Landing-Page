@@ -493,7 +493,7 @@ write('pt-katakana.md', '/pt/katakana/', 'Katakana',
   '<h2>Seu nome em katakana</h2>',
   '<p>Nomes estrangeiros se escrevem em katakana pelo som: Maria é <span lang="ja">マリア</span>, João <span lang="ja">ジョアン</span>, Lucas <span lang="ja">ルーカス</span>, '
   'Gabriel <span lang="ja">ガブリエル</span>, Júlia <span lang="ja">ジュリア</span>. Como o japonês quase não tem sílabas terminadas em consoante, acrescenta-se uma vogal '
-  '(Carlos vira <span lang="ja">カルロス</span>, <i>Karurosu</i>). Mais nomes e o significado dos nomes japoneses em <a href="/pt/nomes-japoneses/">nomes japoneses</a>.</p>',
+  '(Carlos vira <span lang="ja">カルロス</span>, <i>Karurosu</i>). Escreva o seu: <a href="/pt/seu-nome-em-japones/">seu nome em japonês</a>. Mais nomes e o significado dos nomes japoneses em <a href="/pt/nomes-japoneses/">nomes japoneses</a>.</p>',
   '<h2>Caracteres que se confundem</h2>',
   simple(['Par', 'Romaji', 'Como diferenciar'], [
    ('シ / ツ', 'shi / tsu', 'os pontos de シ ficam à esquerda e o traço sobe de baixo; os de ツ ficam em cima e o traço desce de cima'),

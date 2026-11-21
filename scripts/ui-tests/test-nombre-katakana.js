@@ -18,11 +18,26 @@ const CASES = [
   ['Ambrosio', 'アンブロシオ'], ['Agüero', 'アグエロ'], ['Juan Pablo', 'フアン・パブロ'], ['María José', 'マリア・ホセ'],
   ['  ', ''], ['123', ''],
 ];
+const PT = [
+  ['João', 'ジョアン'], ['Maria', 'マリア'], ['Ana', 'アナ'], ['Pedro', 'ペドロ'], ['Lucas', 'ルカス'], ['Gabriel', 'ガブリエル'],
+  ['Rafael', 'ラファエル'], ['Júlia', 'ジュリア'], ['Beatriz', 'ベアトリス'], ['Felipe', 'フェリペ'], ['Gustavo', 'グスタボ'],
+  ['Larissa', 'ラリサ'], ['Fernanda', 'フェルナンダ'], ['Bruno', 'ブルノ'], ['Carlos', 'カルロス'], ['Isabela', 'イザベラ'],
+  ['Luísa', 'ルイザ'], ['Thiago', 'チアゴ'], ['Tiago', 'チアゴ'], ['Diego', 'ジエゴ'], ['Vitória', 'ビトリア'], ['Heitor', 'エイトル'],
+  ['Arthur', 'アルトゥル'], ['Davi', 'ダビ'], ['Miguel', 'ミゲル'], ['Gisele', 'ジゼレ'], ['Cecília', 'セシリア'], ['Xavier', 'シャビエル'],
+  ['Rodrigo', 'ロドリゴ'], ['Marinho', 'マリニョ'], ['Coelho', 'コエリョ'], ['Joaquim', 'ジョアキン'], ['Conceição', 'コンセイサン'],
+  ['Gonçalves', 'ゴンサルベス'], ['William', 'ウィリアン'], ['Teresa', 'テレザ'], ['José', 'ジョゼ'], ['Rosa', 'ロザ'], ['Sônia', 'ソニア'],
+  ['Antônio', 'アントニオ'], ['Matheus', 'マテウス'], ['Helena', 'エレナ'], ['Sophia', 'ソフィア'], ['Simão', 'シマン'], ['Guilherme', 'ギリェルメ'],
+  ['Maria Eduarda', 'マリア・エドゥアルダ'],
+];
 let fail = 0;
+for (const [name, kana] of PT) {
+  const r = toKatakana(name, 'pt');
+  if (r.kana !== kana) { fail++; console.log('FAIL pt', name, '→', r.kana, r.romaji, 'expected', kana); }
+}
 for (const [name, kana, romaji] of CASES) {
   const r = toKatakana(name);
   const ok = r.kana === kana && (!romaji || r.romaji === romaji);
   if (!ok) { fail++; console.log('FAIL', name, '→', r.kana, r.romaji, 'expected', kana, romaji || ''); }
 }
-console.log(CASES.length - fail + '/' + CASES.length + ' passed');
+console.log(CASES.length + PT.length - fail + '/' + (CASES.length + PT.length) + ' passed');
 process.exit(fail ? 1 : 0);
