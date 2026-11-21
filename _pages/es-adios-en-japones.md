@@ -3,8 +3,8 @@ layout: page
 lang: es
 permalink: /es/adios-en-japones/
 title: "Adiós en japonés"
-seo_title: "Adiós en japonés: さようなら, じゃあね, またね y cuándo usar cada una"
-description: "Cómo se dice adiós en japonés: sayōnara, jā ne, mata ne, mata ashita, shitsurei shimasu, o-saki ni shitsurei shimasu y más, con romaji y cuándo se usa cada una."
+seo_title: "Adiós en japonés: qué significa sayonara (さようなら) y cuándo usar ja ne o mata ne"
+description: "Qué significa sayonara y cómo se dice adiós en japonés: sayōnara, jā ne, mata ne, mata ashita, shitsurei shimasu, o-saki ni shitsurei shimasu y más, con romaji y cuándo se usa cada una."
 alternates:
   - lang: en
     url: /phrases/goodbye-in-japanese/
@@ -13,6 +13,8 @@ alternates:
 <style>.st-table{border-collapse:collapse;margin:.3em 0 1em;width:100%}.st-table th,.st-table td{border-bottom:1px solid #e6e6e6;padding:.35em .5em;text-align:left;vertical-align:top}.st-table td[lang=ja]{font-size:1.1em;white-space:nowrap}.st-cta{background:#f6f2ea;border-radius:12px;padding:1em 1.2em;margin:2em 0}</style>
 <h1>Cómo se dice adiós en japonés</h1>
 <p><span lang="ja">さようなら</span> (<i>sayōnara</i>) es el adiós de todos los libros, pero los adultos lo usan menos de lo que parece: puede sonar definitivo, como si no fueran a verse en mucho tiempo. Los niños se lo dicen a sus maestros al terminar las clases. Entre amigos se dice <span lang="ja">じゃあね</span> o <span lang="ja">またね</span> («nos vemos»), y en el trabajo <span lang="ja">失礼します</span> o <span lang="ja">お先に失礼します</span>.</p>
+<h2>¿Qué significa sayonara?</h2>
+<p><span lang="ja">さようなら</span> significa «adiós». Viene de <span lang="ja">左様ならば</span>, «si así es, entonces…»: la frase con la que antes se cerraba una conversación antes de irse. Por eso suena a despedida larga. Otras palabras del anime y su significado en <a href="/es/palabras-japonesas-del-anime/">palabras japonesas del anime</a>.</p>
 <h2>Formas de decir adiós</h2>
 <table class="st-table"><thead><tr><th>Japonés</th><th>Romaji</th><th>Cortesía</th><th>Cuándo se usa</th></tr></thead><tbody>
 <tr><td lang="ja">さようなら</td><td>sayōnara</td><td>neutral</td><td>adiós por un tiempo; de alumnos a maestros</td></tr>

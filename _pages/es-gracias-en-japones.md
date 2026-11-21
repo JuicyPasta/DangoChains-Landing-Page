@@ -3,8 +3,8 @@ layout: page
 lang: es
 permalink: /es/gracias-en-japones/
 title: "Gracias en japonés"
-seo_title: "Gracias en japonés: ありがとう, ありがとうございます y cuándo usar cada una"
-description: "Cómo se dice gracias en japonés: arigatō, arigatō gozaimasu, arigatō gozaimashita, dōmo, sumimasen y más, con romaji, nivel de cortesía y cuándo se usa cada una, y cómo responder."
+seo_title: "Gracias en japonés: qué significa arigato (ありがとう) y cuándo usar cada forma"
+description: "Qué significa arigato y cómo se dice gracias en japonés: arigatō, arigatō gozaimasu, arigatō gozaimashita, dōmo, sumimasen y más, con romaji, nivel de cortesía y cuándo se usa cada una, y cómo responder."
 alternates:
   - lang: en
     url: /phrases/thank-you-in-japanese/
@@ -15,6 +15,8 @@ alternates:
 <style>.st-table{border-collapse:collapse;margin:.3em 0 1em;width:100%}.st-table th,.st-table td{border-bottom:1px solid #e6e6e6;padding:.35em .5em;text-align:left;vertical-align:top}.st-table td[lang=ja]{font-size:1.1em;white-space:nowrap}.st-cta{background:#f6f2ea;border-radius:12px;padding:1em 1.2em;margin:2em 0}</style>
 <h1>Cómo se dice gracias en japonés</h1>
 <p>La palabra de todos los días es <span lang="ja">ありがとう</span> (<i>arigatō</i>). Si le añades <span lang="ja">ございます</span> se vuelve cortés: es lo más seguro con desconocidos, dependientes, profesores y cualquier persona mayor que tú. Para algo que ya terminó, como una comida en un restaurante o una clase, se usa el pasado <span lang="ja">ありがとうございました</span>. Y cuando alguien se tomó una molestia por ti, en japonés se suele decir <span lang="ja">すみません</span> («perdón por la molestia») donde en español diríamos gracias.</p>
+<h2>¿Qué significa arigato?</h2>
+<p><span lang="ja">ありがとう</span> significa «gracias». Viene de <span lang="ja">有り難い</span>, «difícil que exista»: algo tan raro que es valioso. No viene del portugués «obrigado», aunque se parezca. Otras palabras del anime y su significado en <a href="/es/palabras-japonesas-del-anime/">palabras japonesas del anime</a>.</p>
 <h2>Formas de decir gracias</h2>
 <table class="st-table"><thead><tr><th>Japonés</th><th>Romaji</th><th>Cortesía</th><th>Cuándo se usa</th></tr></thead><tbody>
 <tr><td lang="ja">ありがとう</td><td>arigatō</td><td>informal</td><td>amigos, familia, personas más jóvenes</td></tr>
