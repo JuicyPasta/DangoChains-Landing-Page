@@ -1649,7 +1649,7 @@ LANG_PAGES = {'plants': [('es', '/es/flores-en-japones/', 'Flores en japonés')]
               'love': [('es', '/es/te-amo-en-japones/', 'Te amo en japonés'),
                        ('pt', '/pt/eu-te-amo-em-japones/', 'Eu te amo em japonês')],
               'family': [('es', '/es/familia-en-japones/', 'La familia en japonés')],
-              'food': [('es', '/es/comida-en-japones/', 'Comida en japonés')]}
+              'food': [('es', '/es/comida-en-japones/', 'Comida en japonés'), ('pt', '/pt/comida-em-japones/', 'Comida em japonês')]}
 
 
 def topic_page(slug, groups):

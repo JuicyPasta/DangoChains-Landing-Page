@@ -3,8 +3,8 @@ layout: page
 lang: es
 permalink: /es/te-amo-en-japones/
 title: "Te amo en japonés"
-seo_title: "Te amo en japonés: 好き, 大好き, 愛してる y otras palabras de amor"
-description: "Cómo se dice te amo en japonés (suki, daisuki, aishiteru) y cuál se usa de verdad, más palabras de amor con lectura, romaji y significado en español: koi, kataomoi, hatsukoi, kokuhaku."
+seo_title: "Te amo y te quiero en japonés: 好き, 大好き, 愛してる y otras palabras de amor"
+description: "Cómo se dice te amo y te quiero en japonés (suki, daisuki, aishiteru) y cuál se usa de verdad, más palabras de amor con lectura, romaji y significado en español: koi, kataomoi, hatsukoi, kokuhaku."
 alternates:
   - lang: en
     url: /study/topics/love/
@@ -13,7 +13,7 @@ alternates:
 ---
 
 <style>.st-table{border-collapse:collapse;margin:.3em 0 1em;width:100%}.st-table th,.st-table td{border-bottom:1px solid #e6e6e6;padding:.35em .5em;text-align:left;vertical-align:top}.st-table td[lang=ja]{font-size:1.1em;white-space:nowrap}.st-cta{background:#f6f2ea;border-radius:12px;padding:1em 1.2em;margin:2em 0}</style>
-<h1>Cómo decir «te amo» en japonés</h1>
+<h1>Cómo decir «te amo» y «te quiero» en japonés</h1>
 <p>En japonés casi nunca se dice 愛してる (aishiteru) en voz alta: suena muy fuerte, como de película. En la vida real, 好き (suki, «me gustas») y 大好き (daisuki, «me gustas mucho») hacen casi todo el trabajo. Una relación suele empezar con un 告白 (kokuhaku), una declaración: 好きです、付き合ってください (me gustas, ¿quieres salir conmigo?). 恋 (koi) es el amor romántico, el enamorarse; 愛 (ai) es un amor más profundo y duradero.</p>
 <h2>Te amo, te quiero, me gustas</h2>
 <table class="st-table"><thead><tr><th>Japonés</th><th>Lectura</th><th>Romaji</th><th>Significado</th></tr></thead><tbody>
