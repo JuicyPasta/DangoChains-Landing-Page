@@ -5,6 +5,9 @@ permalink: /es/nombres-japoneses/
 title: "Nombres japoneses"
 seo_title: "Nombres japoneses: nombres de chica y chico con su significado, y apellidos"
 description: "Nombres japoneses con kanji, lectura, romaji y significado: 20 nombres de chica (Sakura, Yui, Hina, Aoi…), 20 de chico (Haruto, Ren, Minato…), los apellidos más comunes y los sufijos san, kun y chan."
+alternates:
+  - lang: pt
+    url: /pt/nomes-japoneses/
 ---
 
 <style>.st-table{border-collapse:collapse;margin:.3em 0 1em;width:100%}.st-table th,.st-table td{border-bottom:1px solid #e6e6e6;padding:.35em .5em;text-align:left;vertical-align:top}.st-table td[lang=ja]{font-size:1.1em;white-space:nowrap}.st-cta{background:#f6f2ea;border-radius:12px;padding:1em 1.2em;margin:2em 0}</style>
