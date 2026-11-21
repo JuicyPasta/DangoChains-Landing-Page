@@ -4,6 +4,9 @@ permalink: /beautiful-japanese-words/
 title: "Beautiful Japanese words"
 seo_title: "Beautiful in Japanese: きれい, 美しい, and 24 beautiful words with deep meanings"
 description: "24 beautiful Japanese words with deep meanings, each with kanji, reading, romaji and what it really means: komorebi, mono no aware, wabi-sabi, ikigai, ichigo ichie, tsundoku, koi no yokan and more."
+alternates:
+  - lang: es
+    url: /es/palabras-bonitas-en-japones/
 ---
 
 <style>.st-table{border-collapse:collapse;margin:.3em 0 1em;width:100%}.st-table th,.st-table td{border-bottom:1px solid #e6e6e6;padding:.35em .5em;text-align:left;vertical-align:top}.st-table td[lang=ja]{font-size:1.1em;white-space:nowrap}.st-cta{background:#f6f2ea;border-radius:12px;padding:1em 1.2em;margin:2em 0}</style>
@@ -52,4 +55,5 @@ description: "24 beautiful Japanese words with deep meanings, each with kanji, r
 </tbody></table>
 <p>For words that are fun to say, see <a href="/cute-japanese-words/">cute Japanese words</a> and <a href="/study/topics/onomatopoeia/">Japanese onomatopoeia</a>; for flowers and the seasons, <a href="/study/topics/plants/">flowers and trees in Japanese</a> and <a href="/study/topics/seasons/">the seasons</a>; for love, <a href="/study/topics/love/">love words</a>.</p>
 <p><b>More:</b> <a href="/japanese-words/">64 basic Japanese words</a> · <a href="/phrases/">basic phrases</a> · <a href="/hiragana-chart/">hiragana chart</a> · <a href="/beautiful-japanese-words/">beautiful Japanese words</a> · <a href="/cute-japanese-words/">cute Japanese words</a> · <a href="/japanese-particles/">particles</a> · <a href="/study/topics/">vocabulary by topic</a></p>
+<p lang="es">En español: <a href="/es/palabras-bonitas-en-japones/">Palabras bonitas en japonés</a></p>
 <div class="st-cta"><p><b>Learn words by playing.</b> DangoChains is a free daily puzzle for Japanese learners: sort 16 Japanese words into 4 hidden groups, at three levels, in your browser. After each game you see every word's reading and English meaning. <a href="/play/">Play today's puzzle</a> · <a href="/learn-japanese-games/">more free Japanese games</a></p></div>

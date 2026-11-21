@@ -71,5 +71,5 @@ alternates:
 <tr><td lang="ja">葉</td><td lang="ja">は</td><td>ha</td><td>hoja</td></tr>
 </tbody></table>
 <div class="st-cta"><p><b>Practica con un juego diario.</b> Cada día hay tres tableros de 16 palabras japonesas para ordenar en 4 grupos, gratis en el navegador: <a href="/play/">jugar el reto de hoy</a>. El juego está en inglés y japonés; al final de cada partida ves la lectura y el significado (en inglés) de cada palabra. <a href="/es/juegos-para-aprender-japones/">Más juegos para aprender japonés</a>.</p></div>
-<p>Más en español: <a href="/es/frases-en-japones/">frases en japonés</a> · <a href="/es/palabras-en-japones/">palabras en japonés</a> · <a href="/es/colores-en-japones/">colores</a></p>
+<p>Más en español: <a href="/es/palabras-bonitas-en-japones/">palabras bonitas en japonés</a> · <a href="/es/frases-en-japones/">frases en japonés</a> · <a href="/es/palabras-en-japones/">palabras en japonés</a> · <a href="/es/colores-en-japones/">colores</a></p>
 <p>En inglés: <a href="/study/topics/plants/">Flowers, trees and plants in Japanese</a>, con los grupos de palabras de acertijos anteriores.</p>

@@ -37,5 +37,6 @@ alternates:
 <tr><td lang="ja">デート</td><td lang="ja">デート</td><td>dēto</td><td>una cita</td></tr>
 <tr><td lang="ja">結婚</td><td lang="ja">けっこん</td><td>kekkon</td><td>matrimonio; 結婚する: casarse</td></tr>
 </tbody></table>
+<p>Más: <a href="/es/palabras-bonitas-en-japones/">palabras bonitas en japonés</a>, con la frase «la luna está bonita» (<span lang="ja">月が綺麗ですね</span>), la forma literaria de decir «te quiero».</p>
 <div class="st-cta"><p><b>Practica con un juego diario.</b> Cada día hay tres tableros de 16 palabras japonesas para ordenar en 4 grupos, gratis en el navegador: <a href="/play/">jugar el reto de hoy</a>. El juego está en inglés y japonés; al final ves la lectura y el significado (en inglés) de cada palabra. <a href="/es/juegos-para-aprender-japones/">Más juegos para aprender japonés</a>.</p></div>
 <p>En inglés: <a href="/study/topics/love/">Love words in Japanese</a>.</p>
