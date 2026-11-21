@@ -82,6 +82,7 @@ alternates:
 <tr><td lang="ja">松本</td><td lang="ja">まつもと</td><td>Matsumoto</td><td>al pie del pino</td></tr>
 </tbody></table>
 <p>Muchos apellidos describen un lugar: un arrozal (<span lang="ja">田</span>), una montaña (<span lang="ja">山</span>), un pueblo (<span lang="ja">村</span>), un bosque (<span lang="ja">林</span>). Los que llevan <span lang="ja">藤</span> (glicina) vienen del antiguo clan Fujiwara.</p>
+<p><b>¿Y tu nombre?</b> Los nombres extranjeros se escriben en katakana por su sonido: <a href="/es/tu-nombre-en-japones/">escribe tu nombre en japonés</a>.</p>
 <h2>Cómo se llama a alguien: sufijos</h2>
 <table class="st-table"><thead><tr><th>Sufijo</th><th>Lectura</th><th>Romaji</th><th>Cuándo se usa</th></tr></thead><tbody>
 <tr><td lang="ja">さん</td><td lang="ja">さん</td><td>-san</td><td>señor/señora; el sufijo cortés para casi cualquiera</td></tr>

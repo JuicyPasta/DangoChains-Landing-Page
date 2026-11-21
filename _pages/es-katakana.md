@@ -91,7 +91,7 @@ alternates:
 <tr><td>Valentina</td><td lang="ja">バレンティナ</td><td>Barentina</td></tr>
 <tr><td>Mateo</td><td lang="ja">マテオ</td><td>Mateo</td></tr>
 </tbody></table>
-<p>Los países también: <span lang="ja">スペイン</span> (España), <span lang="ja">メキシコ</span> (México), <span lang="ja">アルゼンチン</span> (Argentina), <span lang="ja">コロンビア</span> (Colombia), <span lang="ja">ペルー</span> (Perú), <span lang="ja">チリ</span> (Chile). Para nombres japoneses de verdad, con kanji y significado, mira <a href="/es/nombres-japoneses/">nombres japoneses</a>.</p>
+<p>Los países también: <span lang="ja">スペイン</span> (España), <span lang="ja">メキシコ</span> (México), <span lang="ja">アルゼンチン</span> (Argentina), <span lang="ja">コロンビア</span> (Colombia), <span lang="ja">ペルー</span> (Perú), <span lang="ja">チリ</span> (Chile). Para nombres japoneses de verdad, con kanji y significado, mira <a href="/es/nombres-japoneses/">nombres japoneses</a>. <b>Escribe el tuyo:</b> <a href="/es/tu-nombre-en-japones/">tu nombre en japonés</a> (te lo pasa a katakana al momento).</p>
 <h2>Caracteres que se confunden</h2>
 <table class="st-table"><thead><tr><th>Pareja</th><th>Romaji</th><th>Cómo distinguirlos</th></tr></thead><tbody>
 <tr><td lang="ja">シ / ツ</td><td>shi / tsu</td><td>los puntos de シ están a la izquierda y su trazo sube desde abajo; los de ツ están arriba y su trazo cae desde arriba</td></tr>

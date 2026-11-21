@@ -323,7 +323,7 @@ write('es-katakana.md', '/es/katakana/', 'Katakana',
   ], ja_cols=(1,)),
   '<p>Los países también: <span lang="ja">スペイン</span> (España), <span lang="ja">メキシコ</span> (México), <span lang="ja">アルゼンチン</span> (Argentina), '
   '<span lang="ja">コロンビア</span> (Colombia), <span lang="ja">ペルー</span> (Perú), <span lang="ja">チリ</span> (Chile). Para nombres japoneses de verdad, con kanji y significado, mira '
-  '<a href="/es/nombres-japoneses/">nombres japoneses</a>.</p>',
+  '<a href="/es/nombres-japoneses/">nombres japoneses</a>. <b>Escribe el tuyo:</b> <a href="/es/tu-nombre-en-japones/">tu nombre en japonés</a> (te lo pasa a katakana al momento).</p>',
   '<h2>Caracteres que se confunden</h2>',
   simple(['Pareja', 'Romaji', 'Cómo distinguirlos'], [
    ('シ / ツ', 'shi / tsu', 'los puntos de シ están a la izquierda y su trazo sube desde abajo; los de ツ están arriba y su trazo cae desde arriba'),
