@@ -11,6 +11,7 @@ description: "Nombres japoneses con kanji, lectura, romaji y significado: 20 nom
 <h1>Nombres japoneses</h1>
 <p>En japonés el apellido va primero: en <span lang="ja">田中花</span> (<i>Tanaka Hana</i>), Tanaka es el apellido y Hana el nombre. Los nombres suelen escribirse en kanji elegidos por lo que significan, así que un mismo nombre puede escribirse de muchas formas: <i>Yui</i> puede ser <span lang="ja">結衣</span>, <span lang="ja">唯</span> o <span lang="ja">由依</span>, y cada una tiene otro sentido. Aquí va la forma más común de cada nombre, con su lectura, el romaji y lo que significan sus kanji. Los nombres extranjeros, como el tuyo, se escriben en katakana: <span lang="ja">マリア</span> (María), <span lang="ja">カルロス</span> (Carlos); ver <a href="/es/alfabeto-japones/">alfabeto japonés</a>.</p>
 <h2>Nombres japoneses de chica</h2>
+<p>Lista completa, con 70 nombres de chica (populares hoy, de flores, clásicos y los que suenan bien en español): <a href="/es/nombres-japoneses-de-mujer/">nombres japoneses de mujer</a>.</p>
 <table class="st-table"><thead><tr><th>Nombre</th><th>Lectura</th><th>Romaji</th><th>Significado de los kanji</th></tr></thead><tbody>
 <tr><td lang="ja">さくら</td><td lang="ja">さくら</td><td>Sakura</td><td>flor de cerezo (también 桜)</td></tr>
 <tr><td lang="ja">結衣</td><td lang="ja">ゆい</td><td>Yui</td><td>結 «unir, atar» + 衣 «ropa»</td></tr>
@@ -35,6 +36,7 @@ description: "Nombres japoneses con kanji, lectura, romaji y significado: 20 nom
 </tbody></table>
 <p>Muchos nombres de chica terminaban antes en <span lang="ja">子</span> (<i>-ko</i>, «niña»): Yōko, Keiko, Tomoko. Hoy son más comunes los nombres de naturaleza, flores y colores.</p>
 <h2>Nombres japoneses de chico</h2>
+<p>Lista completa, con 65 nombres de chico (populares hoy, de naturaleza, clásicos y cortos): <a href="/es/nombres-japoneses-de-hombre/">nombres japoneses de hombre</a>.</p>
 <table class="st-table"><thead><tr><th>Nombre</th><th>Lectura</th><th>Romaji</th><th>Significado de los kanji</th></tr></thead><tbody>
 <tr><td lang="ja">陽翔</td><td lang="ja">はると</td><td>Haruto</td><td>陽 «sol» + 翔 «volar alto»</td></tr>
 <tr><td lang="ja">蓮</td><td lang="ja">れん</td><td>Ren</td><td>loto</td></tr>
