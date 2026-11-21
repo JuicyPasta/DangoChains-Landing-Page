@@ -3,8 +3,8 @@ layout: page
 lang: es
 permalink: /es/hola-en-japones/
 title: "Hola en japonés"
-seo_title: "Hola en japonés: こんにちは y otras 11 formas de saludar, con romaji"
-description: "Cómo se dice hola en japonés: konnichiwa, ohayō, konbanwa, moshi moshi, hisashiburi, hajimemashite y más, con romaji y cuándo se usa cada una."
+seo_title: "Hola en japonés: qué significa konnichiwa (こんにちは) y otras 11 formas de saludar"
+description: "Qué significa konnichiwa y cómo se dice hola en japonés: konnichiwa, ohayō, konbanwa, moshi moshi, hisashiburi, hajimemashite y más, con romaji y cuándo se usa cada una."
 alternates:
   - lang: en
     url: /phrases/hello-in-japanese/
@@ -15,6 +15,8 @@ alternates:
 <style>.st-table{border-collapse:collapse;margin:.3em 0 1em;width:100%}.st-table th,.st-table td{border-bottom:1px solid #e6e6e6;padding:.35em .5em;text-align:left;vertical-align:top}.st-table td[lang=ja]{font-size:1.1em;white-space:nowrap}.st-cta{background:#f6f2ea;border-radius:12px;padding:1em 1.2em;margin:2em 0}</style>
 <h1>Cómo se dice hola en japonés</h1>
 <p><span lang="ja">こんにちは</span> (<i>konnichiwa</i>) es el hola que todos aprenden primero, pero es un saludo de día, desde media mañana hasta el atardecer. Por la mañana se dice <span lang="ja">おはようございます</span>, por la noche <span lang="ja">こんばんは</span> y al teléfono <span lang="ja">もしもし</span>. Entre amigos casi nadie se dice <span lang="ja">こんにちは</span>: se dicen <span lang="ja">おはよう</span>, <span lang="ja">やあ</span> o simplemente el nombre. Ojo con la escritura: la última sílaba de <span lang="ja">こんにちは</span> se escribe <span lang="ja">は</span> pero se lee <i>wa</i>.</p>
+<h2>¿Qué significa konnichiwa?</h2>
+<p><span lang="ja">こんにちは</span> es «hola» o «buenas tardes»: el saludo de día. Se escribe con <span lang="ja">は</span> (que aquí se lee <i>wa</i>) porque es el principio de una frase antigua, <span lang="ja">今日は</span>… «en cuanto a hoy…». Otras palabras del anime y su significado en <a href="/es/palabras-japonesas-del-anime/">palabras japonesas del anime</a>.</p>
 <h2>Formas de decir hola</h2>
 <table class="st-table"><thead><tr><th>Japonés</th><th>Romaji</th><th>Cortesía</th><th>Cuándo se usa</th></tr></thead><tbody>
 <tr><td lang="ja">こんにちは</td><td>konnichiwa</td><td>neutral</td><td>hola de día, a casi cualquier persona</td></tr>
