@@ -98,7 +98,7 @@ write('hiragana-chart.md', '/hiragana-chart/', 'Hiragana chart',
   ]),
   '<p>Once these are easy, move on to <a href="/katakana-chart/">katakana</a> (the same sounds, used for foreign words) and then kanji, a few at a time.</p>',
   '<p lang="es">En español: <a href="/es/hiragana/">Hiragana: tabla completa con romaji</a></p>',
-  NAV, CTA]), extra_fm='alternates:\n  - lang: es\n    url: /es/hiragana/\n')
+  NAV, CTA]), extra_fm='alternates:\n  - lang: es\n    url: /es/hiragana/\n  - lang: pt\n    url: /pt/hiragana/\n')
 
 EXT = [('ファ', 'fa', 'ファン (fan)'), ('フィ', 'fi', 'フィルム (film)'), ('フェ', 'fe', 'カフェ (café)'), ('フォ', 'fo', 'フォーク (fork)'),
        ('ティ', 'ti', 'パーティー (party)'), ('ディ', 'di', 'ディナー (dinner)'), ('トゥ', 'tu', 'タトゥー (tattoo)'),
@@ -136,7 +136,7 @@ write('katakana-chart.md', '/katakana-chart/', 'Katakana chart',
   ]),
   '<p>Many katakana words are shortened or changed from English: see <a href="/study/topics/wasei-eigo/">wasei-eigo</a> and <a href="/study/topics/loanwords/">loanwords</a>.</p>',
   '<p lang="es">En español: <a href="/es/katakana/">Katakana: tabla completa y tu nombre en katakana</a></p>',
-  NAV, CTA]), extra_fm='alternates:\n  - lang: es\n    url: /es/katakana/\n')
+  NAV, CTA]), extra_fm='alternates:\n  - lang: es\n    url: /es/katakana/\n  - lang: pt\n    url: /pt/katakana/\n')
 
 write('japanese-alphabet.md', '/japanese-alphabet/', 'The Japanese alphabet',
  'The Japanese alphabet: hiragana, katakana and kanji explained for beginners',
@@ -286,7 +286,7 @@ write('es-hiragana.md', '/es/hiragana/', 'Hiragana',
   '<li><b>Después, el katakana:</b> son los mismos sonidos con otra forma, así que va mucho más rápido. <a href="/es/katakana/">Tabla de katakana</a>.</li></ol>',
   CTA_ES, NAV_ES,
   '<p>En inglés: <a href="/hiragana-chart/">Hiragana chart</a> · <a href="/katakana-chart/">Katakana chart</a> · <a href="/japanese-alphabet/">The Japanese alphabet</a></p>',
- ]), extra_fm='lang: es\nalternates:\n  - lang: en\n    url: /hiragana-chart/\n')
+ ]), extra_fm='lang: es\nalternates:\n  - lang: en\n    url: /hiragana-chart/\n  - lang: pt\n    url: /pt/hiragana/\n')
 
 EXT_ES = [('ファ', 'fa', 'ファン (fan, aficionado)'), ('フィ', 'fi', 'フィルム (película fotográfica)'), ('フェ', 'fe', 'カフェ (cafetería)'), ('フォ', 'fo', 'フォーク (tenedor)'),
           ('ティ', 'ti', 'パーティー (fiesta)'), ('ディ', 'di', 'ディエゴ (Diego)'), ('トゥ', 'tu', 'タトゥー (tatuaje)'),
@@ -341,7 +341,7 @@ write('es-katakana.md', '/es/katakana/', 'Katakana',
   '<p>Muchas palabras en katakana se acortan o cambian de sentido al llegar al japonés: <span lang="ja">パソコン</span> <i>pasokon</i> es el ordenador personal y <span lang="ja">スマホ</span> <i>sumaho</i> el móvil.</p>',
   CTA_ES, NAV_ES,
   '<p>En inglés: <a href="/katakana-chart/">Katakana chart</a> · <a href="/hiragana-chart/">Hiragana chart</a> · <a href="/japanese-alphabet/">The Japanese alphabet</a></p>',
- ]), extra_fm='lang: es\nalternates:\n  - lang: en\n    url: /katakana-chart/\n')
+ ]), extra_fm='lang: es\nalternates:\n  - lang: en\n    url: /katakana-chart/\n  - lang: pt\n    url: /pt/katakana/\n')
 
 # ---- Portuguese: alfabeto japonês (8,100 searches a month, Keyword Planner 2026-11-20) ----
 CTA_PT = ('<div class="st-cta"><p><b>Pratique a leitura com um jogo diário.</b> Todo dia há três tabuleiros de 16 palavras japonesas para separar em 4 grupos, '
@@ -403,7 +403,111 @@ write('pt-alfabeto-japones.md', '/pt/alfabeto-japones/', 'Alfabeto japonês',
   '<li><b>Kanji</b> aos poucos e dentro de palavras: <a href="/pt/numeros-em-japones/">números</a>, <a href="/pt/cores-em-japones/">cores</a>. Um kanji costuma ter mais de uma leitura.</li></ol>',
   '<p><b>Teste-se</b> (em inglês, grátis, com som): <a href="/hiragana-quiz/">quiz de hiragana</a> · <a href="/katakana-quiz/">quiz de katakana</a>.</p>',
   CTA_PT,
+  '<p>Tabelas completas: <a href="/pt/hiragana/">hiragana</a> · <a href="/pt/katakana/">katakana (e seu nome em katakana)</a></p>',
   '<p>Mais em português: <a href="/pt/nomes-japoneses/">nomes japoneses (e seu nome em katakana)</a> · <a href="/pt/frases-em-japones/">frases em japonês</a> · <a href="/pt/obrigado-em-japones/">obrigado em japonês</a> · <a href="/pt/eu-te-amo-em-japones/">eu te amo em japonês</a> · <a href="/pt/palavras-em-japones/">palavras em japonês</a> · <a href="/pt/numeros-em-japones/">números</a> · <a href="/pt/cores-em-japones/">cores</a></p>',
   '<p>Em espanhol: <a href="/es/alfabeto-japones/">Alfabeto japonés</a> · em inglês: <a href="/japanese-alphabet/">The Japanese alphabet</a></p>',
  ]), extra_fm='lang: pt\nalternates:\n  - lang: en\n    url: /japanese-alphabet/\n  - lang: es\n    url: /es/alfabeto-japones/\n')
 print('ok')
+
+# ---- Portuguese: hiragana and katakana charts ("hiragana e katakana" 3,600/month; "hiragana" 550,000 and "katakana" 450,000 worldwide, all languages; Keyword Planner 2026-11-20/21) ----
+NAV_PT = ('<p><b>Escrita japonesa:</b> <a href="/pt/alfabeto-japones/">alfabeto japonês (os três sistemas)</a> · <a href="/pt/hiragana/">tabela de hiragana</a> · '
+          '<a href="/pt/katakana/">tabela de katakana</a> · <a href="/pt/nomes-japoneses/">nomes japoneses</a> · <a href="/pt/palavras-em-japones/">palavras em japonês</a> · '
+          '<a href="/pt/frases-em-japones/">frases em japonês</a></p>')
+write('pt-hiragana.md', '/pt/hiragana/', 'Hiragana',
+ 'Hiragana: tabela completa com romaji, pronúncia e áudio (os 46 caracteres)',
+ 'Tabela de hiragana em português: os 46 caracteres básicos com romaji, os sons com dakuten (が, ざ, だ, ば, ぱ), as combinações como きゃ e しょ, o っ pequeno, as vogais longas, os caracteres que se confundem e como aprender rápido. Toque em qualquer caractere para ouvir.',
+ '\n'.join(['<h1>Hiragana: tabela completa com romaji</h1>',
+  '<p>O hiragana é o primeiro sistema de escrita japonês que se aprende: 46 caracteres básicos, e cada um é uma sílaba (か é <i>ka</i>), não uma letra. '
+  'Com ele se escreve a gramática (terminações e partículas como <span lang="ja">は</span>, <span lang="ja">を</span> ou <span lang="ja">です</span>), as palavras japonesas que não usam kanji '
+  'e o furigana, a leitura pequena impressa sobre os kanji. A tabela se lê por linhas: a consoante da esquerda mais a vogal de cima. A ordem japonesa é あいうえお (a, i, u, e, o).</p>',
+  '<p><b>Ouça:</b> toque em qualquer caractere para ouvir (usa a voz japonesa do seu aparelho). <b>Teste-se:</b> <a href="/hiragana-quiz/">quiz de hiragana</a> (em inglês, grátis, 20 perguntas por rodada, com som).</p>',
+  '<h2>Os 46 hiragana básicos</h2>', grid(GOJUON, ident),
+  '<p><b>Atenção:</b> <span lang="ja">し</span> é <i>shi</i>, <span lang="ja">ち</span> <i>chi</i> (como o «ti» de «tia»), <span lang="ja">つ</span> <i>tsu</i> e <span lang="ja">ふ</span> <i>fu</i> (soprado, sem encostar os dentes no lábio). '
+  'O <i>h</i> japonês soa como o «r» de «rato», nunca mudo, e o <i>r</i> é sempre brando, como em «caro». <span lang="ja">を</span> soa <i>o</i> e só aparece como partícula. Como partículas, <span lang="ja">は</span> se lê <i>wa</i> e '
+  '<span lang="ja">へ</span> <i>e</i>. <span lang="ja">ん</span> é a única consoante que fica sozinha.</p>',
+  '<h2>Dakuten e handakuten: os sons sonoros</h2>',
+  '<p>Dois tracinhos (<span lang="ja">゛</span>, <i>dakuten</i>) mudam k → g, s → z, t → d e h → b. Um circulinho (<span lang="ja">゜</span>, <i>handakuten</i>) muda h → p. '
+  '<span lang="ja">ぢ</span> e <span lang="ja">づ</span> soam igual a <span lang="ja">じ</span> e <span lang="ja">ず</span> e quase não se usam. '
+  'O <i>g</i> é sempre duro, como em «gato» (<i>gi</i> = «gui»), e o <i>ji</i> soa como o «di» de «dia».</p>', grid(DAKUTEN, ident),
+  '<h2>Combinações (yōon)</h2>',
+  '<p>Um <span lang="ja">ゃ</span>, <span lang="ja">ゅ</span> ou <span lang="ja">ょ</span> pequeno depois de um caractere da coluna i forma uma só sílaba: '
+  '<span lang="ja">き</span> + <span lang="ja">ゃ</span> = <span lang="ja">きゃ</span> <i>kya</i>. Não é a mesma coisa <span lang="ja">びょういん</span> (<i>byōin</i>, hospital) e '
+  '<span lang="ja">びよういん</span> (<i>biyōin</i>, salão de beleza).</p>', yoon_grid(ident),
+  '<h2>O っ pequeno e as vogais longas</h2>',
+  simple(['Exemplo', 'Romaji', 'Significado', 'O que acontece'], [
+   ('きって', 'kitte', 'selo (dos correios)', 'um <span lang="ja">っ</span> pequeno dobra a consoante seguinte: uma pausa curta'),
+   ('きて', 'kite', 'venha (e…)', 'sem ele, não há pausa'),
+   ('おかあさん', 'okāsan', 'mãe', 'uma vogal escrita duas vezes dura o dobro'),
+   ('おばさん / おばあさん', 'obasan / obāsan', 'tia / avó', 'a duração muda a palavra'),
+   ('がっこう', 'gakkō', 'escola', 'お + う se lê como um ō longo'),
+   ('とけい', 'tokei', 'relógio', 'え + い costuma ser lido como um ē longo'),
+  ]),
+  '<h2>Caracteres que se confundem</h2>',
+  simple(['Par', 'Romaji', 'Como diferenciar'], [
+   ('さ / ち', 'sa / chi', 'são imagens espelhadas'), ('ぬ / め', 'nu / me', 'ぬ termina com um laço'), ('ね / れ / わ', 'ne / re / wa', 'olhe a cauda: laço, chute para fora, curva'),
+   ('る / ろ', 'ru / ro', 'る tem um laço embaixo'), ('は / ほ', 'ha / ho', 'ほ tem um traço a mais em cima'), ('き / さ', 'ki / sa', 'き tem dois traços horizontais'),
+   ('い / り', 'i / ri', 'o traço direito de り é mais comprido'), ('う / ら', 'u / ra', 'muda o primeiro traço'),
+  ]),
+  '<h2>Primeiras palavras em hiragana</h2>',
+  simple(['Hiragana', 'Romaji', 'Significado'], [
+   ('ねこ', 'neko', 'gato'), ('いぬ', 'inu', 'cachorro'), ('さくら', 'sakura', 'flor de cerejeira'), ('すし', 'sushi', 'sushi'),
+   ('ありがとう', 'arigatō', 'obrigado'), ('おはよう', 'ohayō', 'bom dia'), ('ともだち', 'tomodachi', 'amigo'), ('みず', 'mizu', 'água'),
+   ('はな', 'hana', 'flor'), ('やま', 'yama', 'montanha'), ('うみ', 'umi', 'mar'), ('すき', 'suki', 'gosto (de você)'),
+  ]),
+  '<h2>Quantos hiragana existem?</h2>',
+  '<p>46 básicos, 25 com dakuten ou handakuten e 33 combinações: com eles se escreve qualquer som do japonês. O <span lang="ja">っ</span> pequeno e as vogais longas '
+  'não são caracteres novos, e sim formas de escrever os que você já conhece.</p>',
+  '<h2>Como aprender hiragana rápido</h2>',
+  '<ol><li><b>Uma linha por dia:</b> あいうえお, depois かきくけこ… Em duas semanas você tem a tabela inteira.</li>'
+  '<li><b>Escreva à mão</b> algumas vezes e fale em voz alta: a mão e o ouvido ajudam a memória visual.</li>'
+  '<li><b>Leia palavras logo,</b> não caracteres soltos: as de cima, <a href="/pt/palavras-em-japones/">palavras em japonês</a> ou <a href="/pt/frases-em-japones/">frases em japonês</a>.</li>'
+  '<li><b>Teste-se</b> todo dia com o <a href="/hiragana-quiz/">quiz de hiragana</a> e revise os que errar.</li>'
+  '<li><b>Depois, o katakana:</b> são os mesmos sons com outra forma, então vai bem mais rápido. <a href="/pt/katakana/">Tabela de katakana</a>.</li></ol>',
+  CTA_PT, NAV_PT,
+  '<p>Em espanhol: <a href="/es/hiragana/">Hiragana: tabla completa</a> · em inglês: <a href="/hiragana-chart/">Hiragana chart</a></p>',
+ ]), extra_fm='lang: pt\nalternates:\n  - lang: en\n    url: /hiragana-chart/\n  - lang: es\n    url: /es/hiragana/\n')
+
+EXT_PT = [('ファ', 'fa', 'ファン (fã)'), ('フィ', 'fi', 'フィルム (filme fotográfico)'), ('フェ', 'fe', 'カフェ (café, o lugar)'), ('フォ', 'fo', 'フォーク (garfo)'),
+          ('ティ', 'ti', 'パーティー (festa)'), ('ディ', 'di', 'ディナー (jantar)'), ('トゥ', 'tu', 'タトゥー (tatuagem)'),
+          ('ウィ', 'wi', 'ウィンドウ (janela, no computador)'), ('ウェ', 'we', 'ウェブ (web)'), ('ウォ', 'wo', 'ウォーター (água, em nomes de marcas)'),
+          ('シェ', 'she', 'シェア (compartilhar)'), ('ジェ', 'je', 'ジェット (jato)'), ('チェ', 'che', 'チェック (checar)'), ('ヴ', 'vu', 'ヴァイオリン (violino; também バイオリン)')]
+write('pt-katakana.md', '/pt/katakana/', 'Katakana',
+ 'Katakana: tabela completa com romaji e áudio, sons estrangeiros e seu nome em katakana',
+ 'Tabela de katakana em português: os 46 caracteres básicos com romaji, dakuten (ガ, ザ, ダ, バ, パ), combinações como キャ e ショ, o traço de vogal longa ー, os sons para palavras estrangeiras (ファ, ティ, ウィ), os que se confundem (シ/ツ, ソ/ン) e como se escrevem nomes como Maria ou João. Toque em qualquer caractere para ouvir.',
+ '\n'.join(['<h1>Katakana: tabela completa com romaji</h1>',
+  '<p>O katakana tem os mesmos sons do <a href="/pt/hiragana/">hiragana</a>, com traços mais retos. É usado para palavras que vieram de outras línguas '
+  '(<span lang="ja">パン</span> <i>pan</i>, do português «pão»; <span lang="ja">テレビ</span> <i>terebi</i>, televisão), para nomes estrangeiros (inclusive o seu), '
+  'onomatopeias e para dar ênfase, como o nosso itálico. A tabela se lê por linhas: a consoante da esquerda mais a vogal de cima.</p>',
+  '<p><b>Ouça:</b> toque em qualquer caractere para ouvir (usa a voz japonesa do seu aparelho). <b>Teste-se:</b> <a href="/katakana-quiz/">quiz de katakana</a> (em inglês, grátis, 20 perguntas por rodada, com som).</p>',
+  '<h2>Os 46 katakana básicos</h2>', grid(GOJUON, kata),
+  '<h2>Dakuten e handakuten</h2>',
+  '<p>Como no hiragana: dois tracinhos mudam k → g, s → z, t → d e h → b; um circulinho muda h → p.</p>', grid(DAKUTEN, kata),
+  '<h2>Combinações (yōon)</h2>', yoon_grid(kata),
+  '<h2>O traço ー: vogais longas</h2>',
+  '<p>No katakana a vogal longa é marcada com um traço, <span lang="ja">ー</span>, em vez de repetir a vogal: <span lang="ja">コーヒー</span> <i>kōhī</i> (café), '
+  '<span lang="ja">ケーキ</span> <i>kēki</i> (bolo), <span lang="ja">スーパー</span> <i>sūpā</i> (supermercado). No texto vertical o traço vai de cima para baixo. '
+  'Um <span lang="ja">ッ</span> pequeno dobra a consoante seguinte, como no hiragana: <span lang="ja">ベッド</span> <i>beddo</i> (cama).</p>',
+  '<h2>Sons para palavras estrangeiras</h2>',
+  '<p>O japonês não tem <i>fa</i>, <i>ti</i> nem <i>we</i> próprios, então o katakana junta um caractere normal com uma vogal pequena para escrevê-los.</p>',
+  simple(['Katakana', 'Romaji', 'Exemplo'], EXT_PT),
+  '<h2>Seu nome em katakana</h2>',
+  '<p>Nomes estrangeiros se escrevem em katakana pelo som: Maria é <span lang="ja">マリア</span>, João <span lang="ja">ジョアン</span>, Lucas <span lang="ja">ルーカス</span>, '
+  'Gabriel <span lang="ja">ガブリエル</span>, Júlia <span lang="ja">ジュリア</span>. Como o japonês quase não tem sílabas terminadas em consoante, acrescenta-se uma vogal '
+  '(Carlos vira <span lang="ja">カルロス</span>, <i>Karurosu</i>). Mais nomes e o significado dos nomes japoneses em <a href="/pt/nomes-japoneses/">nomes japoneses</a>.</p>',
+  '<h2>Caracteres que se confundem</h2>',
+  simple(['Par', 'Romaji', 'Como diferenciar'], [
+   ('シ / ツ', 'shi / tsu', 'os pontos de シ ficam à esquerda e o traço sobe de baixo; os de ツ ficam em cima e o traço desce de cima'),
+   ('ソ / ン', 'so / n', 'a mesma regra: o traço longo de ソ desce de cima e o de ン sobe de baixo'),
+   ('ク / ケ / タ', 'ku / ke / ta', 'ケ tem um traço separado; タ tem um traço dentro'), ('ウ / ワ / フ', 'u / wa / fu', 'conte os traços: 3, 2, 1'),
+   ('ノ / メ', 'no / me', 'メ tem um traço que cruza'), ('ロ / コ', 'ro / ko', 'ロ é fechado'), ('チ / テ', 'chi / te', 'チ tem um traço que desce pelo meio'),
+   ('カ / 力', 'ka / chikara (kanji de «força»)', 'a mesma forma; o contexto diz qual é'),
+  ]),
+  '<h2>Primeiras palavras em katakana</h2>',
+  simple(['Katakana', 'Romaji', 'Significado'], [
+   ('パン', 'pan', 'pão (do português)'), ('ボタン', 'botan', 'botão (do português)'), ('カメラ', 'kamera', 'câmera'), ('テレビ', 'terebi', 'televisão'),
+   ('アイス', 'aisu', 'sorvete'), ('ホテル', 'hoteru', 'hotel'), ('バス', 'basu', 'ônibus'), ('トイレ', 'toire', 'banheiro'),
+   ('コンビニ', 'konbini', 'loja de conveniência'), ('ブラジル', 'Burajiru', 'Brasil'),
+  ]),
+  CTA_PT, NAV_PT,
+  '<p>Em espanhol: <a href="/es/katakana/">Katakana: tabla completa</a> · em inglês: <a href="/katakana-chart/">Katakana chart</a></p>',
+ ]), extra_fm='lang: pt\nalternates:\n  - lang: en\n    url: /katakana-chart/\n  - lang: es\n    url: /es/katakana/\n')
