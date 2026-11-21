@@ -2,7 +2,7 @@
 layout: page
 permalink: /es/alfabeto-japones/
 title: "Alfabeto japonés"
-seo_title: "Alfabeto japonés (abecedario): hiragana y katakana con romaji, pronunciación y audio"
+seo_title: "Alfabeto japonés y letras japonesas: abecedario hiragana y katakana con romaji y audio"
 description: "El alfabeto japonés explicado en español: las letras japonesas son hiragana, katakana y kanji. Tablas de hiragana y katakana con romaji, sonidos con dakuten, combinaciones, cómo se pronuncia cada sonido para hispanohablantes y audio en cada carácter."
 lang: es
 alternates:
@@ -13,7 +13,7 @@ alternates:
 ---
 
 <style>.st-table{border-collapse:collapse;margin:.3em 0 1em;width:100%}.st-table th,.st-table td{border-bottom:1px solid #e6e6e6;padding:.35em .5em;text-align:left;vertical-align:top}.st-table td[lang=ja]{font-size:1.1em;white-space:nowrap}.st-cta{background:#f6f2ea;border-radius:12px;padding:1em 1.2em;margin:2em 0}.kana-grid{border-collapse:collapse;margin:.4em 0 1.2em;width:100%;max-width:34rem;table-layout:fixed}.kana-grid td,.kana-grid th{border:1px solid #e6e6e6;text-align:center;padding:.3em .1em}.kana-grid th{font-size:.8em;opacity:.7}.kana-grid td span{display:block;font-size:1.7em;line-height:1.2}.kana-grid td small{display:block;font-size:.85em;opacity:.75}</style>
-<h1>Alfabeto japonés: hiragana y katakana</h1>
+<h1>Alfabeto japonés y letras japonesas: hiragana y katakana</h1>
 <p>El japonés no tiene un solo alfabeto. Lo que se suele llamar «abecedario japonés» o «letras japonesas» son tres sistemas que se mezclan en la misma frase: el hiragana y el katakana, que son silabarios (cada carácter es una sílaba, como か <i>ka</i>, no una letra), y los kanji, que representan ideas. El romaji es el japonés escrito con nuestro alfabeto.</p>
 <table class="st-table"><thead><tr><th>Sistema</th><th>Cuántos</th><th>Para qué sirve</th><th>Ejemplo</th></tr></thead><tbody>
 <tr><td lang="ja">ひらがな hiragana</td><td>46 básicos</td><td>la gramática (terminaciones y partículas), palabras japonesas y el furigana sobre los kanji</td><td><span lang="ja">ねこ</span> (gato), <span lang="ja">ありがとう</span></td></tr>
@@ -22,6 +22,7 @@ alternates:
 <tr><td lang="ja">ローマ字 rōmaji</td><td>26 letras</td><td>teclados, carteles de estaciones y libros para principiantes</td><td><i>arigatō</i></td></tr>
 </tbody></table>
 <p><b>Escúchalos:</b> toca cualquier carácter de las tablas para oírlo (usa la voz japonesa de tu dispositivo). Las tablas se leen por filas: la consonante de la izquierda más la vocal de arriba. El orden japonés es あいうえお (a, i, u, e, o).</p>
+<p>Tablas completas de cada uno, con los caracteres que se confunden y primeras palabras: <a href="/es/hiragana/">hiragana</a> · <a href="/es/katakana/">katakana (y tu nombre en katakana)</a>.</p>
 <h2>Hiragana: los 46 caracteres básicos</h2>
 <table class="kana-grid"><thead><tr><th></th><th>a</th><th>i</th><th>u</th><th>e</th><th>o</th></tr></thead><tbody>
 <tr><th>–</th><td><span lang="ja">あ</span><small>a</small></td><td><span lang="ja">い</span><small>i</small></td><td><span lang="ja">う</span><small>u</small></td><td><span lang="ja">え</span><small>e</small></td><td><span lang="ja">お</span><small>o</small></td></tr>

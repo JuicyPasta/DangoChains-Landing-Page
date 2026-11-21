@@ -4,6 +4,9 @@ permalink: /hiragana-chart/
 title: "Hiragana chart"
 seo_title: "Hiragana chart with romaji and audio: all 46 characters, dakuten and combinations"
 description: "Hiragana chart with romaji: the 46 basic hiragana, the voiced ones with dakuten (が, ざ, だ, ば, ぱ), the combinations like きゃ and しょ, the small っ, long vowels, and the characters that trip learners up. Tap any character to hear it."
+alternates:
+  - lang: es
+    url: /es/hiragana/
 ---
 
 <style>.st-table{border-collapse:collapse;margin:.3em 0 1em;width:100%}.st-table th,.st-table td{border-bottom:1px solid #e6e6e6;padding:.35em .5em;text-align:left;vertical-align:top}.st-table td[lang=ja]{font-size:1.1em;white-space:nowrap}.st-cta{background:#f6f2ea;border-radius:12px;padding:1em 1.2em;margin:2em 0}.kana-grid{border-collapse:collapse;margin:.4em 0 1.2em;width:100%;max-width:34rem;table-layout:fixed}.kana-grid td,.kana-grid th{border:1px solid #e6e6e6;text-align:center;padding:.3em .1em}.kana-grid th{font-size:.8em;opacity:.7}.kana-grid td span{display:block;font-size:1.7em;line-height:1.2}.kana-grid td small{display:block;font-size:.85em;opacity:.75}</style>
@@ -81,5 +84,6 @@ description: "Hiragana chart with romaji: the 46 basic hiragana, the voiced ones
 <tr><td lang="ja">みず</td><td>mizu</td><td>water</td></tr>
 </tbody></table>
 <p>Once these are easy, move on to <a href="/katakana-chart/">katakana</a> (the same sounds, used for foreign words) and then kanji, a few at a time.</p>
+<p lang="es">En español: <a href="/es/hiragana/">Hiragana: tabla completa con romaji</a></p>
 <p><b>Japanese scripts:</b> <a href="/japanese-alphabet/">the Japanese alphabet explained</a> · <a href="/hiragana-chart/">hiragana chart</a> · <a href="/katakana-chart/">katakana chart</a> · <a href="/hiragana-quiz/">hiragana quiz</a> · <a href="/katakana-quiz/">katakana quiz</a> · <a href="/japanese-words/">64 basic words</a> · <a href="/phrases/">basic phrases</a> · <a href="/study/jlpt/n5/">JLPT N5 words</a></p>
 <div class="st-cta"><p><b>Practise reading with a daily puzzle.</b> DangoChains gives you 16 Japanese words a day to sort into 4 hidden groups. The Easy board uses everyday words with furigana (kana over every kanji), so it's good kana reading practice. Free in your browser; after each game you see every word's reading and English meaning. <a href="/play/?t=easy">Play today's Easy puzzle</a></p></div>
