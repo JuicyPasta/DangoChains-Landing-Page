@@ -1656,8 +1656,12 @@ LANG_PAGES = {'plants': [('es', '/es/flores-en-japones/', 'Flores en japonés')]
 def topic_page(slug, groups):
     _, _, title, h1, intro = next(t for t in TOPICS if t[0] == slug)
     words = [w for _, _, c, _ in groups for w in c['words']]
-    desc = (f'{len(groups)} groups of Japanese words with readings and English meanings from DangoChains puzzles. '
-            + intro.split('. ')[0].rstrip('.') + '. Examples: ' + '、'.join(dict.fromkeys(words[:6])) + '.')
+    # Lead with the topic's own first sentence: it's what a searcher sees first in the snippet
+    # (the generic "N groups of Japanese words…" opener read the same on every page).
+    desc = (intro.split('. ')[0].rstrip('.') + '. '
+            + ('A reference table plus ' if slug in TOPIC_EXTRAS else '')
+            + f'{len(groups)} word groups with kana, romaji and English meanings. Examples: '
+            + '、'.join(dict.fromkeys(words[:6])) + '.')
     alts = LANG_PAGES.get(slug, [])
     extra = ('alternates:\n' + ''.join(f'  - lang: {l}\n    url: {u}\n' for l, u, _ in alts)) if alts else ''
     body = [front_matter(title, desc, extra), '{% raw %}', STYLE,
